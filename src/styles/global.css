@@ -158,3 +158,30 @@ form.lot textarea { min-height: 130px; resize: vertical; }
 form.lot .two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 @media (max-width: 560px) { form.lot .two { grid-template-columns: 1fr; } }
 .hp { position: absolute; left: -9999px; }
+
+/* find your ma banner on the home page */
+.ma-banner { position: relative; display: block; text-decoration: none; background: var(--blue); }
+.ma-banner img { width: 100%; height: clamp(120px, 16vw, 220px); object-fit: cover; }
+.ma-banner span { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-weight: 300; font-size: clamp(2rem, 6vw, 4.2rem); color: #fff; text-shadow: 0 1px 12px rgba(0,0,0,.25); letter-spacing: -0.01em; }
+.ma-banner:hover span { text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 0.2em; }
+
+/* home: alternating rows, strip, press */
+.o { color: var(--orange); }
+.rows .row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,5vw,64px); align-items: center; padding: clamp(32px,5vw,56px) 0; border-bottom: 1px solid var(--rule); }
+.rows .row:last-child { border-bottom: 0; }
+.rows .row img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.rows .row.flip img { order: -1; }
+.rows h1, .rows h2 { font-weight: 300; margin: 0 0 .5em; }
+.rows .row-text strong { font-weight: 700; }
+@media (max-width: 760px) { .rows .row { grid-template-columns: 1fr; } .rows .row.flip img { order: 0; } }
+.strip { background: #f6f1e7; }
+.strip-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.strip-col { text-align: center; padding: 44px clamp(16px,3vw,40px); border-left: 1px solid #ddd5c4; }
+.strip-col:first-child { border-left: 0; }
+.strip-col svg { width: 56px; height: 56px; fill: none; stroke: var(--orange); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.strip-col h2 { font-weight: 300; margin: 12px 0 8px; font-size: 1.5rem; }
+.strip-col p { color: var(--mute); }
+.strip-col a { color: var(--orange); font-family: var(--display); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .85rem; text-decoration: none; }
+@media (max-width: 760px) { .strip-grid { grid-template-columns: 1fr; } .strip-col { border-left: 0; border-top: 1px solid #ddd5c4; } .strip-col:first-child { border-top: 0; } }
+.press-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px clamp(20px,4vw,48px); padding: 36px 16px; background: #f6f1e7; }
+.press-row img { height: 30px; width: auto; }
