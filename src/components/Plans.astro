@@ -1,0 +1,42 @@
+---
+// Every plan drawn at one scale (--ft pixels per foot, set in global.css),
+// so a visitor can see at a glance how much of a lot each model takes.
+import { models, type Model } from '../data/models';
+
+interface Props { list?: Model[]; current?: string }
+const { list = models, current } = Astro.props;
+
+const extent = (m: Model) => {
+  const w = Math.max(...m.footprint.map((r) => r.x + r.w));
+  const h = Math.max(...m.footprint.map((r) => r.y + r.h));
+  return { w, h };
+};
+---
+<div class="plans">
+  {list.map((m) => {
+    const { w, h } = extent(m);
+    const pad = 0.6;
+    return (
+      <a class="plan" href={`/portfolio/${m.slug}/`} aria-current={m.slug === current ? 'page' : undefined}>
+        <svg
+          viewBox={`${-pad} ${-pad} ${w + pad * 2} ${h + pad * 2}`}
+          style={`--w:${w + pad * 2}`}
+          role="img"
+          aria-label={`${m.name} footprint, ${m.dims}`}
+        >
+          {m.footprint.map((r) => (
+            <rect
+              class={r.kind === 'porch' ? 'm-porch' : r.kind === 'open' ? 'm m-open' : 'm'}
+              x={r.x} y={r.y} width={r.w} height={r.h}
+            />
+          ))}
+        </svg>
+        <div class="plan-label">
+          <strong>{m.name}</strong>
+          <span>{m.sf.toLocaleString('en-US')} sf · {m.beds} bed · {m.baths} bath</span>
+        </div>
+      </a>
+    );
+  })}
+</div>
+<div class="scale-bar" aria-hidden="true"><i></i> 10 feet. Dashed lines are unconditioned or site-built areas.</div>

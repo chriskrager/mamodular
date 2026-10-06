@@ -1,0 +1,17 @@
+---
+import { plans, type Plan } from '../data/plans';
+interface Props { list?: Plan[] }
+const { list = plans } = Astro.props;
+---
+<div class="tiles">
+  {list.map((p) => (
+    <a class="tile" href={`/portfolio/${p.slug}/`}>
+      <div class="art"><img src={`/images/tiles/${p.slug}.png`} alt="" loading="lazy" /></div>
+      <div class="meta">
+        <strong>{p.name}</strong>
+        <small>{p.line}</small>
+        <span>{p.sf.toLocaleString('en-US')} sq. ft. | {p.beds} bed / {p.baths} bath</span>
+      </div>
+    </a>
+  ))}
+</div>

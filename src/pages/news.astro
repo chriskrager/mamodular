@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { posts, fmtDate } from '../data/news';
+---
+<Base title="News" description="ma modular in the news: Dwell, Builder, Vox, Homebuilder Digest, Hive and more.">
+  <div class="wrap page-title"><h1>News</h1></div>
+  <div class="wrap section" style="padding-top:8px">
+    <div class="news-list">
+      {posts.map((p) => (
+        <a class="news-item" href={p.path}>
+          <img src={p.image} alt="" loading="lazy" />
+          <div><time datetime={p.date}>{fmtDate(p.date)}</time><h3>{p.title}</h3></div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

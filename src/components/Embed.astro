@@ -1,0 +1,6 @@
+---
+interface Props { kind: 'youtube' | 'vimeo'; id: string; title?: string }
+const { kind, id, title = 'ma modular video' } = Astro.props;
+const src = kind === 'youtube' ? `https://www.youtube-nocookie.com/embed/${id}` : `https://player.vimeo.com/video/${id}`;
+---
+<iframe class="video" src={src} title={title} loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>

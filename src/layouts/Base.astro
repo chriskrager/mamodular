@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+import { site, nav, footerNav } from '../config';
+
+interface Props { title: string; description: string; image?: string; noindex?: boolean }
+const { title, description, image = '/images/site/home-1.webp', noindex = false } = Astro.props;
+const path = Astro.url.pathname;
+const canonical = new URL(path, site.url).toString();
+const fullTitle = path === '/' ? title : `${title} | ${site.name}`;
+const hide = noindex || !site.live;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    {hide && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, site.url).toString()} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    {site.ga4Id && (<>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}`}></script>
+      <script is:inline define:vars={{ id: site.ga4Id }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date()); gtag('config', id);
+      </script>
+    </>)}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="logo" href="/"><img src="/images/brand/ma-logo-tagline.png" alt="ma modular. ma is modern + affordable, modular architecture, home." width="195" height="62" /></a>
+        <nav class="site-nav" aria-label="Main">
+          {nav.map((n) => <a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>)}
+        </nav>
+      </div>
+    </header>
+    <main><slot /></main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="cols">
+          <div>
+            <p><strong>ma modular</strong></p>
+            <p>An architect-designed modular home system from KRDB.</p>
+            <p><a href={`mailto:${site.email}`}>{site.email}</a><br />{site.phone}</p>
+            <p>{site.address[0]}<br />{site.address[1]}</p>
+          </div>
+          <div>
+            <ul>
+              {footerNav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li><a href={site.facebook}>Facebook</a></li>
+              <li><a href={site.twitter}>Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="fine">&copy; {new Date().getFullYear()} ma modular. All rights reserved. {site.financingNote}</p>
+      </div>
+    </footer>
+  </body>
+</html>

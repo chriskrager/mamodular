@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+---
+<Base title="Locations" description="Where ma modular homes are available. Email us to check whether your location is in our service area.">
+  <div class="wrap page-title"><h1>Locations</h1></div>
+  <div class="wrap section" style="padding-top:12px">
+    <p class="lede">ma homes are currently available in Texas, Louisiana, Western States and the East Coast.</p>
+    <p>Email <a href={`mailto:${site.email}`}>{site.email}</a> to see if your location is currently in our service area. In Austin, or within 45 minutes, KRDB can act as your general contractor.</p>
+    <img src="/images/site/ma-map.png" alt="Map of the areas where ma modular homes are available." style="margin-top:28px;max-width:900px;width:100%" />
+  </div>
+</Base>

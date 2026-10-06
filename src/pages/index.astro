@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import PlanTiles from '../components/PlanTiles.astro';
+import { projects } from '../data/projects';
+import { plans } from '../data/plans';
+---
+<Base title="Modern modular homes | ma modular" description="ma is an architect-designed modern modular home system built with high-quality materials and delivered at an affordable price. From KRDB, Austin.">
+  <section class="hero">
+    <img src="/images/site/home-1.webp" alt="A modern modular house at dusk with a glowing wall of glass." fetchpriority="high" />
+  </section>
+  <div class="wrap hero-copy">
+    <div class="split">
+      <h1>what is ma?</h1>
+      <div>
+        <p class="lede">ma is an architect designed modern modular homes system built with high quality materials, and delivered to you at an affordable price.</p>
+        <p class="lede">Our mission at ma is to make modern design accessible.</p>
+        <p><a class="btn" href="/find-your-ma/">Find your ma</a> &nbsp; <a class="btn btn-quiet" href="/contact/">Contact us</a></p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>why ma?</h2>
+      <div class="trio">
+        <div><h3>ma is faster</h3><p>Roughly half the time it takes to build a home from the ground up.</p></div>
+        <div><h3>ma is quality built</h3><p>Built in a controlled environment. No exposure to natural elements means a tighter build.</p></div>
+        <div><h3>ma is affordable</h3><p>Compared to a typical architect designed home.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <h2>where ma?</h2>
+      <div><p>ma homes are currently available in Texas, Louisiana, Western States and the East Coast.</p><p><a href="/locations/">See locations</a></p></div>
+    </div>
+  </section>
+
+  <div class="photo-band" aria-hidden="true">
+    <img src="/images/site/home-2.webp" alt="" loading="lazy" /><img src="/images/site/home-3.webp" alt="" loading="lazy" /><img src="/images/site/home-4.webp" alt="" loading="lazy" /><img src="/images/portfolio/dogtrot/ruth-1-scaled.webp" alt="" loading="lazy" />
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>find your ma</h2>
+      <p class="lede" style="margin-top:14px">Ten plans, from a 550 sq. ft. guesthouse to a 2,300 sq. ft. pavilion home.</p>
+      <PlanTiles list={plans} />
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap split">
+      <div><h2>myths</h2></div>
+      <div><p>There are a lot of misconceptions about modular construction. Some are true, some are not. Let’s demystify them.</p><p><a class="btn btn-quiet" href="/myths/">Read more</a></p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <h2>videos</h2>
+      <div><p>See project sets, factory tours, interviews with principals, clients and more.</p><p><a class="btn btn-quiet" href="/videos/">Watch now</a></p></div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="split">
+        <h2>development projects</h2>
+        <div><p>ma partners with development teams to create projects from single-family homes to 150,000+ sq. ft. mixed use.</p><p><a class="btn btn-quiet" href="/multi-family/">See more</a></p></div>
+      </div>
+      <div class="cards">
+        {projects.slice(0, 3).map((p) => <a class="card" href={`/portfolio/${p.slug}/`}><img src={p.photos[0].src} alt={p.photos[0].alt} loading="lazy" /><h3>{p.name}</h3></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split">
+      <h2>Ready to find your ma?</h2>
+      <div><p class="lede">Tell us about your lot. An address and a few details are enough to start.</p><p><a class="btn" href="/contact/">Contact us</a></p></div>
+    </div>
+  </section>
+</Base>

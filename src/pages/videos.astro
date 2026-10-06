@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Embed from '../components/Embed.astro';
+const vids = [
+  { kind: 'youtube', id: 'vp0QHf-LCx0', title: 'ma modular video' },
+  { kind: 'youtube', id: 'gO-MWjq8Yos', title: 'ma modular video' },
+  { kind: 'youtube', id: '7YbziJhE36Y', title: 'ma modular video' },
+  { kind: 'youtube', id: 'eXidD9fvkPc', title: 'ma modular video' },
+  { kind: 'vimeo', id: '19729209', title: 'The ma modular Blue Crest house' },
+  { kind: 'youtube', id: 'u8onA1Zjnb8', title: 'Luna time lapse' },
+  { kind: 'youtube', id: 'K5d0whVwbIQ', title: 'Ruth house' },
+] as const;
+---
+<Base title="Videos" description="Project videos, time lapses and factory tours from ma modular.">
+  <div class="wrap page-title"><h1>Videos</h1><p class="lede" style="margin-top:16px">Project sets, factory tours, interviews with principals, clients and more.</p></div>
+  <div class="wrap section" style="padding-top:8px">
+    <div class="videos">{vids.map((v) => <Embed kind={v.kind} id={v.id} title={v.title} />)}</div>
+    <p class="small mute" style="margin-top:20px">The Blue Crest film is by Jim Bruno, on Vimeo.</p>
+  </div>
+</Base>

@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+// CONFIRM: the old Myths page said 4-6 months; the FAQ and Steps pages say 6-12. This page now uses 6-12.
+const myths = [
+  ['Modular is inexpensive', 'Not necessarily. It is not cheaper than a typical tract home, but compared with an architect-designed custom home it is comparable and in most cases less expensive.'],
+  ['Modular is simple', 'Construction is still complex, with many stakeholders involved. The advantage is that much of the scope of work, often more than half, takes place in the factory. That reduces variables like weather delays, and the factory build itself takes just weeks, with materials ordered ahead.'],
+  ['Modular is quick', 'Largely true. Most projects take 6 to 12 months from start to finish, with the factory work taking a few weeks of that. The timeline varies with financing, permits, utilities, site preparation and finishing work.'],
+  ['Modular is flimsy', 'False. ma builds to the modular code on permanent foundations, to IRC standards, so the homes are just as solid as any site-built home, if not stronger. Each module is engineered to withstand the stresses of transportation and being lifted by a crane.'],
+  ['Modular is “green”', 'It can be. Standard specs include 2x6 walls (R-19 insulation), thermally broken windows, low-VOC finishes and tankless water heaters. Solar panels, rainwater collection and geothermal systems are optional upgrades, mostly installed on site.'],
+];
+---
+<Base title="Myths" description="Common myths about modular construction: cost, simplicity, speed, strength and sustainability.">
+  <div class="wrap page-title"><h1>Myths</h1><p class="lede" style="margin-top:16px">There are a lot of misconceptions about modular construction. Some are true, some are not. Let&rsquo;s demystify them.</p></div>
+  <div class="wrap section" style="padding-top:8px">
+    <div class="qa">{myths.map((m) => <div><h3>Myth: {m[0]}</h3><p>{m[1]}</p></div>)}</div>
+  </div>
+</Base>

@@ -1,0 +1,26 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import Embed from '../../../../components/Embed.astro';
+import { posts, fmtDate } from '../../../../data/news';
+export function getStaticPaths() {
+  return posts.map((p) => {
+    const [, year, month, day, slug] = p.path.split('/');
+    return { params: { year, month, day, slug }, props: { p } };
+  });
+}
+const { p } = Astro.props;
+const plain = p.title.replace(/[“”]/g, '');
+---
+<Base title={plain} description={(p.body[0] ?? plain).slice(0, 155)} image={p.image}>
+  <div class="wrap section">
+    <p class="small mute"><a href="/news/">News</a></p>
+    <time class="small mute" datetime={p.date}>{fmtDate(p.date)}</time>
+    <h1 style="margin-top:8px;font-size:clamp(1.9rem,4vw,2.8rem)">{p.title}</h1>
+    <div class="stack" style="margin-top:28px">
+      {!p.embed && <img src={p.image} alt="" style="max-width:720px;width:100%" />}
+      {p.embed && <div style="max-width:800px"><Embed kind={p.embed.kind} id={p.embed.id} title={plain} /></div>}
+      {p.body.map((t) => <p>{t}</p>)}
+      {p.links && <p>{p.links.map((l, i) => <><a href={l.href}>{l.label}</a>{i < p.links!.length - 1 ? ' · ' : ''}</>)}</p>}
+    </div>
+  </div>
+</Base>

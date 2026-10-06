@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import Embed from '../../components/Embed.astro';
+import { plans } from '../../data/plans';
+import { projects } from '../../data/projects';
+export function getStaticPaths() {
+  return [
+    ...plans.map((plan) => ({ params: { slug: plan.slug }, props: { plan } })),
+    ...projects.map((project) => ({ params: { slug: project.slug }, props: { project } })),
+  ];
+}
+const { plan, project } = Astro.props as { plan?: (typeof plans)[number]; project?: (typeof projects)[number] };
+const nf = (n: number) => n.toLocaleString('en-US');
+const hero = plan ? plan.hero : project!.photos[0];
+const gallery = plan ? plan.gallery : project!.photos.slice(1);
+const name = plan ? plan.name : project!.name;
+const back = plan ? { href: '/find-your-ma/', label: 'Find your ma' } : { href: '/multi-family/', label: 'Development projects' };
+const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${plan.baths} bath. ${plan.summary}` : `${project!.name}: ${project!.summary}`;
+---
+<Base title={name} description={desc} image={hero.src}>
+  <section class="hero"><img src={hero.src} alt={hero.alt} fetchpriority="high" /></section>
+  <div class="wrap section">
+    <p class="small mute"><a href={back.href}>{back.label}</a></p>
+    <h1>{name}</h1>
+    {plan && (
+      <>
+        <dl class="facts">
+          <div><dt>Size</dt><dd>{nf(plan.sf)} sq. ft.</dd>{plan.sfNote && <dd style="font-size:0.8rem;color:var(--mute)">{plan.sfNote}</dd>}</div>
+          <div><dt>Bedrooms</dt><dd>{plan.beds}</dd></div>
+          <div><dt>Baths</dt><dd>{plan.baths}</dd></div>
+          {plan.stories && <div><dt>Stories</dt><dd>{plan.stories}</dd></div>}
+          {plan.modules ? <div><dt>Modules</dt><dd>{plan.modules}</dd></div> : null}
+          {plan.dims && <div><dt>Footprint</dt><dd>{plan.dims}</dd></div>}
+        </dl>
+        <div class="stack" style="margin-top:32px">
+          {plan.description.map((t) => <p>{t}</p>)}
+          {plan.note && <p class="small mute">{plan.note}</p>}
+          <p class="mute">Total cost depends on your site. Tell us about your lot and we will give you a rough estimate.</p>
+          <p><a class="btn" href={`/contact/?model=${plan.slug}`}>Ask about the {plan.name}</a></p>
+        </div>
+        {plan.floorplan && (<><h2 style="margin-top:56px">Floor plan</h2><div class="plan-sheet"><img src={plan.floorplan} alt={`Floor plan of the ${plan.name}`} loading="lazy" /></div></>)}
+      </>
+    )}
+    {project && (
+      <>
+        <p class="lede" style="margin-top:12px">{project.kind}. {project.summary}</p>
+        {project.facts && <dl class="facts">{project.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>}
+        <div class="stack" style="margin-top:28px">{(project.body ?? []).map((t) => <p>{t}</p>)}</div>
+        {project.video && <p><a href={project.video}>Watch the video</a></p>}
+      </>
+    )}
+    {gallery.length > 0 && <div class="gallery">{gallery.map((g) => <img src={g.src} alt={g.alt} loading="lazy" />)}</div>}
+  </div>
+  <section class="band">
+    <div class="wrap split">
+      <h2>{plan ? `Interested in the ${plan.name}?` : 'Have a site in mind?'}</h2>
+      <div><p class="lede">Send us your address and what you want to build.</p><p><a class="btn" href="/contact/">Contact us</a></p></div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+// CONFIRM before launch: custom-design answer, state availability.
+const faqs = [
+  ['Does ma offer financing?', 'We refer clients to a lender. For ADUs, second-lien construction loans are available, underwritten with the rent the new unit is projected to earn. Homes built to modular code can also be financed by most banks that handle conventional construction financing.'],
+  ['How long does the process take?', 'Typically 6 to 12 months from start to move-in, depending on permits, financing, site preparation and the contractor’s finishing work.'],
+  ['Does ma offer custom designs?', 'No. We build the plans shown on this site, which lets us take full advantage of the factory process. Finishes can be upgraded; see Features.'],
+  ['How much will it cost?', 'We do not publish prices. We can estimate factory costs accurately, but site costs (typically 40 to 60 percent of the total) vary by location and circumstance. Send us your lot and we will give you a rough estimate for the completed project.'],
+  ['Can modules be stacked?', 'Yes. A couple of our plans are two stories.'],
+  ['Can I put modules on top of a garage?', 'It is possible, but it is likely not cost-effective compared with site-built alternatives.'],
+  ['Can I use a ma plan as an addition to my home?', 'Yes, if an existing ma plan works as an addition to your home.'],
+  ['Can I expand later?', 'Possibly, if different ma floor plans complement each other. The plans are not modular “kits”.'],
+  ['What about snow loads, seismic activity and wind?', 'All plans are engineered to local requirements, including snow loads, seismic activity and wind speeds.'],
+  ['Can I add a fireplace?', 'Pre-fabricated fireplaces or wood stoves can be added, depending on the plan and local codes.'],
+  ['Is there a model home I can visit?', 'No, but we have photos and a list of completed projects you can drive by.'],
+  ['Why is ma not available in my state?', 'Each state requires separate licensing. Unavailability reflects the lack of a manufacturing partner there, not a limit on delivery. Email us to ask about your location.'],
+  ['Can you build on a steep lot?', 'Yes, with adequate truck and crane access and proper foundation engineering.'],
+  ['What if my site is tight?', 'It depends on equipment access. A route survey assesses whether the modules can reach the site.'],
+  ['Can you use my existing foundation?', 'Rarely. ma homes use pier and beam foundations.'],
+  ['Can I buy just the shell?', 'No. The contractor ensures a finished, move-in-ready home that passes inspections.'],
+  ['Can I upgrade the finishes?', 'Yes, at additional material cost. See Features.'],
+  ['Can you change a floor plan?', 'Currently we offer only the base plans listed under Find your ma.'],
+  ['Are garages and porches included?', 'Not in the base plans, but they can be built on site for an additional cost.'],
+  ['Who is the contractor?', 'In the Austin area, within 45 minutes, KRDB (ma’s parent company) can serve as your general contractor. Elsewhere, our manufacturing partners provide referrals.'],
+  ['How complete is a modular home when it arrives?', 'True modular homes arrive largely complete, typically about 90 percent, which minimizes on-site construction.'],
+];
+---
+<Base title="FAQ" description="Answers about ma modular homes: financing, timeline, custom designs, pricing, lots, contractors and delivery.">
+  <div class="wrap page-title"><h1>FAQ</h1></div>
+  <div class="wrap section" style="padding-top:8px"><div class="qa">{faqs.map((f) => <div><h3>{f[0]}</h3><p>{f[1]}</p></div>)}</div></div>
+  <section class="band"><div class="wrap split"><h2>Still have a question?</h2><div><p><a class="btn" href="/contact/">Ask us</a></p></div></div></section>
+</Base>

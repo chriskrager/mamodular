@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+// CONFIRM: carried over from the old Features page. Brands and options may have changed.
+const rows = [
+  ['Exterior', 'Fiber cement panels, painted stucco, cedar siding, standing seam roof', 'Integral color stucco, premium woods (ipe, redwood), painted metal, Corten steel'],
+  ['Interior', 'Light orange-peel sheetrock, bamboo flooring', 'Smooth sheetrock, long leaf pine or mesquite flooring'],
+  ['Cabinets', 'Merillat Fusion series, maple or cherry', 'Custom options'],
+  ['Tile', 'Subway tile, Imola Koshi in grey or white', 'Concrete, glass mosaic, Interceramic glass'],
+  ['Countertops', 'Quartzite in black, white or grey', 'Soapstone, Carrara marble'],
+  ['Plumbing', 'One-piece toilets, stainless sinks, commercial-style faucets, Moen fixtures, Rinnai tankless water heater', 'Hansgrohe, Kohler premium fixtures'],
+  ['Appliances', 'Whirlpool stainless package', 'Jenn-Air'],
+  ['Lighting', 'West Elm pendants, Kovacs sconces, Leviton switches, Kichler ceiling lights', ''],
+];
+---
+<Base title="Features" description="Standard and premium finishes for ma modular homes: exterior, interior, cabinets, tile, countertops, plumbing, appliances and lighting.">
+  <div class="wrap page-title"><h1>Features</h1></div>
+  <div class="wrap section" style="padding-top:12px">
+    <p class="lede">Every ma home is built with 2x6 walls, thermally broken windows, low-VOC finishes and a tankless water heater. Finishes come in a standard and a premium level.</p>
+    <table class="spec">
+      <thead><tr><th></th><th>Standard options</th><th>Premium options</th></tr></thead>
+      <tbody>{rows.map((r) => <tr><th scope="row">{r[0]}</th><td>{r[1]}</td><td>{r[2]}</td></tr>)}</tbody>
+    </table>
+  </div>
+</Base>

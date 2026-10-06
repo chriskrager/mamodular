@@ -1,0 +1,147 @@
+{
+ "luna": {
+  "photos": [
+   "/images/portfolio/luna/01.webp",
+   "/images/portfolio/luna/02.webp",
+   "/images/portfolio/luna/03.webp",
+   "/images/portfolio/luna/04.webp",
+   "/images/portfolio/luna/05.webp",
+   "/images/portfolio/luna/06.webp",
+   "/images/portfolio/luna/07.webp",
+   "/images/portfolio/luna/08.webp",
+   "/images/portfolio/luna/09.webp",
+   "/images/portfolio/luna/10.webp",
+   "/images/portfolio/luna/11.webp",
+   "/images/portfolio/luna/12.webp"
+  ],
+  "plan": "/images/portfolio/luna/floorplan.webp"
+ },
+ "z-plan": {
+  "photos": [
+   "/images/portfolio/z-plan/01.webp",
+   "/images/portfolio/z-plan/02.webp",
+   "/images/portfolio/z-plan/03.webp"
+  ],
+  "plan": "/images/portfolio/z-plan/floorplan.webp"
+ },
+ "c-plan": {
+  "photos": [
+   "/images/portfolio/c-plan/01.webp",
+   "/images/portfolio/c-plan/02.webp",
+   "/images/portfolio/c-plan/03.webp"
+  ],
+  "plan": "/images/portfolio/c-plan/floorplan.webp"
+ },
+ "blanco-river": {
+  "photos": [
+   "/images/portfolio/blanco-river/01.webp",
+   "/images/portfolio/blanco-river/02.webp",
+   "/images/portfolio/blanco-river/03.webp",
+   "/images/portfolio/blanco-river/04.webp",
+   "/images/portfolio/blanco-river/05.webp",
+   "/images/portfolio/blanco-river/06.webp",
+   "/images/portfolio/blanco-river/07.webp",
+   "/images/portfolio/blanco-river/08.webp",
+   "/images/portfolio/blanco-river/09.webp",
+   "/images/portfolio/blanco-river/10.webp",
+   "/images/portfolio/blanco-river/11.webp",
+   "/images/portfolio/blanco-river/12.webp"
+  ],
+  "plan": "/images/portfolio/blanco-river/floorplan.webp"
+ },
+ "blue-crest": {
+  "photos": [
+   "/images/portfolio/blue-crest/01.webp",
+   "/images/portfolio/blue-crest/02.webp",
+   "/images/portfolio/blue-crest/03.webp",
+   "/images/portfolio/blue-crest/04.webp",
+   "/images/portfolio/blue-crest/05.webp",
+   "/images/portfolio/blue-crest/06.webp",
+   "/images/portfolio/blue-crest/07.webp",
+   "/images/portfolio/blue-crest/08.webp"
+  ],
+  "plan": "/images/portfolio/blue-crest/floorplan.webp"
+ },
+ "fire-island": {
+  "photos": [
+   "/images/portfolio/fire-island/01.webp",
+   "/images/portfolio/fire-island/02.webp",
+   "/images/portfolio/fire-island/03.webp",
+   "/images/portfolio/fire-island/04.webp",
+   "/images/portfolio/fire-island/05.webp",
+   "/images/portfolio/fire-island/06.webp",
+   "/images/portfolio/fire-island/07.webp",
+   "/images/portfolio/fire-island/08.webp",
+   "/images/portfolio/fire-island/09.webp",
+   "/images/portfolio/fire-island/10.webp",
+   "/images/portfolio/fire-island/11.webp"
+  ],
+  "plan": "/images/portfolio/fire-island/floorplan.webp"
+ },
+ "marfa": {
+  "photos": [
+   "/images/portfolio/marfa/01.webp",
+   "/images/portfolio/marfa/02.webp",
+   "/images/portfolio/marfa/03.webp",
+   "/images/portfolio/marfa/04.webp",
+   "/images/portfolio/marfa/05.webp",
+   "/images/portfolio/marfa/06.webp",
+   "/images/portfolio/marfa/07.webp",
+   "/images/portfolio/marfa/08.webp",
+   "/images/portfolio/marfa/09.webp",
+   "/images/portfolio/marfa/10.webp"
+  ],
+  "plan": "/images/portfolio/marfa/floorplan.webp"
+ },
+ "quintero": {
+  "photos": [
+   "/images/portfolio/quintero/01.webp",
+   "/images/portfolio/quintero/02.webp",
+   "/images/portfolio/quintero/03.webp",
+   "/images/portfolio/quintero/04.webp"
+  ],
+  "plan": null
+ },
+ "belmont": {
+  "photos": [
+   "/images/portfolio/belmont/01.webp",
+   "/images/portfolio/belmont/02.webp",
+   "/images/portfolio/belmont/03.webp",
+   "/images/portfolio/belmont/04.webp",
+   "/images/portfolio/belmont/05.webp"
+  ],
+  "plan": null
+ },
+ "onteora": {
+  "photos": [
+   "/images/portfolio/onteora/01.webp",
+   "/images/portfolio/onteora/02.webp",
+   "/images/portfolio/onteora/03.webp",
+   "/images/portfolio/onteora/04.webp",
+   "/images/portfolio/onteora/05.webp"
+  ],
+  "plan": null
+ },
+ "ventura-mixed-use": {
+  "photos": [
+   "/images/portfolio/ventura-mixed-use/01.webp",
+   "/images/portfolio/ventura-mixed-use/02.webp",
+   "/images/portfolio/ventura-mixed-use/03.webp",
+   "/images/portfolio/ventura-mixed-use/04.webp",
+   "/images/portfolio/ventura-mixed-use/05.webp",
+   "/images/portfolio/ventura-mixed-use/06.webp",
+   "/images/portfolio/ventura-mixed-use/07.webp"
+  ],
+  "plan": null
+ },
+ "mlk-mixed-use": {
+  "photos": [
+   "/images/portfolio/mlk-mixed-use/01.webp",
+   "/images/portfolio/mlk-mixed-use/02.webp",
+   "/images/portfolio/mlk-mixed-use/03.webp",
+   "/images/portfolio/mlk-mixed-use/04.webp",
+   "/images/portfolio/mlk-mixed-use/05.webp"
+  ],
+  "plan": null
+ }
+}

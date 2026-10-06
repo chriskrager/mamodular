@@ -1,0 +1,4 @@
+# The new site keeps the old site's URLs. Only these old paths changed.
+/portfolio/                  /find-your-ma/   301
+/portfolio/page/2/           /find-your-ma/   301
+/news/page/2/                /news/           301
