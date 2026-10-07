@@ -38,7 +38,7 @@ const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${p
           <p class="mute">Total cost depends on your site. Tell us about your lot and we will give you a rough estimate.</p>
           <p><a class="btn" href={`/contact/?model=${plan.slug}`}>Ask about the {plan.name}</a></p>
         </div>
-        {plan.floorplan && (<><h2 style="margin-top:56px">Floor plan</h2><div class="plan-sheet"><img src={plan.floorplan} alt={`Floor plan of the ${plan.name}`} loading="lazy" /></div></>)}
+        {plan.floorplans ? (<><h2 style="margin-top:56px">Floor plans</h2>{plan.floorplans.map((f) => <div class="plan-sheet"><img src={f.src} alt={`${f.label} plan of the ${plan.name}`} loading="lazy" /></div>)}</>) : plan.floorplan && (<><h2 style="margin-top:56px">Floor plan</h2><div class="plan-sheet"><img src={plan.floorplan} alt={`Floor plan of the ${plan.name}`} loading="lazy" /></div></>)}
       </>
     )}
     {project && (

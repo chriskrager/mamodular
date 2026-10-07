@@ -105,7 +105,7 @@ ul, ol { max-width: var(--measure); }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-top: 24px; }
 .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--tint); }
 .plan-sheet { background: #fff; border: 1px solid var(--rule); padding: clamp(12px, 3vw, 32px); margin-top: 20px; }
-.plan-sheet img { width: 100%; }
+.plan-sheet img { width: auto; max-width: 100%; max-height: 880px; display: block; margin: 0 auto; }
 .caption { font-size: 0.85rem; color: var(--mute); margin-top: 8px; }
 
 /* to-scale plans */
