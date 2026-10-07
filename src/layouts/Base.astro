@@ -72,5 +72,37 @@ const hide = noindex || !site.live;
         <p class="fine">&copy; {new Date().getFullYear()} ma modular. All rights reserved. {site.financingNote}</p>
       </div>
     </footer>
+  <script is:inline>
+    (function () {
+      var imgs = Array.prototype.slice.call(document.querySelectorAll('img[data-zoom]'));
+      if (!imgs.length) return;
+      var lb = document.createElement('div');
+      lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Enlarged image');
+      lb.innerHTML = '<button class="x" aria-label="Close">&times;</button><button class="p" aria-label="Previous">&lsaquo;</button><img alt="" /><button class="n" aria-label="Next">&rsaquo;</button>';
+      document.body.appendChild(lb);
+      var big = lb.querySelector('img'), i = 0, last = null;
+      function show(k) {
+        i = (k + imgs.length) % imgs.length;
+        var s = imgs[i]; big.src = s.currentSrc || s.src; big.alt = s.alt;
+        big.className = s.getAttribute('data-zoom') === 'plan' ? 'plan' : '';
+      }
+      function open(k) { last = document.activeElement; show(k); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus();
+        lb.querySelector('.p').style.display = lb.querySelector('.n').style.display = imgs.length > 1 ? '' : 'none'; }
+      function close() { lb.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); }
+      imgs.forEach(function (im, k) {
+        im.setAttribute('tabindex', '0'); im.setAttribute('role', 'button');
+        im.addEventListener('click', function () { open(k); });
+        im.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(k); } });
+      });
+      lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+      lb.querySelector('.x').addEventListener('click', close);
+      lb.querySelector('.p').addEventListener('click', function () { show(i - 1); });
+      lb.querySelector('.n').addEventListener('click', function () { show(i + 1); });
+      document.addEventListener('keydown', function (e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close(); else if (e.key === 'ArrowLeft') show(i - 1); else if (e.key === 'ArrowRight') show(i + 1);
+      });
+    })();
+  </script>
   </body>
 </html>

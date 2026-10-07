@@ -18,7 +18,7 @@ const back = plan ? { href: '/find-your-ma/', label: 'Find your ma' } : { href: 
 const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${plan.baths} bath. ${plan.summary}` : `${project!.name}: ${project!.summary}`;
 ---
 <Base title={name} description={desc} image={hero.src}>
-  <section class="hero"><img src={hero.src} alt={hero.alt} fetchpriority="high" /></section>
+  <section class="hero"><img src={hero.src} alt={hero.alt} fetchpriority="high" data-zoom /></section>
   <div class="wrap section">
     <p class="small mute"><a href={back.href}>{back.label}</a></p>
     <h1>{name}</h1>
@@ -38,7 +38,7 @@ const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${p
           <p class="mute">Total cost depends on your site. Tell us about your lot and we will give you a rough estimate.</p>
           <p><a class="btn" href={`/contact/?model=${plan.slug}`}>Ask about the {plan.name}</a></p>
         </div>
-        {plan.floorplans ? (<><h2 style="margin-top:56px">Floor plans</h2>{plan.floorplans.map((f) => <div class="plan-sheet"><img src={f.src} alt={`${f.label} plan of the ${plan.name}`} loading="lazy" /></div>)}</>) : plan.floorplan && (<><h2 style="margin-top:56px">Floor plan</h2><div class="plan-sheet"><img src={plan.floorplan} alt={`Floor plan of the ${plan.name}`} loading="lazy" /></div></>)}
+        {plan.floorplans ? (<><h2 style="margin-top:56px">Floor plans</h2><div class="plan-sheets">{plan.floorplans.map((f) => <div class="plan-sheet"><img src={f.src} alt={`${f.label} plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /></div>)}</div></>) : plan.floorplan && (<><h2 style="margin-top:56px">Floor plan</h2><div class="plan-sheets"><div class="plan-sheet"><img src={plan.floorplan} alt={`Floor plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /></div></div></>)}
       </>
     )}
     {project && (
@@ -49,7 +49,7 @@ const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${p
         {project.video && <p><a href={project.video}>Watch the video</a></p>}
       </>
     )}
-    {gallery.length > 0 && <div class="gallery">{gallery.map((g) => <img src={g.src} alt={g.alt} loading="lazy" />)}</div>}
+    {gallery.length > 0 && <div class="gallery">{gallery.map((g) => <img src={g.src} alt={g.alt} loading="lazy" data-zoom />)}</div>}
   </div>
   <section class="band">
     <div class="wrap split">

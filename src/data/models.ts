@@ -45,7 +45,7 @@ export const models: Model[] = [
       'The guesthouse, studio, office or granny flat of your dreams.',
       'One module, one bedroom, one bath, and an open living room. It is the smallest plan in the ADU line.',
     ],
-    hero: img('grand-ma-550', '525-1.webp', 'Small modern backyard house with a wood fascia, white siding, glass door and a wood deck, set among trees.', 'built'),
+    hero: img('grand-ma-550', 'img-8520-scaled.webp', 'Gray built unit with glass doors and landscaping in gravel and bamboo.', 'built'),
     floorplan: '/images/portfolio/grand-ma-550/floorplan.webp',
     footprint: [{ x: 0, y: 0, w: 38, h: 15 }],
     gallery: [
@@ -53,7 +53,7 @@ export const models: Model[] = [
       img('grand-ma-550', '525-3.webp', 'Interior kitchen with white cabinets and stainless appliances, bamboo floor beyond.', 'built'),
       img('grand-ma-550', '525-4.webp', 'Interior living space with floor-to-ceiling sliders and clerestory windows.', 'built'),
       img('grand-ma-550', '525-8.webp', 'A built unit with a turquoise door on a raised deck, on a hillside lot.', 'built'),
-      img('grand-ma-550', 'img-8520-scaled.webp', 'Gray built unit with glass doors and landscaping in gravel and bamboo.', 'built'),
+      img('grand-ma-550', '525-1.webp', 'Small modern backyard house with a wood fascia, white siding, glass door and a wood deck, set among trees.', 'built'),
       img('grand-ma-550', '550-ext-1.webp', 'Rendering of the 550 in a landscaped yard with palms, dark and gray siding.', 'rendering'),
       img('grand-ma-550', '550-ext-2.webp', 'Rendering of the 550 from the end, with glass doors and a stone path.', 'rendering'),
       img('grand-ma-550', '550-int-1.webp', 'Rendering of the open living and dining room.', 'rendering'),
@@ -75,7 +75,8 @@ export const models: Model[] = [
     summary: 'Indoor-outdoor living around a central breezeway.',
     description: [
       'Light-filled indoor-outdoor space, high ceilings and a generous layout make this home a kind of sanctuary. A vacation or guesthouse you will want to stay in.',
-      'Bedrooms and bath sit in one module, living and kitchen in another, and an unconditioned breezeway between them, glazed on both sides, opens to a site-built porch on each side.',
+      'Bedrooms and bath sit in one module; the living, dining and kitchen area, with a powder bath, sits in another. An unconditioned breezeway between them, glazed on both sides, opens to a site-built porch on each side.',
+      'Featured in Dwell.',
     ],
     hero: img('dogtrot', 'ruth-1-scaled.webp', 'Dogtrot-plan house with a rust-colored wall, corrugated siding and a wall of windows, set among live oaks.', 'built'),
     floorplan: '/images/portfolio/dogtrot/floorplan.webp',
