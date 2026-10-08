@@ -82,7 +82,7 @@ ul, ol { max-width: var(--measure); }
 
 /* plan tiles, as on the old Find Your Ma page */
 .blue-band { background: var(--blue); color: #fff; padding: 64px 0 88px; }
-.blue-band .lede { color: #fff; }
+.blue-band .lede { color: #fff; font-family: var(--display); font-size: 1.3rem; font-weight: 300; line-height: 1.5; max-width: none; }
 .blue-band .lede a { color: #fff; text-decoration: underline; }
 .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 56px 40px; }
 .tile { display: block; text-decoration: none; color: #fff; text-align: center; }
