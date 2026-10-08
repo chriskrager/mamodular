@@ -76,7 +76,12 @@ export const housePlans: Plan[] = [
   big({ slug: 'z-plan', name: 'Z Plan', sf: 1750, beds: '3', baths: '2', stories: 1, summary: 'Comfort, privacy and flexibility.',
     description: ['Comfort, privacy and flexibility. A separate wing houses children or guests, while a dedicated home office stays apart.'] }),
   big({ slug: 'blue-crest', name: 'Blue Crest', sf: 1900, beds: '3', baths: '2', stories: 2, summary: 'A two-story urban infill model.',
-    description: ['This ample two-story model includes indoor-outdoor spaces, a library and upstairs bedroom privacy. A great urban infill model.'] }),
+    description: ['This ample two-story model includes indoor-outdoor spaces, a library and upstairs bedroom privacy. A great urban infill model.'],
+    note: 'Decks, stairs and garage are site-built.',
+    floorplans: [
+      { src: '/images/portfolio/blue-crest/floorplan-1.webp', label: 'First floor' },
+      { src: '/images/portfolio/blue-crest/floorplan-2.webp', label: 'Second floor' },
+    ] }),
   // Alta Vista: 2,200 sf, 2 stories, 3 bed / 2.5 bath, 3 modules. Floor plans are one per level.
   {
     slug: 'alta-vista', name: 'Alta Vista', line: 'Texas Mod', sf: 2200, beds: '3', baths: '2.5', stories: 2, modules: 3, isAdu: false,
@@ -102,8 +107,12 @@ export const housePlans: Plan[] = [
     ],
   },
   // Confirmed: 2,300 sf, 4 bed / 2.5 bath.
-  big({ slug: 'fire-island', name: 'Fire Island', sf: 2300, beds: '4', baths: '2.5', stories: 1, summary: 'Light and airy, with an indoor-outdoor living room.',
-    description: ['A light and airy home with multiple patio spaces, a fireplace and an indoor-outdoor living room for gatherings, overlooking the valley.'] }),
+  big({ slug: 'fire-island', name: 'Fire Island', sf: 2300, beds: '4', baths: '2.5', stories: 2, summary: 'Light and airy, with an indoor-outdoor living room.',
+    description: ['A light and airy home with multiple patio spaces, a fireplace and an indoor-outdoor living room for gatherings, overlooking the valley.'],
+    floorplans: [
+      { src: '/images/portfolio/fire-island/floorplan-1.webp', label: 'First floor' },
+      { src: '/images/portfolio/fire-island/floorplan-2.webp', label: 'Second floor' },
+    ] }),
   big({ slug: 'marfa', name: 'Marfa', sf: 2300, beds: '3', baths: '2.5', stories: 1, modules: 2, summary: 'A rambling pavilion home with a guesthouse.',
     description: ['A rambling pavilion home. The large common space (two merged ma modules) and a separate guesthouse with a shared courtyard make this a perfect model for gatherings and guests.', 'Featured in Dwell, December 2016.'] }),
   // Post: 2,500 sf, 2 stories, 4 bed / 2.5 bath, 5 modules.
