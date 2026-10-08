@@ -108,7 +108,10 @@
    "/images/portfolio/belmont/02.webp",
    "/images/portfolio/belmont/03.webp",
    "/images/portfolio/belmont/04.webp",
-   "/images/portfolio/belmont/05.webp"
+   "/images/portfolio/belmont/05.webp",
+   "/images/portfolio/belmont/06.webp",
+   "/images/portfolio/belmont/07.webp",
+   "/images/portfolio/belmont/08.webp"
   ],
   "plan": null
  },
@@ -117,8 +120,7 @@
    "/images/portfolio/onteora/01.webp",
    "/images/portfolio/onteora/02.webp",
    "/images/portfolio/onteora/03.webp",
-   "/images/portfolio/onteora/04.webp",
-   "/images/portfolio/onteora/05.webp"
+   "/images/portfolio/onteora/04.webp"
   ],
   "plan": null
  },
@@ -140,7 +142,14 @@
    "/images/portfolio/mlk-mixed-use/02.webp",
    "/images/portfolio/mlk-mixed-use/03.webp",
    "/images/portfolio/mlk-mixed-use/04.webp",
-   "/images/portfolio/mlk-mixed-use/05.webp"
+   "/images/portfolio/mlk-mixed-use/05.webp",
+   "/images/portfolio/mlk-mixed-use/06.webp",
+   "/images/portfolio/mlk-mixed-use/07.webp",
+   "/images/portfolio/mlk-mixed-use/08.webp",
+   "/images/portfolio/mlk-mixed-use/09.webp",
+   "/images/portfolio/mlk-mixed-use/10.webp",
+   "/images/portfolio/mlk-mixed-use/11.webp",
+   "/images/portfolio/mlk-mixed-use/12.webp"
   ],
   "plan": null
  }
