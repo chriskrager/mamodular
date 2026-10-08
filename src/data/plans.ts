@@ -120,9 +120,9 @@ export const housePlans: Plan[] = [
     slug: 'post', name: 'Post', line: 'Texas Mod', sf: 2500, beds: '4', baths: '2.5', stories: 2, modules: 5, isAdu: false,
     summary: 'A five-module home with a cantilevered cedar upper floor.',
     description: ['A two-story home built from five ma modules. The first level holds the open kitchen and living area, a ground-floor bedroom suite, laundry and a powder room.', 'A cedar-clad upper volume cantilevers over the entry and holds the remaining bedrooms and bath, with a covered balcony at one end.'],
-    hero: { src: '/images/portfolio/post/01.webp', alt: 'Aerial view of Post: a long cedar-clad upper floor over white stucco wings that wrap a courtyard with a plunge pool.' },
+    hero: { src: '/images/portfolio/post/02.webp', alt: 'The Post courtyard: a plunge pool between the white stucco wings, with the cedar-clad upper floor above.' },
     gallery: [
-      { src: '/images/portfolio/post/02.webp', alt: 'The Post courtyard: a plunge pool between the stucco wings, with the cedar upper floor above.' },
+      { src: '/images/portfolio/post/01.webp', alt: 'Aerial view of Post: a long cedar-clad upper floor over white stucco wings that wrap a courtyard with a plunge pool.' },
       { src: '/images/portfolio/post/03.webp', alt: 'Post from the street: a cedar-clad upper floor with a covered balcony above a white stucco ground floor and entry stairs.' },
     ],
     floorplans: [
