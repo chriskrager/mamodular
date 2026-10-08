@@ -24,12 +24,12 @@ export const nav = [
   { href: '/about/', label: 'About' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/news/', label: 'News' },
-  { href: '/videos/', label: 'YouTube Channel' },
+  { href: '/multi-family/', label: 'Development Projects', accent: true },
+  { href: '/videos/', label: 'Podcasts and Videos' },
   { href: '/contact/', label: 'Contact' },
 ];
 export const footerNav = [
   { href: '/adus-aka-granny-flat-tiny-house-etc/', label: "ADU's" },
-  { href: '/multi-family/', label: 'Development projects' },
   { href: '/locations/', label: 'Locations' },
   { href: 'http://www.krdb.com', label: 'KRDB' },
 ];

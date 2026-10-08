@@ -18,11 +18,32 @@ const vids = [
   { kind: 'vimeo', id: '19729209', title: 'The ma modular Blue Crest house' },
   { kind: 'youtube', id: 'K5d0whVwbIQ', title: 'Ruth house' },
 ] as const;
+const talks = [
+  { kind: 'youtube', id: 'd7y009EB1q0', title: 'The Banker Who Rebuilt Austin: Chris Krager on Modern Design Built to Be Attainable', note: 'From Waterloo to the Alamo (Engel & Völkers), with Traci Wilson' },
+  { kind: 'youtube', id: 'ppRm5Iu512M', title: 'Why Modular? With a Vertically Integrated Developer / Designer / Builder', note: 'Dave Cooper LIVE' },
+  { kind: 'youtube', id: 'KIs_dY3l_XU', title: 'ARCHITECTS GO MODULAR: How KRDB is Transforming Modern Architecture', note: 'Dave Cooper LIVE' },
+] as const;
+const pods = [
+  { show: 'SmartTouch Market Pulse', host: 'Aaron Fichera', title: 'Building Smarter with Chris Krager: How Modular Construction Is Revolutionizing Real Estate Amid Rising Economic Challenges', date: 'June 2025', href: 'https://podcasts.apple.com/us/podcast/building-smarter-with-chris-krager-how-modular/id1707923865?i=1000714391748' },
+  { show: 'HIVE Re:Think (Builder magazine)', host: 'Philip Beere', title: 'Modular Is Definitely Not New, But Its Benefits Are', date: '', href: 'https://www.builderonline.com/building/modular-is-definitely-not-new-but-its-benefits-are_o' },
+  { show: 'The Building Science Podcast', host: 'Kristof Irwin', title: "Modular Part 1: It doesn't have to be so *$%! Hard! (with Rommel Sulit)", date: '', href: "https://music.amazon.com/podcasts/09b0d262-d01f-4b2a-85d0-06d0e283488a/episodes/6b8dbd21-5fff-45d1-9f8a-950ce1eb076d/the-building-science-podcast-modular-part-1---it-doesn't-have-to-be-so-hard" },
+  { show: 'The Building Science Podcast', host: 'Kristof Irwin', title: 'Modular Part 2: Working Skillfully Within Constraint', date: '', href: 'https://el.player.fm/series/the-building-science-podcast/modular-part-2-working-skillfully-within-constraint' },
+  { show: 'EntreArchitect', host: 'Mark R. LePage', title: 'EA409: Chris Krager – Modular Construction', date: 'September 2021', href: 'https://entrearchitect.com/podcast/entrearch/modular-construction/' },
+  { show: 'EntreArchitect', host: 'Mark R. LePage', title: 'EA354: Modular Homes with Developer Design/Build Architect Chris Krager', date: 'December 2020', href: 'https://entrearchitect.com/podcast/entrearch/modular-homes/' },
+  { show: 'The Prefab Pod (Prefab Review)', host: 'Michael Frank', title: 'Episode 12: Chris Krager, Ma Modular', date: '', href: 'https://ru.player.fm/1BBhMXQ' },
+];
 ---
-<Base title="YouTube Channel" description="Project sets, time lapses, walk-throughs and factory tours from the ma modular YouTube channel.">
-  <div class="wrap page-title"><h1>YouTube Channel</h1><p class="lede" style="margin-top:16px">Project sets, factory tours, interviews with principals, clients and more. <a href="https://www.youtube.com/@christopherrkrager4514/videos">See the full channel on YouTube</a>.</p></div>
+<Base title="Podcasts and Videos" description="Podcast and video interviews with Chris Krager on modular construction, plus project sets, time lapses and factory tours from the ma modular YouTube channel.">
+  <div class="wrap page-title"><h1>Podcasts and Videos</h1><p class="lede" style="margin-top:16px">Interviews on modular construction, plus project sets, factory tours and more from our <a href="https://www.youtube.com/@christopherrkrager4514/videos">YouTube channel</a>.</p></div>
   <div class="wrap section" style="padding-top:8px">
-    <div class="videos">{vids.map((v) => <Embed kind={v.kind} id={v.id} title={v.title} />)}</div>
+    <h2>Interviews</h2>
+    <div class="videos">{talks.map((v) => <figure style="margin:0"><Embed kind={v.kind} id={v.id} title={v.title} /><p class="small mute" style="margin-top:6px">{v.note}</p></figure>)}</div>
+    <h2 style="margin-top:48px">Podcasts</h2>
+    <ul class="pods">{pods.map((p) => <li><a href={p.href} target="_blank" rel="noopener">{p.title}</a><span class="small mute">{p.show}, with {p.host}{p.date ? ` · ${p.date}` : ''}</span></li>)}</ul>
+    <h2 style="margin-top:48px">From the YouTube channel</h2>
+  </div>
+  <div class="wrap section" style="padding-top:0">
+    <div class="videos" style="margin-top:8px">{vids.map((v) => <Embed kind={v.kind} id={v.id} title={v.title} />)}</div>
     <p class="small mute" style="margin-top:20px">The Blue Crest film is by Jim Bruno, on Vimeo.</p>
   </div>
 </Base>
