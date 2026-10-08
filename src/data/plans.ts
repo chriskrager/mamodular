@@ -99,16 +99,16 @@ export const housePlans: Plan[] = [
     slug: 'garwood', name: 'Garwood', line: 'Texas Mod', sf: 2200, beds: '4', baths: '4.5', stories: 2, modules: 4, isAdu: false,
     summary: 'An L-shaped two-story home with a bedroom suite on every level.',
     description: ['An L-shaped, two-story home built from four ma modules. The main level is an open kitchen, dining and living room along a wall of sliding glass, with a bedroom suite and powder room.', 'Upstairs are three more bedrooms, laundry and a second living area, with a covered balcony off the front. A rear deck makes room for outdoor dining and a plunge pool.'],
-    hero: { src: '/images/portfolio/garwood/03.webp', alt: 'Aerial view of the Garwood home and its rear unit: cedar and stucco two-story modules around a courtyard with a plunge pool, pergola and fenced front garden.' },
-    gallery: [{ src: '/images/portfolio/garwood/01.webp', alt: 'Aerial view of Garwood: an L-shaped two-story modular home with cedar siding, a rear deck and a plunge pool.' }, { src: '/images/portfolio/garwood/02.webp', alt: 'Garwood from the street, with a covered balcony, cedar and stucco walls and a fenced front yard.' }],
+    hero: { src: '/images/portfolio/garwood/01.webp', alt: 'Aerial view of Garwood: an L-shaped two-story modular home with cedar siding, a rear deck and a plunge pool.' },
+    gallery: [{ src: '/images/portfolio/garwood/02.webp', alt: 'Garwood from the street, with a covered balcony, cedar and stucco walls and a fenced front yard.' }],
     floorplans: [
       { src: '/images/portfolio/garwood/floorplan-1.webp', label: 'First floor' },
       { src: '/images/portfolio/garwood/floorplan-2.webp', label: 'Second floor' },
     ],
   },
   // Confirmed: 2,300 sf, 4 bed / 2.5 bath.
-  big({ slug: 'fire-island', name: 'Fire Island', sf: 2300, beds: '4', baths: '2.5', stories: 2, summary: 'An upside-down plan designed for vistas.',
-    description: ['This "upside-down" plan was designed for vistas. The main living space, along with the primary bedroom, are upstairs, with multiple adjacent decks. This volume sits on top of three bedrooms below.'],
+  big({ slug: 'fire-island', name: 'Fire Island', sf: 2300, beds: '4', baths: '2.5', stories: 2, summary: 'Light and airy, with an indoor-outdoor living room.',
+    description: ['A light and airy home with multiple patio spaces, a fireplace and an indoor-outdoor living room for gatherings, overlooking the valley.'],
     floorplans: [
       { src: '/images/portfolio/fire-island/floorplan-1.webp', label: 'First floor' },
       { src: '/images/portfolio/fire-island/floorplan-2.webp', label: 'Second floor' },

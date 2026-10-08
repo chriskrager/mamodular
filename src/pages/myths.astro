@@ -12,6 +12,13 @@ const myths = [
 <Base title="Myths" description="Common myths about modular construction: cost, simplicity, speed, strength and sustainability.">
   <div class="wrap page-title"><h1>Myths</h1><p class="lede" style="margin-top:16px">There are a lot of misconceptions about modular construction. Some are true, some are not. Let&rsquo;s demystify them.</p></div>
   <div class="wrap section" style="padding-top:8px">
-    <div class="qa">{myths.map((m) => <div><h3>Myth: {m[0]}</h3><p>{m[1]}</p></div>)}</div>
+    <div class="myths">
+      {myths.map((m, i) => (
+        <>
+          <div class="myth"><h3>{m[0]}</h3><p>{m[1]}</p>{i === 0 && <img src="/images/site/living-room.webp" alt="Living room of a ma modular home with sliding glass doors to the deck" width="1091" height="960" data-zoom loading="lazy" />}</div>
+        </>
+      ))}
+      <div class="myth photo"><img src="/images/site/living-detail.webp" alt="Interior detail of a ma modular living room" width="960" height="1119" data-zoom loading="lazy" /></div>
+    </div>
   </div>
 </Base>

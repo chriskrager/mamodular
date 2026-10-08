@@ -23,13 +23,13 @@ export const nav = [
   { href: '/steps/', label: 'Getting started' },
   { href: '/about/', label: 'About' },
   { href: '/faq/', label: 'FAQ' },
+  { href: '/news/', label: 'News' },
+  { href: '/videos/', label: 'YouTube Channel' },
   { href: '/contact/', label: 'Contact' },
 ];
 export const footerNav = [
   { href: '/adus-aka-granny-flat-tiny-house-etc/', label: "ADU's" },
   { href: '/multi-family/', label: 'Development projects' },
   { href: '/locations/', label: 'Locations' },
-  { href: '/news/', label: 'News' },
-  { href: '/videos/', label: 'Videos' },
   { href: 'http://www.krdb.com', label: 'KRDB' },
 ];

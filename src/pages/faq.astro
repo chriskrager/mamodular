@@ -26,7 +26,16 @@ const faqs = [
 ];
 ---
 <Base title="FAQ" description="Answers about ma modular homes: financing, timeline, custom designs, pricing, lots, contractors and delivery.">
-  <div class="wrap page-title"><h1>FAQ</h1></div>
-  <div class="wrap section" style="padding-top:8px"><div class="qa">{faqs.map((f) => <div><h3>{f[0]}</h3><p>{f[1]}</p></div>)}</div></div>
+  <div class="wrap page-title"><h1>Frequently asked questions</h1></div>
+  <div class="wrap section" style="padding-top:8px">
+    <div class="faq-grid">
+      <div class="acc">{faqs.map((f) => <details><summary>{f[0]}</summary><p>{f[1]}</p></details>)}</div>
+      <div class="faq-photos">
+        <img src="/images/site/kitchen-dining.webp" alt="Kitchen and dining room in a ma modular home" width="960" height="1183" data-zoom loading="lazy" />
+        <img src="/images/site/bedroom.webp" alt="Bedroom in a ma modular home" width="1268" height="960" data-zoom loading="lazy" />
+        <img src="/images/site/hallway.webp" alt="Hallway in a ma modular home" width="960" height="1142" data-zoom loading="lazy" />
+      </div>
+    </div>
+  </div>
   <section class="band"><div class="wrap split"><h2>Still have a question?</h2><div><p><a class="btn" href="/contact/">Ask us</a></p></div></div></section>
 </Base>

@@ -33,7 +33,7 @@ const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${p
           {plan.dims && <div><dt>Footprint</dt><dd>{plan.dims}</dd></div>}
         </dl>
         <div class="stack" style="margin-top:32px">
-          {plan.description.map((t) => <p set:html={t} />)}
+          {plan.description.map((t) => <p>{t}</p>)}
           {plan.note && <p class="small mute">{plan.note}</p>}
           <p class="mute">Total cost depends on your site. Tell us about your lot and we will give you a rough estimate.</p>
           <p><a class="btn" href={`/contact/?model=${plan.slug}`}>Ask about the {plan.name}</a></p>

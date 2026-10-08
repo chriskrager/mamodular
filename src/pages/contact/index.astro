@@ -10,23 +10,30 @@ import { site } from '../../config';
     <form class="lot" name="lot" method="POST" action="/contact/thanks/" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="lot" />
       <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-      <div class="two">
-        <label>Name <input name="name" autocomplete="name" required /></label>
-        <label>Email <input type="email" name="email" autocomplete="email" required /></label>
-      </div>
-      <div class="two">
-        <label>Phone <input type="tel" name="phone" autocomplete="tel" /></label>
-        <label>Property address <input name="address" autocomplete="street-address" /></label>
-      </div>
-      <div class="two">
-        <label>Plan you are considering
-          <select name="model" id="model"><option value="not-sure">Not sure yet</option>{plans.map((p) => <option value={p.slug}>{p.name}, {p.sf.toLocaleString('en-US')} sf</option>)}</select>
-        </label>
-        <label>Will you need financing?
-          <select name="financing"><option value="maybe">Maybe</option><option value="yes">Yes</option><option value="no">No</option></select>
-        </label>
-      </div>
-      <label>Tell us about your project <textarea name="message"></textarea></label>
+      <fieldset><legend>Name <span class="req">*</span></legend>
+        <div class="two"><label>First <input name="first-name" autocomplete="given-name" required /></label><label>Last <input name="last-name" autocomplete="family-name" required /></label></div>
+      </fieldset>
+      <label><span>Email <span class="req">*</span></span><input type="email" name="email" autocomplete="email" required /></label>
+      <label><span>Lot size <span class="req">*</span></span><input name="lot-size" required /></label>
+      <label><span>City &amp; State <span class="req">*</span></span><input name="city-state" autocomplete="address-level2" required /></label>
+      <fieldset><legend>Is the site flat? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="flat" value="Yes" required /> Yes</label><label><input type="radio" name="flat" value="No" /> No</label></div></fieldset>
+      <fieldset><legend>Is the site accessible? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="accessible" value="Yes" required /> Yes</label><label><input type="radio" name="accessible" value="No" /> No</label></div></fieldset>
+      <fieldset><legend>Is city electric available? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="electric" value="Yes" required /> Yes</label><label><input type="radio" name="electric" value="No" /> No</label></div></fieldset>
+      <fieldset><legend>Is city water available? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="water" value="Yes" required /> Yes</label><label><input type="radio" name="water" value="No" /> No</label></div></fieldset>
+      <fieldset><legend>Do you need a well? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="well" value="Yes" required /> Yes</label><label><input type="radio" name="well" value="No" /> No</label></div></fieldset>
+      <fieldset><legend>Do you need septic? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="septic" value="Yes" required /> Yes</label><label><input type="radio" name="septic" value="No" /> No</label></div></fieldset>
+      <fieldset><legend>Do you own the lot? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="own-lot" value="Yes" required /> Yes</label><label><input type="radio" name="own-lot" value="No" /> No</label></div></fieldset>
+      <label>If not, what is the status? <input name="lot-status" /></label>
+      <fieldset><legend>Do you have financing? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="financing" value="Yes" required /> Yes</label><label><input type="radio" name="financing" value="No" /> No</label></div></fieldset>
+      <label>Are you interested in a particular model?
+        <select name="model" id="model"><option value="">Not sure yet</option>{plans.map((p) => <option value={p.slug}>{p.name}, {p.sf.toLocaleString('en-US')} sf</option>)}</select>
+      </label>
+      <label><span>How much are you hoping to spend? <span class="req">*</span></span><input name="budget" required /></label>
+      <label><span>What is your projected move-in date? <span class="req">*</span></span><input name="move-in" required /></label>
+      <label><span>Are there any Covenants, Conditions or Restrictions for the property? <span class="req">*</span></span><input name="ccrs" required /></label>
+      <fieldset><legend>Is there an architectural review committee for the neighborhood? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="arc" value="Yes" required /> Yes</label><label><input type="radio" name="arc" value="No" /> No</label></div></fieldset>
+      <fieldset><legend>Do you have a relationship with a local contractor? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="contractor" value="Yes" required /> Yes</label><label><input type="radio" name="contractor" value="No" /> No</label></div></fieldset>
+      <label>Anything else we should know? <textarea name="message"></textarea></label>
       <div><button class="btn" type="submit">Send</button></div>
       <p class="small mute">{site.financingNote}</p>
     </form>
