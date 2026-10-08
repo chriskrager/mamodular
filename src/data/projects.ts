@@ -21,7 +21,7 @@ export const projects: Project[] = [
            'For the 2016 International Builders’ Show, ma modular and LOF Ventures built one of the Quintero units on the grounds of the Las Vegas Convention Center. It was fully fabricated and functional in three days.'],
     facts: [{ label: 'Units', value: '4' }, { label: 'Stories', value: '3' }, { label: 'Size', value: '2,000 sf each' }, { label: 'Location', value: 'Echo Park, Los Angeles' }],
     photos: ph('quintero', 'Quintero') },
-  { slug: 'belmont', name: 'Belmont Small Lot', kind: 'Small lot', summary: 'Small-lot homes, shown from the street and from the rear.', photos: ph('belmont', 'Belmont') },
+  { slug: 'belmont', name: 'Belmont Small Lot', kind: 'Small lot', summary: 'Small-lot homes with views over the lake, shown inside and out.', photos: ph('belmont', 'Belmont') },
   { slug: 'onteora', name: 'Onteora', kind: 'Residential', summary: 'A ma modular residential project.', photos: ph('onteora', 'Onteora') },
   { slug: 'kindred-uncommon', name: 'Kindred Uncommon', kind: 'Active adult community, Buda, TX',
     summary: '76-unit prototype active adult community in Buda, TX.',
