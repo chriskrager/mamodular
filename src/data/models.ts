@@ -76,7 +76,7 @@ export const models: Model[] = [
     description: [
       'Light-filled indoor-outdoor space, high ceilings and a generous layout make this home a kind of sanctuary. A vacation or guesthouse you will want to stay in.',
       'Bedrooms and bath sit in one module; the living, dining and kitchen area, with a powder bath, sits in another. An unconditioned breezeway between them, glazed on both sides, opens to a site-built porch on each side.',
-      'Featured in Dwell.',
+      'Featured in <a href="https://www.dwell.com/article/casita-850-ma-modular-e5c68960">Dwell</a>.',
     ],
     hero: img('dogtrot', 'ruth-1-scaled.webp', 'Dogtrot-plan house with a rust-colored wall, corrugated siding and a wall of windows, set among live oaks.', 'built'),
     floorplan: '/images/portfolio/dogtrot/floorplan.webp',
