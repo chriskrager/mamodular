@@ -111,14 +111,14 @@ export const models: Model[] = [
       'A compact two-bedroom home. A perfect ADU or small residence.',
       'One module holds the kitchen, a bedroom and two baths; the other holds a second bedroom and an open living and dining room.',
     ],
-    hero: img('casita-1100', '1100-2.webp', 'Rendering of the Casita 1100 with a low-slope roof and a wall of sliding glass.', 'rendering'),
+    hero: img('casita-1100', '1100-1.webp', 'Rendering of the Casita 1100 from the garden, with a wall of glass facing the patio.', 'rendering'),
     floorplan: '/images/portfolio/casita-1100/floorplan.webp',
     footprint: [
       { x: 0, y: 4.4, w: 15, h: 36 },
       { x: 15, y: 0, w: 15, h: 36 },
     ],
     gallery: [
-      img('casita-1100', '1100-1.webp', 'Rendering of the Casita 1100 from the garden, with a wall of glass facing the patio.', 'rendering'),
+      img('casita-1100', '1100-2.webp', 'Rendering of the Casita 1100 with a low-slope roof and a wall of sliding glass.', 'rendering'),
       img('casita-1100', '1100-3-scaled.webp', 'Aerial rendering of the Casita 1100 and its two offset roofs.', 'rendering'),
     ],
   },
