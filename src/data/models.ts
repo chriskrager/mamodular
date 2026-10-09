@@ -118,8 +118,8 @@ export const models: Model[] = [
       { x: 15, y: 0, w: 15, h: 36 },
     ],
     gallery: [
-      img('casita-1100', '1100-1.webp', 'Rendering of the Casita 1100 from above and to the side.', 'rendering'),
-      img('casita-1100', '1100-3-scaled.webp', 'Rendering of the Casita 1100 with a large picture window.', 'rendering'),
+      img('casita-1100', '1100-1.webp', 'Rendering of the Casita 1100 from the garden, with a wall of glass facing the patio.', 'rendering'),
+      img('casita-1100', '1100-3-scaled.webp', 'Aerial rendering of the Casita 1100 and its two offset roofs.', 'rendering'),
     ],
   },
 ];
