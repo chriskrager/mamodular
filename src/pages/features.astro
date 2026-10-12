@@ -55,16 +55,16 @@ const standard = [
   "i": "cab",
   "p": [
    {
-    "src": "/images/features/maple.webp",
-    "alt": "Merillat Fusion series, maple",
-    "w": 225,
-    "h": 446
+    "src": "/images/features/gloss-white.webp",
+    "alt": "Factory-built cabinets, gloss white",
+    "w": 513,
+    "h": 650
    },
    {
-    "src": "/images/features/cherry.webp",
-    "alt": "Merillat Fusion series, cherry",
-    "w": 223,
-    "h": 446
+    "src": "/images/features/gloss-gray.webp",
+    "alt": "Factory-built cabinets, gloss gray",
+    "w": 513,
+    "h": 650
    }
   ]
  },
@@ -181,10 +181,7 @@ const standard = [
   "i": "power",
   "p": [
    {
-    "src": "/images/features/whirlpool.webp",
-    "alt": "Whirlpool stainless package",
-    "w": 1024,
-    "h": 660
+    "alt": "GE stainless package"
    }
   ]
  },
@@ -396,7 +393,7 @@ const icons: Record<string, string> = {
               <dialog class="opt-dlg" id={`${cls}-${n}`} aria-label={`${label}: ${g.t}`}>
                 <form method="dialog"><button class="x" aria-label="Close">&times;</button></form>
                 <h3>{g.t}</h3>
-                <div class="opt-imgs">{g.p.map((p) => <figure><img src={p.src} alt={p.alt} width={p.w} height={p.h} loading="lazy" /><figcaption>{p.alt}</figcaption></figure>)}</div>
+                <div class="opt-imgs">{g.p.map((p) => <figure>{p.src && <img src={p.src} alt={p.alt} width={p.w} height={p.h} loading="lazy" />}<figcaption>{p.alt}</figcaption></figure>)}</div>
               </dialog>
             </li>
           ))}
