@@ -261,3 +261,4 @@ form.lot .req { color: var(--orange); }
 .pods li { padding: 14px 0; border-bottom: 1px solid #e3e3e3; display: flex; flex-direction: column; gap: 4px; }
 .pods li a { font-size: 1.05rem; }
 .steps ul + p { margin-top: 1em; }
+.wufoo-embed { min-height: 400px; margin-top: 24px; }

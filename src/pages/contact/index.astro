@@ -1,45 +1,30 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { plans } from '../../data/plans';
 import { site } from '../../config';
 ---
 <Base title="Contact" description="Tell us about your site and what you want to build. We reply by email with a first read on what can work.">
   <div class="wrap section">
     <h1>Contact us</h1>
     <p class="lede" style="margin-top:20px">Please take some time to fill out our inquiry form. This will help us get a sense of your unique circumstances and needs. We will get back to you as soon as possible.</p>
-    <form class="lot" name="lot" method="POST" action="/contact/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="lot" />
-      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-      <fieldset><legend>Name <span class="req">*</span></legend>
-        <div class="two"><label>First <input name="first-name" autocomplete="given-name" required /></label><label>Last <input name="last-name" autocomplete="family-name" required /></label></div>
-      </fieldset>
-      <label><span>Email <span class="req">*</span></span><input type="email" name="email" autocomplete="email" required /></label>
-      <label><span>Lot size <span class="req">*</span></span><input name="lot-size" required /></label>
-      <label><span>City &amp; State <span class="req">*</span></span><input name="city-state" autocomplete="address-level2" required /></label>
-      <fieldset><legend>Is the site flat? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="flat" value="Yes" required /> Yes</label><label><input type="radio" name="flat" value="No" /> No</label></div></fieldset>
-      <fieldset><legend>Is the site accessible? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="accessible" value="Yes" required /> Yes</label><label><input type="radio" name="accessible" value="No" /> No</label></div></fieldset>
-      <fieldset><legend>Is city electric available? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="electric" value="Yes" required /> Yes</label><label><input type="radio" name="electric" value="No" /> No</label></div></fieldset>
-      <fieldset><legend>Is city water available? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="water" value="Yes" required /> Yes</label><label><input type="radio" name="water" value="No" /> No</label></div></fieldset>
-      <fieldset><legend>Do you need a well? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="well" value="Yes" required /> Yes</label><label><input type="radio" name="well" value="No" /> No</label></div></fieldset>
-      <fieldset><legend>Do you need septic? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="septic" value="Yes" required /> Yes</label><label><input type="radio" name="septic" value="No" /> No</label></div></fieldset>
-      <fieldset><legend>Do you own the lot? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="own-lot" value="Yes" required /> Yes</label><label><input type="radio" name="own-lot" value="No" /> No</label></div></fieldset>
-      <label>If not, what is the status? <input name="lot-status" /></label>
-      <fieldset><legend>Do you have financing? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="financing" value="Yes" required /> Yes</label><label><input type="radio" name="financing" value="No" /> No</label></div></fieldset>
-      <label>Are you interested in a particular model?
-        <select name="model" id="model"><option value="">Not sure yet</option>{plans.map((p) => <option value={p.slug}>{p.name}, {p.sf.toLocaleString('en-US')} sf</option>)}</select>
-      </label>
-      <label><span>How much are you hoping to spend? <span class="req">*</span></span><input name="budget" required /></label>
-      <label><span>What is your projected move-in date? <span class="req">*</span></span><input name="move-in" required /></label>
-      <label><span>Are there any Covenants, Conditions or Restrictions for the property? <span class="req">*</span></span><input name="ccrs" required /></label>
-      <fieldset><legend>Is there an architectural review committee for the neighborhood? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="arc" value="Yes" required /> Yes</label><label><input type="radio" name="arc" value="No" /> No</label></div></fieldset>
-      <fieldset><legend>Do you have a relationship with a local contractor? <span class="req">*</span></legend><div class="opts"><label><input type="radio" name="contractor" value="Yes" required /> Yes</label><label><input type="radio" name="contractor" value="No" /> No</label></div></fieldset>
-      <label>Anything else we should know? <textarea name="message"></textarea></label>
-      <div><button class="btn" type="submit">Send</button></div>
-      <p class="small mute">{site.financingNote}</p>
-    </form>
+    <div id="wufoo-zapubv100tjkk2" class="wufoo-embed">
+      <p>The inquiry form is loading. If it does not appear, <a href="https://mamodular.wufoo.com/forms/project-inquiry/">open the form on its own page</a>.</p>
+    </div>
+    <p class="small mute">{site.financingNote}</p>
     <p style="margin-top:32px">Or write to <a href={`mailto:${site.email}`}>{site.email}</a>, call {site.phone}, or visit {site.address.join(', ')}.</p>
   </div>
   <script is:inline>
-    (function () { try { var m = new URLSearchParams(location.search).get('model'); var el = document.getElementById('model'); if (m && el && el.querySelector('option[value="' + m + '"]')) el.value = m; } catch (e) {} })();
+    var zapubv100tjkk2;
+    (function (d, t) {
+      var s = d.createElement(t), options = {
+        userName: 'mamodular', formHash: 'zapubv100tjkk2', autoResize: true,
+        height: '1900', async: true, host: 'wufoo.com', header: 'hide', ssl: true
+      };
+      s.src = 'https://www.' + options.host + '/scripts/embed/form.js';
+      s.onload = s.onreadystatechange = function () {
+        var rs = this.readyState; if (rs && rs != 'complete' && rs != 'loaded') return;
+        try { zapubv100tjkk2 = new WufooForm(); zapubv100tjkk2.initialize(options); zapubv100tjkk2.display(); } catch (e) {}
+      };
+      var scr = d.getElementsByTagName(t)[0]; scr.parentNode.insertBefore(s, scr);
+    })(document, 'script');
   </script>
 </Base>
