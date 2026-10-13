@@ -9,7 +9,7 @@ export const site = {
   address: ['1101 E 6th St, Suite A', 'Austin, TX 78702'], // the old site said 916 Springdale Rd
   facebook: 'https://www.facebook.com/ma-modular-288219029546/',
   twitter: 'https://twitter.com/ma_modular',
-  ga4Id: '', // e.g. 'G-XXXXXXXXXX'. Empty = no tracking script.
+  ga4Id: 'G-K4XFXC7KR2', // Tracking loads only when live is true.
   // CONFIRM wording with the lender.
   financingNote:
     'Financing is provided by a third-party lender. Terms, approval and eligibility are set by the lender.',
