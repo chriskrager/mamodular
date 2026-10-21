@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import PlanTiles from '../components/PlanTiles.astro';
+import { aduPlans, housePlans } from '../data/plans';
+const bySize = (a, b) => a.sf - b.sf;
+const groups = [
+  { id: 'adus', title: 'ADUs', list: [...aduPlans].sort(bySize) },
+  { id: 'single-story', title: 'Single-story houses', list: housePlans.filter((p) => (p.stories ?? 1) === 1).sort(bySize) },
+  { id: 'multi-story', title: 'Multi-story houses', list: housePlans.filter((p) => (p.stories ?? 1) > 1).sort(bySize) },
+];
+---
+<Base title="Find your ma" description="Fourteen architect-designed modular plans from 550 to 2,500 square feet: ADUs, courtyard houses, pavilion homes and multi-story infill homes.">
+  <div class="wrap page-title"><h1>Find your ma</h1></div>
+  <div class="blue-band"><div class="wrap">
+    <p class="lede">Fourteen plans, from a 550 sq. ft. guesthouse to a 2,500 sq. ft. five-module home. We do not publish prices: the cost of a project depends too much on the site. <a href="/contact/">Tell us about your lot</a> and we will give you a rough estimate.</p>
+    <p><a class="btn" href="/downloads/ma-modular-plans-and-process.pdf" download>Download the plans and process brochure (PDF, 10 MB)</a></p>
+    {groups.map((g) => (
+      <section class="plan-group" id={g.id}>
+        <h2>{g.title}</h2>
+        <PlanTiles list={g.list} />
+      </section>
+    ))}
+  </div></div>
+</Base>

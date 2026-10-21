@@ -42,7 +42,7 @@ export const models: Model[] = [
     dims: `38' × 15'`,
     summary: 'The guesthouse, studio, office or granny flat.',
     description: [
-      'The guesthouse, studio, office or granny flat of your dreams.',
+      'With high ceilings and light streaming through generous glazing, this house lives much larger than its 550sf footprint would suggest. Make this the guesthouse, studio, office or granny flat of your dreams.',
       'One module, one bedroom, one bath, and an open living room. It is the smallest plan in the ADU line.',
     ],
     hero: img('grand-ma-550', 'img-8520-scaled.webp', 'Gray built unit with glass doors and landscaping in gravel and bamboo.', 'built'),
@@ -74,8 +74,8 @@ export const models: Model[] = [
     dims: `43'9" × 34'3"`,
     summary: 'Indoor-outdoor living around a central breezeway.',
     description: [
-      'Light-filled indoor-outdoor space, high ceilings and a generous layout make this home a kind of sanctuary. A vacation or guesthouse you will want to stay in.',
-      'Bedrooms and bath sit in one module; the living, dining and kitchen area, with a powder bath, sits in another. An unconditioned breezeway between them, glazed on both sides, opens to a site-built porch on each side.',
+      'Taking inspiration from a traditional Texas “dogtrot” plan, this compact plan has light-filled indoor-outdoor space, high ceilings and a generous layout, making this home a true sanctuary. A vacation or guesthouse you will want to stay in.',
+      'Bedrooms and bath sit in one module; the living, dining and kitchen area, with a powder bath, in another. An unconditioned breezeway between them, screened on both sides, opens to site-built porches on each side.',
       'Featured in <a href="https://www.dwell.com/article/casita-850-ma-modular-e5c68960">Dwell</a>.',
     ],
     hero: img('dogtrot', 'ruth-1-scaled.webp', 'Dogtrot-plan house with a rust-colored wall, corrugated siding and a wall of windows, set among live oaks.', 'built'),
@@ -106,10 +106,9 @@ export const models: Model[] = [
     baths: '2',
     modules: 2,
     dims: `30' × 36'`,
-    summary: 'A compact two-bedroom home.',
+    summary: 'A compact two or three-bedroom home.',
     description: [
-      'A compact two-bedroom home. A perfect ADU or small residence.',
-      'One module holds the kitchen, a bedroom and two baths; the other holds a second bedroom and an open living and dining room.',
+      'Have a small space but you need two or three bedrooms? The Casita 1100 has plan versions for both. Plan A has three bedrooms, while Plan B has two, with a larger master suite type configuration. A perfect ADU or small residence.',
     ],
     hero: img('casita-1100', '1100-1.webp', 'Rendering of the Casita 1100 from the garden, with a wall of glass facing the patio.', 'rendering'),
     floorplan: '/images/portfolio/casita-1100/floorplan.webp',

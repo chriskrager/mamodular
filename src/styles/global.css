@@ -262,3 +262,6 @@ form.lot .req { color: var(--orange); }
 .pods li a { font-size: 1.05rem; }
 .steps ul + p { margin-top: 1em; }
 .wufoo-embed { min-height: 400px; margin-top: 24px; }
+
+.plan-group { margin-top: 72px; }
+.plan-group h2 { color: #fff; margin-bottom: 32px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.35); }
