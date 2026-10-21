@@ -1,21 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
-// CONFIRM: the old Myths page said 4-6 months; the FAQ and Steps pages say 6-12. This page now uses 6-12.
+// Timeline confirmed by Chris: 9-12 months (matches the brochure).
 const myths = [
-  ['Modular is inexpensive', 'Not necessarily. It is not cheaper than a typical tract home, but compared with an architect-designed custom home it is comparable and in most cases less expensive.'],
-  ['Modular is simple', 'Construction is still complex, with many stakeholders involved. The advantage is that much of the scope of work, often more than half, takes place in the factory. That reduces variables like weather delays, and the factory build itself takes just weeks, with materials ordered ahead.'],
-  ['Modular is quick', 'Largely true. Most projects take 6 to 12 months from start to finish, with the factory work taking a few weeks of that. The timeline varies with financing, permits, utilities, site preparation and finishing work.'],
-  ['Modular is flimsy', 'False. ma builds to the modular code on permanent foundations, to IRC standards, so the homes are just as solid as any site-built home, if not stronger. Each module is engineered to withstand the stresses of transportation and being lifted by a crane.'],
-  ['Modular is “green”', 'It can be. Standard specs include 2x6 walls (R-19 insulation), thermally broken windows, low-VOC finishes and tankless water heaters. Solar panels, rainwater collection and geothermal systems are optional upgrades, mostly installed on site.'],
+  ['Modular is a budget option', 'For an architect-designed home, modular is often the more economical path. Compared with a custom home of similar design and finish, a ma home is comparable in cost and in most cases less expensive. Because the work is done in a factory, there are fewer variables like weather delays to put the budget at risk. A basic tract home will still cost less, but it is a different product.'],
+  ['Modular doesn’t save much time', 'Modular builds in about 50–60% of the time of a conventional home. The modules are built in a factory over a few weeks while the foundation and site work move ahead, and set in days. Start to move-in is typically 9 to 12 months, because permits, financing, utilities and finishing work take the same time they do for any home.'],
+  ['Modular is simpler, or modular is harder', 'It is still a construction project, and it goes more smoothly. Often more than half of the scope of work takes place in the factory, in a controlled setting with materials ordered ahead. We coordinate the many people involved so you do not have to.'],
+  ['Modular is flimsy', 'A ma home is built to be as solid as any site-built home, if not stronger. We build to the modular code on permanent foundations, to IRC standards. Each module is engineered to withstand transportation and being lifted by a crane.'],
+  ['Modular is not green', 'Modular is efficient from the start. Our standard specs include 2x6 walls (R-19 insulation), thermally broken windows, low-VOC finishes and tankless water heaters. Solar panels, rainwater collection and geothermal systems are available as upgrades, mostly installed on site. If there is a sustainability benchmark you want to hit, we can hit it.'],
 ];
 ---
-<Base title="Myths" description="Common myths about modular construction: cost, simplicity, speed, strength and sustainability.">
-  <div class="wrap page-title"><h1>Myths</h1><p class="lede" style="margin-top:16px">There are a lot of misconceptions about modular construction. Some are true, some are not. Let&rsquo;s demystify them.</p></div>
+<Base title="Myths" description="Myths and facts about modular construction: cost, speed, simplicity, strength and sustainability.">
+  <div class="wrap page-title"><h1>Myths</h1><p class="lede" style="margin-top:16px">A few ideas about modular construction are worth clearing up. Here is what we have learned over our almost two decades building ma homes.</p></div>
   <div class="wrap section" style="padding-top:8px">
     <div class="myths">
       {myths.map((m, i) => (
         <>
-          <div class="myth"><h3>{m[0]}</h3><p>{m[1]}</p>{i === 0 && <img src="/images/site/living-room.webp" alt="Living room of a ma modular home with sliding glass doors to the deck" width="1091" height="960" data-zoom loading="lazy" />}</div>
+          <div class="myth"><h3>Myth: {m[0]}</h3><p><strong>Fact:</strong> {m[1]}</p>{i === 0 && <img src="/images/site/living-room.webp" alt="Living room of a ma modular home with sliding glass doors to the deck" width="1091" height="960" data-zoom loading="lazy" />}</div>
         </>
       ))}
       <div class="myth photo"><img src="/images/site/living-detail.webp" alt="Interior detail of a ma modular living room" width="960" height="1119" data-zoom loading="lazy" /></div>
