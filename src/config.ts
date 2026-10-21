@@ -30,6 +30,5 @@ export const nav = [
 ];
 export const footerNav = [
   { href: '/adus-aka-granny-flat-tiny-house-etc/', label: "ADU's" },
-  { href: '/locations/', label: 'Locations' },
   { href: 'http://www.krdb.com', label: 'KRDB' },
 ];

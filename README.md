@@ -15,7 +15,7 @@ npm run build   # outputs to dist/
 | The 10 plans | ADUs: `src/data/models.ts`. Larger houses: `src/data/plans.ts`. Photos: `src/data/images.json` and `public/images/portfolio/<slug>/` |
 | Development projects | `src/data/projects.ts` |
 | News posts | `src/data/news.ts` (each post keeps its old dated URL) |
-| FAQ, Myths, Steps, Features, About, Locations | `src/pages/*.astro` |
+| FAQ, Myths, Steps, Features, About | `src/pages/*.astro` |
 | Colors and type | top of `src/styles/global.css` |
 
 ## What changed from the old site
