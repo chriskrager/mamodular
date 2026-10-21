@@ -54,7 +54,7 @@ export const posts: Post[] = [
     body: ['Homebuilder Digest recently published a list of the “Best Prefab/Modular Homebuilders in the US”, and ma modular is proud to be listed as #4.'],
     links: [{ label: 'Read the full article', href: 'https://www.homebuilderdigest.com/the-best-prefab-modular-home-builders-in-the-united-states/' }] },
   { path: '/2018/08/01/five-unit-belmont-project-set-in-echo-park-los-angeles/', date: '2018-08-01', monthOnly: true,
-    title: 'Five unit Belmont project set in Echo Park, Los Angeles', image: img('belmont'), extra: [img('belmont-2')],
+    title: 'Five unit Belmont project set in Echo Park, Los Angeles', image: img('belmont'),
     body: ['ma modular’s second Small Lot Ordinance project in the Echo Park neighborhood of Los Angeles perches 5 single family homes on a bluff overlooking the Echo Park Lake, and the downtown skyline.'],
     links: [{ label: 'Belmont', href: '/portfolio/belmont/' }] },
   { path: '/2017/05/01/ma-modular-in-upstate-ny/', date: '2017-05-01', monthOnly: true,
