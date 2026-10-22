@@ -327,3 +327,8 @@ form.lot .req { color: var(--orange); }
 .video-poster .play::after { content: ''; position: absolute; left: 27px; top: 14px; border-left: 18px solid #fff; border-top: 10px solid transparent; border-bottom: 10px solid transparent; }
 .video-poster:hover .play { background: #c00; }
 .section > .vid-bar:first-child { margin-top: 0; }
+
+.about-photos { display: flex; flex-direction: column; gap: 16px; }
+.about-photos img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+.fx-jump a.fx-cta { background: var(--orange); box-shadow: none; font-weight: 600; padding: 8px 20px; }
+.fx-jump a.fx-cta:hover { background: #ee8f45; }
