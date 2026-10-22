@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import { standard, premium } from '../data/features';
+// DRAFT redesign of the Features page. Not linked from the site; remove or replace features.astro when approved.
+const P = (f: string) => `/images/portfolio/${f}.webp`;
+const std = (t: string) => standard.find((g) => g.t === t)?.p ?? [];
+const prem = (t: string) => premium.find((g) => g.t === t)?.p ?? [];
+
+type Ph = { src: string; w: number; h: number; plan: string; slug: string; alt: string };
+const sections: { id: string; title: string; lede: string; cats: string[]; main: Ph; extra?: Ph[]; flip?: boolean; tall?: boolean }[] = [
+  { id: 'exterior', title: 'Exterior', cats: ['Exterior Finish'],
+    lede: 'Metal roofs, fiber cement, stucco and wood: durable cladding in natural and painted finishes.',
+    main: { src: P('quintero/01'), w: 1920, h: 1280, plan: 'Quintero', slug: 'quintero', alt: 'Quintero small-lot homes with fiber cement panels, wood siding and a metal-framed roof deck.' },
+    extra: [
+      { src: P('luna/10'), w: 750, h: 559, plan: 'Luna', slug: 'luna', alt: 'Luna house with cedar siding, a metal fascia and black-framed sliding glass doors opening to a deck.' },
+      { src: P('dogtrot/ruth-1-scaled'), w: 2000, h: 1334, plan: 'Dogtrot', slug: 'dogtrot', alt: 'Dogtrot house with corrugated metal and weathered steel siding among live oaks.' },
+    ] },
+  { id: 'interior', title: 'Floors and walls', cats: ['Interior Finish'], flip: true,
+    lede: 'Warm wood floors against clean white walls and generous glass.',
+    main: { src: P('blanco-river/04'), w: 2000, h: 1326, plan: 'Blanco River', slug: 'blanco-river', alt: 'Open living room with a light wood floor, white walls and a wall of sliding glass doors.' },
+    extra: [{ src: P('blue-crest/06'), w: 2000, h: 1328, plan: 'Blue Crest', slug: 'blue-crest', alt: 'Open kitchen and living room with a dark wood floor and a long island.' }] },
+  { id: 'kitchen', title: 'Cabinets and appliances', cats: ['Cabinets', 'Appliances'],
+    lede: 'Factory-built cabinets and a stainless appliance package come standard; custom cabinets and a Jenn-Air package are available as upgrades.',
+    main: { src: P('grand-ma-550/525-3'), w: 1600, h: 1200, plan: 'Grand-Ma 550', slug: 'grand-ma-550', alt: 'Kitchen with white cabinets, stainless appliances and a light wood floor.' },
+    extra: [{ src: P('blue-crest/05'), w: 2000, h: 1328, plan: 'Blue Crest', slug: 'blue-crest', alt: 'Kitchen with wood cabinets, a peninsula and a view to a courtyard.' }] },
+  { id: 'countertops', title: 'Countertops', cats: ['Countertops'], flip: true,
+    lede: 'Quartzite as standard, with soapstone and marble to upgrade.',
+    main: { src: P('blanco-river/07'), w: 2000, h: 1321, plan: 'Blanco River', slug: 'blanco-river', alt: 'Kitchen with a long dark countertop island, wood cabinets and pendant lights.' },
+    extra: [{ src: P('blanco-river/06'), w: 2000, h: 1349, plan: 'Blanco River', slug: 'blanco-river', alt: 'Kitchen island with a dark countertop and sink, open to the living room.' }] },
+  { id: 'bath', title: 'Tile and bath', cats: ['Tile', 'Plumbing Fixtures'],
+    lede: 'Ceramic tile and quality fixtures for kitchens and baths, plus a tankless water heater.',
+    main: { src: P('fire-island/10'), w: 750, h: 499, plan: 'Fire Island', slug: 'fire-island', alt: 'Bathroom with a glass-enclosed shower and tub, a wood vanity and a white counter beneath a long window.' } },
+  { id: 'lighting', title: 'Lighting', cats: ['Electrical Fixtures'], flip: true, tall: true,
+    lede: 'Pendants, sconces and clean switch plates, chosen to disappear or to be seen.',
+    main: { src: P('marfa/06'), w: 960, h: 1183, plan: 'Marfa', slug: 'marfa', alt: 'Kitchen and dining area with round pendant lights over a long table.' } },
+];
+const hero: Ph = { src: P('dogtrot/ruth-5-scaled'), w: 2000, h: 1334, plan: 'Dogtrot', slug: 'dogtrot', alt: 'Dogtrot living and dining room with a concrete floor, wood beams and a wall of windows to the trees.' };
+---
+<Base title="Features (draft)" description="Draft redesign of the ma modular Features page." noindex>
+  <section class="fx-hero">
+    <div class="wrap fx-hero-grid">
+      <div>
+        <h1>Features</h1>
+        <p class="lede">Every ma home is built from the same considered palette: durable exteriors, warm interior finishes and fixtures you would choose yourself. Start with the standard selections, or upgrade to premium.</p>
+        <ul class="fx-jump" aria-label="Jump to">
+          {sections.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}
+          <li><a href="#anatomy">Inside the walls</a></li>
+        </ul>
+      </div>
+      <figure><img src={hero.src} alt={hero.alt} width={hero.w} height={hero.h} fetchpriority="high" /><figcaption>Shown: <a href={`/portfolio/${hero.slug}/`}>{hero.plan}</a></figcaption></figure>
+    </div>
+  </section>
+
+  {sections.map((s, n) => (
+    <section class={`fx-sec ${n % 2 ? 'tint' : ''}`} id={s.id}>
+      <div class={`wrap fx-grid ${s.flip ? 'flip' : ''}`}>
+        <div class="fx-photos">
+          <figure><img src={s.main.src} alt={s.main.alt} width={s.main.w} height={s.main.h} loading="lazy" /><figcaption>Shown: <a href={`/portfolio/${s.main.slug}/`}>{s.main.plan}</a></figcaption></figure>
+          {s.extra && <div class="fx-extra">{s.extra.map((e) => <figure><img src={e.src} alt={e.alt} width={e.w} height={e.h} loading="lazy" /><figcaption>Shown: <a href={`/portfolio/${e.slug}/`}>{e.plan}</a></figcaption></figure>)}</div>}
+        </div>
+        <div class="fx-panel">
+          <h2>{s.title}</h2>
+          <p class="fx-lede">{s.lede}</p>
+          {s.cats.map((c) => (
+            <div class="fx-cat">
+              {s.cats.length > 1 && <h3>{c}</h3>}
+              <p class="fx-tag">Standard</p>
+              <ul class="fx-chips">{std(c).map((p) => <li>{p.src && <img src={p.src} alt="" width={p.w} height={p.h} loading="lazy" />}<span>{p.alt}</span></li>)}</ul>
+              {prem(c).length > 0 && <>
+                <p class="fx-tag prem">Premium</p>
+                <ul class="fx-chips">{prem(c).map((p) => <li>{p.src && <img src={p.src} alt="" width={p.w} height={p.h} loading="lazy" />}<span>{p.alt}</span></li>)}</ul>
+              </>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="fx-sec" id="anatomy">
+    <div class="wrap">
+      <h2 class="fx-center">Inside the walls</h2>
+      <p class="fx-center fx-lede">Thermally broken, low-E windows; R-19 floor and wall insulation with R30–50 in the ceiling; a standing seam metal roof.</p>
+      <img class="diagram" src="/images/features/diagram.webp" alt="Cutaway of a ma modular home labeling the standing seam metal roof, thermally broken low-E windows, ceramic tile, painted white base and door trim, engineered wood floor, quartzite countertops, custom factory cabinets, light orange-peel sheetrock finish and R-19 floor and wall insulation with R30-50 ceiling insulation." width="1600" height="882" data-zoom loading="lazy" />
+      <p class="fx-note">*Alternative materials are available per manufacturer.</p>
+    </div>
+  </section>
+
+  <section class="fx-cta">
+    <div class="wrap">
+      <h2>Questions about finishes?</h2>
+      <p>Tell us about your lot and your project and we will walk you through the options.</p>
+      <p><a class="btn" href="/contact/">Contact us</a></p>
+    </div>
+  </section>
+</Base>
