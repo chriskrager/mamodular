@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import { selections } from '../data/selections';
+---
+<Base title="Selections" description="The tile, countertops, flooring, appliances, fixtures and hardware we offer in ma homes.">
+  <section class="sel-head">
+    <h1>Selections</h1>
+    <p>A look at the materials, fixtures and appliances we offer. Your ma team will walk you through the options and help you choose.</p>
+    <ul class="sel-jump">
+      {selections.map((g) => <li><a href={`#${g.id}`}>{g.title}</a></li>)}
+    </ul>
+  </section>
+  {selections.map((g) => (
+    <section class="sel-group" id={g.id}>
+      <h2>{g.title}</h2>
+      {g.subs.map((s) => (
+        <div class="sel-sub">
+          {s.title && <h3>{s.title}</h3>}
+          <ul class="sel-grid">
+            {s.items.map((i) => (
+              <li class={i.img ? '' : 'sel-text'}>
+                {i.img && <img src={i.img} width={i.w} height={i.h} alt={i.name} loading="lazy" />}
+                <span>{i.name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  ))}
+  <p class="sel-note">Availability and finishes can change. Final selections are confirmed during design.</p>
+</Base>
