@@ -332,3 +332,10 @@ form.lot .req { color: var(--orange); }
 .about-photos img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
 .fx-jump a.fx-cta { background: var(--orange); box-shadow: none; font-weight: 600; padding: 8px 20px; }
 .fx-jump a.fx-cta:hover { background: #ee8f45; }
+
+/* Getting started: photo column spread down the full height of the text */
+.steps-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 340px); gap: 0 clamp(32px, 5vw, 64px); align-items: stretch; }
+.steps-layout .steps { max-width: none; }
+.steps-photos { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; padding-top: 32px; }
+.steps-photos img { width: 100%; height: auto; display: block; }
+@media (max-width: 900px) { .steps-layout { grid-template-columns: 1fr; } .steps-photos { padding-top: 8px; } }
