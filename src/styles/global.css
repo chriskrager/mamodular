@@ -319,3 +319,11 @@ form.lot .req { color: var(--orange); }
 .sel-text { padding: 10px 12px; border: 1px solid var(--rule); justify-content: center; }
 .sel-note { padding-top: 40px; padding-bottom: 60px; color: var(--mute); font-size: .9rem; }
 .sel-link { margin: 10px 0 0; font-family: var(--display); }
+
+.vid-bar { margin: 40px 0 16px; padding: 12px 18px; background: #000; color: #fff; font-size: 1.05rem; letter-spacing: .04em; text-transform: uppercase; }
+.video-poster { position: relative; display: block; aspect-ratio: 16 / 9; background: #000; }
+.video-poster img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.video-poster .play { position: absolute; left: 50%; top: 50%; width: 68px; height: 48px; margin: -24px 0 0 -34px; border-radius: 12px; background: rgba(0,0,0,.72); }
+.video-poster .play::after { content: ''; position: absolute; left: 27px; top: 14px; border-left: 18px solid #fff; border-top: 10px solid transparent; border-bottom: 10px solid transparent; }
+.video-poster:hover .play { background: #c00; }
+.section > .vid-bar:first-child { margin-top: 0; }

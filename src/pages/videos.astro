@@ -13,7 +13,6 @@ const cats = [
     { kind: 'youtube', id: 'IC59VEy0UUw', title: "Robbins modular time lapse" },
     { kind: 'youtube', id: 'SR-trA2pbNI', title: "Dogtrot Casita walk-through" },
     { kind: 'youtube', id: 'ajAb73z6qOU', title: "ma Blue Crest set" },
-    { kind: 'vimeo', id: '19729209', title: 'The ma modular Blue Crest house' },
     { kind: 'youtube', id: 'u8onA1Zjnb8', title: "ma modular's Luna prototype house installation time lapse" },
   ] },
   { title: 'Animations', vids: [
@@ -24,7 +23,7 @@ const cats = [
 ] as const;
 const talks = [
   { kind: 'youtube', id: 'd7y009EB1q0', title: 'The Banker Who Rebuilt Austin: Chris Krager on Modern Design Built to Be Attainable', note: 'From Waterloo to the Alamo (Engel & Völkers), with Traci Wilson' },
-  { kind: 'youtube', id: 'ppRm5Iu512M', title: 'Why Modular? With a Vertically Integrated Developer / Designer / Builder', note: 'Dave Cooper LIVE' },
+  { kind: 'youtube', id: 'ppRm5Iu512M', poster: '/images/videos/dave-cooper-why-modular.webp', title: 'Why Modular? With a Vertically Integrated Developer / Designer / Builder', note: 'Dave Cooper LIVE' },
   { kind: 'youtube', id: 'KIs_dY3l_XU', title: 'ARCHITECTS GO MODULAR: How KRDB is Transforming Modern Architecture', note: 'Dave Cooper LIVE' },
 ] as const;
 const pods = [
@@ -41,7 +40,7 @@ const pods = [
   <div class="wrap page-title"><h1>Podcasts and Videos</h1><p class="lede" style="margin-top:16px">Interviews on modular construction, plus project sets, factory tours and more from our <a href="https://www.youtube.com/@christopherrkrager4514/videos">YouTube channel</a>.</p></div>
   <div class="wrap section" style="padding-top:8px">
     <h2>Interviews</h2>
-    <div class="videos">{talks.map((v) => <figure style="margin:0"><Embed kind={v.kind} id={v.id} title={v.title} /><p class="small mute" style="margin-top:6px">{v.note}</p></figure>)}</div>
+    <div class="videos">{talks.map((v) => <figure style="margin:0">{'poster' in v ? <a class="video-poster" href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener" aria-label={`Watch on YouTube: ${v.title}`}><img src={v.poster} width="839" height="466" alt={v.title} loading="lazy" /><span class="play" aria-hidden="true"></span></a> : <Embed kind={v.kind} id={v.id} title={v.title} />}<p class="small mute" style="margin-top:6px">{v.note}</p></figure>)}</div>
     <h2 style="margin-top:48px">Podcasts</h2>
     <ul class="pods">{pods.map((p) => <li><a href={p.href} target="_blank" rel="noopener">{p.title}</a><span class="small mute">{p.show}, with {p.host}{p.date ? ` · ${p.date}` : ''}</span></li>)}</ul>
     <h2 style="margin-top:48px">From the YouTube channel</h2>
@@ -49,10 +48,9 @@ const pods = [
   <div class="wrap section" style="padding-top:0">
     {cats.map((c) => (
       <>
-        <h3 class="vid-cat">{c.title}</h3>
+        <h3 class="vid-bar">{c.title}</h3>
         <div class="videos">{c.vids.map((v) => <Embed kind={v.kind} id={v.id} title={v.title} />)}</div>
       </>
     ))}
-    <p class="small mute" style="margin-top:20px">The Blue Crest film is by Jim Bruno, on Vimeo.</p>
   </div>
 </Base>
