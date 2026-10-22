@@ -1,416 +1,96 @@
 ---
 import Base from '../layouts/Base.astro';
-// Options and photos carried over from the old Features page.
-const standard = [
- {
-  "t": "Exterior Finish",
-  "i": "home",
-  "p": [
-   {
-    "src": "/images/features/standing-seam-roof.webp",
-    "alt": "Standing seam metal roof",
-    "w": 318,
-    "h": 318
-   },
-   {
-    "src": "/images/features/hardie.webp",
-    "alt": "Fiber cement panels",
-    "w": 1280,
-    "h": 1610
-   },
-   {
-    "src": "/images/features/painted-stucco.webp",
-    "alt": "Painted stucco",
-    "w": 1024,
-    "h": 682
-   },
-   {
-    "src": "/images/features/cedar.webp",
-    "alt": "Cedar siding",
-    "w": 318,
-    "h": 318
-   }
-  ]
- },
- {
-  "t": "Interior Finish",
-  "i": "brush",
-  "p": [
-   {
-    "src": "/images/features/orange-peel.webp",
-    "alt": "Light orange-peel sheetrock",
-    "w": 800,
-    "h": 537
-   },
-   {
-    "src": "/images/features/bamboo.webp",
-    "alt": "Strand bamboo flooring",
-    "w": 1000,
-    "h": 1000
-   }
-  ]
- },
- {
-  "t": "Cabinets",
-  "i": "cab",
-  "p": [
-   {
-    "src": "/images/features/gloss-white.webp",
-    "alt": "Factory-built cabinets, gloss white",
-    "w": 513,
-    "h": 650
-   },
-   {
-    "src": "/images/features/gloss-gray.webp",
-    "alt": "Factory-built cabinets, gloss gray",
-    "w": 513,
-    "h": 650
-   }
-  ]
- },
- {
-  "t": "Tile",
-  "i": "tile",
-  "p": [
-   {
-    "src": "/images/features/subway.webp",
-    "alt": "Subway tile",
-    "w": 700,
-    "h": 546
-   },
-   {
-    "src": "/images/features/koshi-grey.webp",
-    "alt": "Imola Koshi, grey",
-    "w": 504,
-    "h": 504
-   },
-   {
-    "src": "/images/features/koshi-white.webp",
-    "alt": "Imola Koshi, white",
-    "w": 800,
-    "h": 805
-   }
-  ]
- },
- {
-  "t": "Countertops",
-  "i": "layers",
-  "p": [
-   {
-    "src": "/images/features/stellar-night.webp",
-    "alt": "Quartzite, black (Stellar Night)",
-    "w": 1000,
-    "h": 1000
-   },
-   {
-    "src": "/images/features/blanco-maple.webp",
-    "alt": "Quartzite, white (Blanco Maple)",
-    "w": 1000,
-    "h": 1000
-   },
-   {
-    "src": "/images/features/grey-expo.webp",
-    "alt": "Quartzite, grey (Grey Expo)",
-    "w": 1000,
-    "h": 1000
-   }
-  ]
- },
- {
-  "t": "Plumbing Fixtures",
-  "i": "drop",
-  "p": [
-   {
-    "src": "/images/features/toilet.webp",
-    "alt": "One-piece toilet",
-    "w": 600,
-    "h": 600
-   },
-   {
-    "src": "/images/features/sink.webp",
-    "alt": "Jasper single kitchen sink",
-    "w": 150,
-    "h": 87
-   },
-   {
-    "src": "/images/features/bath-sink.webp",
-    "alt": "Kilgore double sink",
-    "w": 150,
-    "h": 83
-   },
-   {
-    "src": "/images/features/blanco-faucet.webp",
-    "alt": "Blanco kitchen faucet",
-    "w": 150,
-    "h": 291
-   },
-   {
-    "src": "/images/features/moen-kitchen.webp",
-    "alt": "Moen Align kitchen faucet",
-    "w": 600,
-    "h": 600
-   },
-   {
-    "src": "/images/features/kohler-ledena.webp",
-    "alt": "Kohler Ledena",
-    "w": 318,
-    "h": 195
-   },
-   {
-    "src": "/images/features/moen-shower.webp",
-    "alt": "Moen Level shower",
-    "w": 650,
-    "h": 650
-   },
-   {
-    "src": "/images/features/moen-align.webp",
-    "alt": "Moen Align",
-    "w": 600,
-    "h": 600
-   },
-   {
-    "src": "/images/features/rinnai.webp",
-    "alt": "Rinnai tankless water heater",
-    "w": 1024,
-    "h": 1024
-   }
-  ]
- },
- {
-  "t": "Appliances",
-  "i": "power",
-  "p": [
-   {
-    "src": "/images/features/ge-package.webp",
-    "alt": "GE stainless package",
-    "w": 1000,
-    "h": 1000
-   }
-  ]
- },
- {
-  "t": "Electrical Fixtures",
-  "i": "bulb",
-  "p": [
-   {
-    "src": "/images/features/pendant.webp",
-    "alt": "West Elm globe pendant",
-    "w": 710,
-    "h": 710
-   },
-   {
-    "src": "/images/features/sconce.webp",
-    "alt": "Kovacs sconce",
-    "w": 400,
-    "h": 400
-   },
-   {
-    "src": "/images/features/leviton.webp",
-    "alt": "Leviton Decora switches",
-    "w": 1280,
-    "h": 2088
-   },
-   {
-    "src": "/images/features/kichler.webp",
-    "alt": "Kichler ceiling light",
-    "w": 900,
-    "h": 900
-   }
-  ]
- }
+import { standard, premium } from '../data/features';
+const P = (f: string) => `/images/portfolio/${f}.webp`;
+const std = (t: string) => standard.find((g) => g.t === t)?.p ?? [];
+const prem = (t: string) => premium.find((g) => g.t === t)?.p ?? [];
+
+type Ph = { src: string; w: number; h: number; plan: string; slug: string; alt: string };
+const sections: { id: string; title: string; lede: string; cats: string[]; main: Ph; extra?: Ph[]; flip?: boolean; tall?: boolean }[] = [
+  { id: 'exterior', title: 'Exterior', cats: ['Exterior Finish'],
+    lede: 'Metal roofs, fiber cement, stucco and wood: durable cladding in natural and painted finishes.',
+    main: { src: P('quintero/01'), w: 1920, h: 1280, plan: 'Quintero', slug: 'quintero', alt: 'Quintero small-lot homes with fiber cement panels, wood siding and a metal-framed roof deck.' },
+    extra: [
+      { src: P('luna/10'), w: 750, h: 559, plan: 'Luna', slug: 'luna', alt: 'Luna house with cedar siding, a metal fascia and black-framed sliding glass doors opening to a deck.' },
+      { src: P('dogtrot/ruth-1-scaled'), w: 2000, h: 1334, plan: 'Dogtrot', slug: 'dogtrot', alt: 'Dogtrot house with corrugated metal and weathered steel siding among live oaks.' },
+    ] },
+  { id: 'interior', title: 'Floors and walls', cats: ['Interior Finish'], flip: true,
+    lede: 'Engineered wood flooring and a light orange-peel sheetrock finish, highlighted by generous windows and sliding glass doors.',
+    main: { src: P('blanco-river/04'), w: 2000, h: 1326, plan: 'Blanco River', slug: 'blanco-river', alt: 'Open living room with a light wood floor, white walls and a wall of sliding glass doors.' },
+    extra: [{ src: P('blue-crest/06'), w: 2000, h: 1328, plan: 'Blue Crest', slug: 'blue-crest', alt: 'Open kitchen and living room with a dark wood floor and a long island.' }] },
+  { id: 'kitchen', title: 'Cabinets and appliances', cats: ['Cabinets', 'Appliances'],
+    lede: 'Factory-built cabinets and a GE stainless appliance package come standard; custom cabinets and upgraded appliance packages are available.',
+    main: { src: P('grand-ma-550/525-3'), w: 1600, h: 1200, plan: 'Grand-Ma 550', slug: 'grand-ma-550', alt: 'Kitchen with white cabinets, stainless appliances and a light wood floor.' },
+    extra: [{ src: P('blue-crest/05'), w: 2000, h: 1328, plan: 'Blue Crest', slug: 'blue-crest', alt: 'Kitchen with wood cabinets, a peninsula and a view to a courtyard.' }] },
+  { id: 'countertops', title: 'Countertops', cats: ['Countertops'], flip: true,
+    lede: 'Quartz in a variety of colors comes standard, with various natural stones to upgrade.',
+    main: { src: P('blanco-river/07'), w: 2000, h: 1321, plan: 'Blanco River', slug: 'blanco-river', alt: 'Kitchen with a long dark countertop island, wood cabinets and pendant lights.' },
+    extra: [{ src: P('blanco-river/06'), w: 2000, h: 1349, plan: 'Blanco River', slug: 'blanco-river', alt: 'Kitchen island with a dark countertop and sink, open to the living room.' }] },
+  { id: 'bath', title: 'Tile and bath', cats: ['Tile', 'Plumbing Fixtures'],
+    lede: 'Ceramic tile and quality fixtures for kitchens and baths, plus a tankless or heat pump water heater.',
+    main: { src: P('fire-island/10'), w: 750, h: 499, plan: 'Fire Island', slug: 'fire-island', alt: 'Bathroom with a glass-enclosed shower and tub, a wood vanity and a white counter beneath a long window.' } },
+  { id: 'lighting', title: 'Lighting', cats: ['Electrical Fixtures'], flip: true, tall: true,
+    lede: 'A broad array of high-quality, modern fixtures is available in our basic lighting package, along with Decora switches and dimmers.',
+    main: { src: P('marfa/06'), w: 960, h: 1183, plan: 'Marfa', slug: 'marfa', alt: 'Kitchen and dining area with round pendant lights over a long table.' } },
 ];
-const premium = [
- {
-  "t": "Exterior Finish",
-  "i": "home",
-  "p": [
-   {
-    "src": "/images/features/p-stucco.webp",
-    "alt": "Integral color stucco",
-    "w": 318,
-    "h": 318
-   },
-   {
-    "src": "/images/features/ipe.webp",
-    "alt": "Ipe siding",
-    "w": 700,
-    "h": 467
-   },
-   {
-    "src": "/images/features/metal-siding.webp",
-    "alt": "Painted metal siding",
-    "w": 1024,
-    "h": 341
-   },
-   {
-    "src": "/images/features/corten.webp",
-    "alt": "Corten steel",
-    "w": 900,
-    "h": 1200
-   }
-  ]
- },
- {
-  "t": "Interior Finish",
-  "i": "brush",
-  "p": [
-   {
-    "src": "/images/features/smooth-sheetrock.webp",
-    "alt": "Smooth-finish sheetrock",
-    "w": 640,
-    "h": 480
-   },
-   {
-    "src": "/images/features/longleaf.webp",
-    "alt": "Long leaf pine flooring",
-    "w": 1024,
-    "h": 1024
-   },
-   {
-    "src": "/images/features/mesquite.webp",
-    "alt": "Mesquite flooring",
-    "w": 1024,
-    "h": 1024
-   }
-  ]
- },
- {
-  "t": "Cabinets",
-  "i": "cab",
-  "p": [
-   {
-    "src": "/images/features/custom-cabinets.webp",
-    "alt": "Custom cabinets",
-    "w": 1024,
-    "h": 695
-   }
-  ]
- },
- {
-  "t": "Tile",
-  "i": "tile",
-  "p": [
-   {
-    "src": "/images/features/concrete-tile.webp",
-    "alt": "Concrete tile",
-    "w": 1280,
-    "h": 1600
-   },
-   {
-    "src": "/images/features/concrete-floor.webp",
-    "alt": "Concrete tile floor",
-    "w": 1024,
-    "h": 1024
-   },
-   {
-    "src": "/images/features/glass-mosaic.webp",
-    "alt": "Vidrepur glass mosaic",
-    "w": 377,
-    "h": 376
-   },
-   {
-    "src": "/images/features/interceramic.webp",
-    "alt": "Interceramic glass",
-    "w": 225,
-    "h": 225
-   }
-  ]
- },
- {
-  "t": "Countertops",
-  "i": "layers",
-  "p": [
-   {
-    "src": "/images/features/soapstone.webp",
-    "alt": "Soapstone",
-    "w": 374,
-    "h": 197
-   },
-   {
-    "src": "/images/features/carrara.webp",
-    "alt": "Bianco Carrara marble",
-    "w": 1024,
-    "h": 632
-   }
-  ]
- },
- {
-  "t": "Plumbing Fixtures",
-  "i": "drop",
-  "p": [
-   {
-    "src": "/images/features/hansgrohe.webp",
-    "alt": "Hansgrohe",
-    "w": 1000,
-    "h": 1000
-   },
-   {
-    "src": "/images/features/kohler-purist.webp",
-    "alt": "Kohler Purist",
-    "w": 1024,
-    "h": 455
-   }
-  ]
- },
- {
-  "t": "Appliances",
-  "i": "power",
-  "p": [
-   {
-    "src": "/images/features/jennair.webp",
-    "alt": "Jenn-Air slide-in package",
-    "w": 408,
-    "h": 292
-   }
-  ]
- }
-];
-const icons: Record<string, string> = {
-  home: '<path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/>',
-  brush: '<path d="M8 3h8v6H8zM9 9v3h6V9M12 12v9"/>',
-  cab: '<path d="M3 13l3-8h12l3 8v6H3zM3 13h6l1 2h4l1-2h6"/>',
-  tile: '<path d="M4 4h16v16H4zM4 9.3h16M4 14.7h16M9.3 4v16M14.7 4v16"/>',
-  layers: '<path d="M12 4l9 4-9 4-9-4zM3 12l9 4 9-4M3 16l9 4 9-4"/>',
-  drop: '<path d="M12 3c3 4.5 6 7.5 6 11a6 6 0 01-12 0c0-3.5 3-6.5 6-11z"/>',
-  power: '<path d="M12 3v8M7 6.5a8 8 0 1010 0"/>',
-  bulb: '<path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9V16h7v-2.1A6 6 0 0012 3z"/>',
-};
+const hero: Ph = { src: P('dogtrot/ruth-5-scaled'), w: 2000, h: 1334, plan: 'Dogtrot', slug: 'dogtrot', alt: 'Dogtrot living and dining room with a concrete floor, wood beams and a wall of windows to the trees.' };
 ---
-<Base title="Features" description="What goes into every ma modular home, with the standard and premium finish options: exterior, interior, cabinets, tile, countertops, plumbing, appliances and lighting.">
-  <div class="wrap page-title"><h1>Features</h1><p class="sel-link"><a href="/selections/">Browse all selections: tile, countertops, flooring, fixtures and more →</a></p></div>
-  <div class="wrap" style="padding-bottom:clamp(32px,5vw,64px)">
-    <img class="diagram" src="/images/features/diagram.webp" alt="Cutaway of a ma modular home labeling the standing seam metal roof, thermally broken low-E windows, ceramic tile, painted white base and door trim, engineered wood floor, quartzite countertops, custom factory cabinets, light orange-peel sheetrock finish and R-19 floor and wall insulation with R30-50 ceiling insulation." width="1600" height="882" data-zoom />
-  </div>
-  {[['Standard Options', standard, 'std'], ['Premium Options', premium, 'prem']].map(([label, groups, cls]) => (
-    <section class={`opts ${cls}`}>
-      <div class="wrap">
-        <h2>{label}*</h2>
-        <ul class="opt-grid">
-          {groups.map((g, n) => (
-            <li>
-              <button type="button" class="opt" data-open={`${cls}-${n}`}>
-                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[g.i]} />
-                <span class="name">{g.t}</span>
-                <span class="view">View</span>
-              </button>
-              <dialog class="opt-dlg" id={`${cls}-${n}`} aria-label={`${label}: ${g.t}`}>
-                <form method="dialog"><button class="x" aria-label="Close">&times;</button></form>
-                <h3>{g.t}</h3>
-                <div class="opt-imgs">{g.p.map((p) => <figure>{p.src && <img src={p.src} alt={p.alt} width={p.w} height={p.h} loading="lazy" />}<figcaption>{p.alt}</figcaption></figure>)}</div>
-              </dialog>
-            </li>
-          ))}
+<Base title="Features" description="The materials and finishes in every ma home: standard selections and premium upgrades, shown in real projects.">
+  <section class="fx-hero">
+    <div class="wrap fx-hero-grid">
+      <div>
+        <h1>Features</h1>
+        <p class="lede">Our Standard material selections are the equivalent of most builders’ premium packages. All of our homes are constructed with a baseline specification of 2x6 exterior walls, R19 wall insulation, Gerkin Rhino Low-E thermally broken windows, European full-overlay cabinets, engineered wood floors and standing seam metal roofs. Start with the standard selections, or upgrade to premium.</p>
+        <ul class="fx-jump" aria-label="Jump to">
+          {sections.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}
+          <li><a href="#anatomy">Inside the walls</a></li>
+          <li><a href="/selections/">All selections →</a></li>
         </ul>
-        {cls === 'prem' && <p class="alt-note">*Alternative materials are available per manufacturer</p>}
+      </div>
+      <figure><img src={hero.src} alt={hero.alt} width={hero.w} height={hero.h} fetchpriority="high" /><figcaption>Shown: <a href={`/portfolio/${hero.slug}/`}>{hero.plan}</a></figcaption></figure>
+    </div>
+  </section>
+
+  {sections.map((s, n) => (
+    <section class={`fx-sec ${n % 2 ? 'tint' : ''}`} id={s.id}>
+      <div class={`wrap fx-grid ${s.flip ? 'flip' : ''}`}>
+        <div class="fx-photos">
+          <figure><img src={s.main.src} alt={s.main.alt} width={s.main.w} height={s.main.h} loading="lazy" /><figcaption>Shown: <a href={`/portfolio/${s.main.slug}/`}>{s.main.plan}</a></figcaption></figure>
+          {s.extra && <div class="fx-extra">{s.extra.map((e) => <figure><img src={e.src} alt={e.alt} width={e.w} height={e.h} loading="lazy" /><figcaption>Shown: <a href={`/portfolio/${e.slug}/`}>{e.plan}</a></figcaption></figure>)}</div>}
+        </div>
+        <div class="fx-panel">
+          <h2>{s.title}</h2>
+          <p class="fx-lede">{s.lede}</p>
+          {s.cats.map((c) => (
+            <div class="fx-cat">
+              {s.cats.length > 1 && <h3>{c}</h3>}
+              <p class="fx-tag">Standard</p>
+              <ul class="fx-chips">{std(c).map((p) => <li>{p.src && <img src={p.src} alt="" width={p.w} height={p.h} loading="lazy" />}<span>{p.alt}</span></li>)}</ul>
+              {prem(c).length > 0 && <>
+                <p class="fx-tag prem">Premium</p>
+                <ul class="fx-chips">{prem(c).map((p) => <li>{p.src && <img src={p.src} alt="" width={p.w} height={p.h} loading="lazy" />}<span>{p.alt}</span></li>)}</ul>
+              </>}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   ))}
-  <script is:inline>
-    document.querySelectorAll('[data-open]').forEach(function (b) {
-      b.addEventListener('click', function () { var d = document.getElementById(b.getAttribute('data-open')); if (d && d.showModal) d.showModal(); });
-    });
-    document.querySelectorAll('.opt-dlg').forEach(function (d) {
-      d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
-    });
-  </script>
+
+  <section class="fx-sec" id="anatomy">
+    <div class="wrap">
+      <h2 class="fx-center">Inside the walls</h2>
+      <p class="fx-center fx-lede">Thermally broken, low-E windows; R-19 floor and wall insulation with R30–50 in the ceiling; a standing seam metal roof.</p>
+      <img class="diagram" src="/images/features/diagram.webp" alt="Cutaway of a ma modular home labeling the standing seam metal roof, thermally broken low-E windows, ceramic tile, painted white base and door trim, engineered wood floor, quartzite countertops, custom factory cabinets, light orange-peel sheetrock finish and R-19 floor and wall insulation with R30-50 ceiling insulation." width="1600" height="882" data-zoom loading="lazy" />
+      <p class="fx-note">*Alternative materials are available per manufacturer.</p>
+    </div>
+  </section>
+
+  <section class="fx-cta">
+    <div class="wrap">
+      <h2>Questions about finishes?</h2>
+      <p>Tell us about your lot and your project and we will walk you through the options.</p>
+      <p><a class="btn" href="/contact/">Contact us</a></p>
+    </div>
+  </section>
 </Base>
