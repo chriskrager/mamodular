@@ -45,6 +45,7 @@ const hero: Ph = { src: P('dogtrot/ruth-5-scaled'), w: 2000, h: 1334, plan: 'Dog
         <ul class="fx-jump" aria-label="Jump to">
           {sections.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}
           <li><a href="#anatomy">Inside the walls</a></li>
+          <li><a href="/selections/">All selections →</a></li>
         </ul>
       </div>
       <figure><img src={hero.src} alt={hero.alt} width={hero.w} height={hero.h} fetchpriority="high" /><figcaption>Shown: <a href={`/portfolio/${hero.slug}/`}>{hero.plan}</a></figcaption></figure>
