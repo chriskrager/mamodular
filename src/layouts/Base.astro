@@ -43,7 +43,14 @@ const hide = noindex || !site.live;
       <div class="wrap">
         <a class="logo" href="/"><img src="/images/brand/ma-logo-tagline.png" alt="ma modular. ma is modern + affordable, modular architecture, home." width="195" height="62" /></a>
         <nav class="site-nav" aria-label="Main">
-          {nav.map((n) => <a href={n.href} class={(n as any).accent ? 'accent' : undefined} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>)}
+          {nav.map((n) => n.children ? (
+            <div class="nav-group">
+              <a href={n.href} class="nav-parent" aria-haspopup="true" aria-current={n.children.some((c) => path.startsWith(c.href)) ? 'page' : undefined}>{n.label}<span aria-hidden="true"> ▾</span></a>
+              <div class="nav-sub">{n.children.map((c) => <a href={c.href} aria-current={path.startsWith(c.href) ? 'page' : undefined}>{c.label}</a>)}</div>
+            </div>
+          ) : (
+            <a href={n.href} class={[n.accent ? 'accent' : '', n.cta ? 'nav-cta' : ''].join(' ').trim() || undefined} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
+          ))}
         </nav>
       </div>
     </header>

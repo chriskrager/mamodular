@@ -16,17 +16,19 @@ export const site = {
 };
 
 // Same pages as the old site, same URLs.
-export const nav = [
+export const nav: { href: string; label: string; accent?: boolean; cta?: boolean; children?: { href: string; label: string }[] }[] = [
   { href: '/find-your-ma/', label: 'Find your ma' },
   { href: '/features/', label: 'Features' },
-  { href: '/myths/', label: 'Myths' },
-  { href: '/steps/', label: 'Getting started' },
+  { href: '/steps/', label: 'Learn', children: [
+    { href: '/steps/', label: 'Getting started' },
+    { href: '/myths/', label: 'Myths' },
+    { href: '/faq/', label: 'FAQ' },
+  ] },
   { href: '/about/', label: 'About' },
-  { href: '/faq/', label: 'FAQ' },
   { href: '/news/', label: 'News' },
   { href: '/multi-family/', label: 'Development Projects', accent: true },
   { href: '/videos/', label: 'Podcasts and Videos' },
-  { href: '/contact/', label: 'Contact' },
+  { href: '/contact/', label: 'Contact', cta: true },
 ];
 export const footerNav = [
   { href: '/adus-aka-granny-flat-tiny-house-etc/', label: "ADU's" },
