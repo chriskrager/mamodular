@@ -1,6 +1,15 @@
 ---
 import '../styles/global.css';
 import { site, nav, footerNav } from '../config';
+import jost300 from '@fontsource/jost/files/jost-latin-300-normal.woff2?url';
+import jost400 from '@fontsource/jost/files/jost-latin-400-normal.woff2?url';
+import serif400 from '@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2?url';
+import '@fontsource/jost/latin-300.css';
+import '@fontsource/jost/latin-400.css';
+import '@fontsource/jost/latin-500.css';
+import '@fontsource/source-serif-4/latin-400.css';
+import '@fontsource/source-serif-4/latin-400-italic.css';
+import '@fontsource/source-serif-4/latin-600.css';
 
 interface Props { title: string; description: string; image?: string; noindex?: boolean }
 const { title, description, image = '/images/site/home-1.webp', noindex = false } = Astro.props;
@@ -19,6 +28,9 @@ const hide = noindex || !site.live;
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     {hide && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="preload" href={jost300} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={jost400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serif400} as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
@@ -26,9 +38,6 @@ const hide = noindex || !site.live;
     <meta property="og:image" content={new URL(image, site.url).toString()} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
     {site.live && site.ga4Id && (<>
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}`}></script>
       <script is:inline define:vars={{ id: site.ga4Id }}>
