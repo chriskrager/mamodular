@@ -14,7 +14,7 @@ const nf = (n: number) => n.toLocaleString('en-US');
 const hero = plan ? plan.hero : project!.photos[0];
 const gallery = plan ? plan.gallery : project!.photos.slice(1);
 const name = plan ? plan.name : project!.name;
-const back = plan ? { href: '/find-your-ma/', label: 'Find your ma' } : { href: '/multi-family/', label: 'Development projects' };
+const back = plan ? { href: '/find-your-ma/', label: 'Find your ma' } : { href: '/multi-family/', label: 'Development Projects' };
 const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${plan.baths} bath. ${plan.summary}` : `${project!.name}: ${project!.summary}`;
 ---
 <Base title={name} description={desc} image={hero.src}>
@@ -38,7 +38,7 @@ const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${p
           <p class="mute">Total cost depends on your site. Tell us about your lot and we will give you a rough estimate.</p>
           <p><a class="btn" href={`/contact/?model=${plan.slug}`}>Ask about the {plan.name}</a></p>
         </div>
-        {plan.floorplans ? (<><h2 style="margin-top:56px">Floor plans</h2><div class="plan-sheets">{plan.floorplans.map((f) => <div class="plan-sheet"><img src={f.src} alt={`${f.label} plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /></div>)}</div></>) : plan.floorplan && (<><h2 style="margin-top:56px">Floor plan</h2><div class="plan-sheets"><div class="plan-sheet"><img src={plan.floorplan} alt={`Floor plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /></div></div></>)}
+        {plan.floorplans ? (<><h2 style="margin-top:56px">Floor plans</h2><div class="plan-sheets">{plan.floorplans.map((f) => <div class="plan-sheet"><img src={f.src} alt={`${f.label}: floor plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /><p class="plan-cap">{f.label}</p></div>)}</div></>) : plan.floorplan && (<><h2 style="margin-top:56px">Floor plan</h2><div class="plan-sheets"><div class="plan-sheet"><img src={plan.floorplan} alt={`Floor plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /></div></div></>)}
       </>
     )}
     {project && (

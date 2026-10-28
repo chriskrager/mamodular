@@ -12,7 +12,7 @@ export interface Model {
   name: string;
   sf: number;
   sfNote?: string; // shown on the model page next to the size
-  beds: number;
+  beds: number | string; // a string for models with more than one plan, e.g. "2 or 3"
   baths: string; // "1", "1.5"
   modules: number | null; // null = not confirmed yet, hidden on the page
   dims: string; // overall plan dimensions as drawn
@@ -20,6 +20,7 @@ export interface Model {
   description: string[]; // paragraphs for the model page
   hero: Img;
   floorplan: string;
+  floorplans?: { src: string; label: string }[]; // models with more than one plan version
   gallery: Img[];
   footprint: Rect[];
   note?: string; // small caption under the plan
@@ -102,16 +103,22 @@ export const models: Model[] = [
     slug: 'casita-1100',
     name: 'Casita 1100',
     sf: 1100,
-    beds: 2,
-    baths: '2',
+    beds: '2 or 3',
+    baths: '1 or 2',
     modules: 2,
     dims: `30' × 36'`,
-    summary: 'A compact two or three-bedroom home.',
+    summary: 'A compact two or three-bedroom home, in two plan versions.',
     description: [
-      'Have a small space but you need two or three bedrooms? The Casita 1100 has plan versions for both. Plan A has three bedrooms, while Plan B has two, with a larger master suite type configuration. A perfect ADU or small residence.',
+      'Have a small space but you need two or three bedrooms? The Casita 1100 comes in two plan versions, both built from the same two 15′ × 36′ modules, so you can choose the layout that fits your household. A perfect ADU or small residence.',
+      '<strong>Plan A: three bedrooms, one bath.</strong> Three bedrooms share a bath, arranged around an open kitchen, dining and living room.',
+      '<strong>Plan B: two bedrooms, two baths.</strong> Two bedrooms, each with access to a bath, in a larger master suite type configuration.',
     ],
     hero: img('casita-1100', '1100-1.webp', 'Rendering of the Casita 1100 from the garden, with a wall of glass facing the patio.', 'rendering'),
     floorplan: '/images/portfolio/casita-1100/floorplan.webp',
+    floorplans: [
+      { src: '/images/portfolio/casita-1100/floorplan-3bd.webp', label: 'Plan A: three bedrooms, one bath' },
+      { src: '/images/portfolio/casita-1100/floorplan.webp', label: 'Plan B: two bedrooms, two baths' },
+    ],
     footprint: [
       { x: 0, y: 4.4, w: 15, h: 36 },
       { x: 15, y: 0, w: 15, h: 36 },

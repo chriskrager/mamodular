@@ -43,7 +43,7 @@ export const aduPlans: Plan[] = models.map((m) => ({
   modules: m.modules, dims: m.dims, summary: m.summary, description: m.description, note: m.note,
   hero: { src: m.hero.src, alt: m.hero.alt },
   gallery: m.gallery.map((g) => ({ src: g.src, alt: g.alt })),
-  floorplan: m.floorplan, isAdu: true,
+  floorplan: m.floorplan, floorplans: m.floorplans, isAdu: true,
 }));
 
 export const housePlans: Plan[] = [
