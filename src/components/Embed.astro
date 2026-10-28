@@ -1,6 +1,26 @@
 ---
 interface Props { kind: 'youtube' | 'vimeo'; id: string; title?: string }
 const { kind, id, title = 'ma modular video' } = Astro.props;
-const src = kind === 'youtube' ? `https://www.youtube-nocookie.com/embed/${id}` : `https://player.vimeo.com/video/${id}`;
+const vimeo = `https://player.vimeo.com/video/${id}`;
 ---
-<iframe class="video" src={src} title={title} loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+{kind === 'youtube' ? (
+  <button type="button" class="video yt-lite" data-id={id} data-title={title} aria-label={`Play video: ${title}`}>
+    <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" />
+    <span class="yt-play" aria-hidden="true"></span>
+  </button>
+) : (
+  <iframe class="video" src={vimeo} title={title} loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+)}
+<script>
+  document.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLButtonElement>('.yt-lite');
+    if (!b) return;
+    const f = document.createElement('iframe');
+    f.className = 'video';
+    f.src = `https://www.youtube-nocookie.com/embed/${b.dataset.id}?autoplay=1`;
+    f.title = b.dataset.title || 'ma modular video';
+    f.allow = 'autoplay; fullscreen; picture-in-picture';
+    f.setAttribute('allowfullscreen', '');
+    b.replaceWith(f);
+  });
+</script>

@@ -31,6 +31,13 @@ const hide = noindex || !site.live;
     <link rel="preload" href={jost300} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={jost400} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={serif400} as="font" type="font/woff2" crossorigin />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', name: site.name, url: site.url,
+      logo: new URL('/images/brand/ma-logo-tagline.webp', site.url).toString(), email: site.email, telephone: site.phone,
+      address: { '@type': 'PostalAddress', streetAddress: site.address[0].replace(/,.*$/, ''), addressLocality: 'Austin', addressRegion: 'TX', postalCode: '78702', addressCountry: 'US' },
+      parentOrganization: { '@type': 'Organization', name: 'KRDB', url: 'https://www.krdb.com' },
+      sameAs: [site.facebook, site.twitter],
+    })} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
@@ -48,6 +55,7 @@ const hide = noindex || !site.live;
     </>)}
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap">
         <a class="logo" href="/"><img src="/images/brand/ma-logo-tagline.webp" alt="ma modular. ma is modern + affordable, modular architecture, home." width="195" height="62" /></a>
@@ -63,7 +71,7 @@ const hide = noindex || !site.live;
         </nav>
       </div>
     </header>
-    <main><slot /></main>
+    <main id="main" tabindex="-1"><slot /></main>
     <footer class="site-footer">
       <div class="wrap">
         <div class="cols">
@@ -85,7 +93,7 @@ const hide = noindex || !site.live;
             </ul>
           </div>
         </div>
-        <p class="fine">&copy; {new Date().getFullYear()} ma modular. All rights reserved. {site.financingNote}</p>
+        <p class="fine">&copy; {new Date().getFullYear()} ma modular. All rights reserved. {site.financingNote} <a href="/privacy/">Privacy</a></p>
       </div>
     </footer>
   <script is:inline>

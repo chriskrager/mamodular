@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+---
+<Base title="Privacy" description="How ma modular handles information from the contact form and website analytics.">
+  <div class="wrap page-title"><h1>Privacy</h1></div>
+  <div class="wrap section prose-page" style="padding-top:8px">
+    <p class="small mute">Last updated October 2026</p>
+    <p>This page explains what information the ma modular website collects and how it is used. ma modular is a modular home system from KRDB in Austin, Texas.</p>
+    <h2>Information you send us</h2>
+    <p>If you use our contact form, we receive what you type into it, such as your name, email address, phone number, project address and a description of your project. The form is provided by Wufoo, a third-party service, which processes the submission for us. We use this information to reply to you and to assess your project. We do not sell it.</p>
+    <p>If you email or call us, we keep that correspondence for the same purpose.</p>
+    <h2>Analytics</h2>
+    <p>We use Google Analytics to understand how visitors use the site, for example which pages are viewed and how people arrive. It uses cookies and collects technical information such as your browser, device and approximate location. This information is anonymous and aggregated; we do not use it to identify you. You can block these cookies in your browser settings or with Google&rsquo;s opt-out browser add-on.</p>
+    <h2>Videos</h2>
+    <p>Some pages show videos from YouTube or Vimeo. Videos from YouTube are not loaded until you press play. Those services may set their own cookies when you play a video, under their own privacy policies.</p>
+    <h2>Sharing</h2>
+    <p>We share your information only with the service providers that help us run the site and contact form, with a lender or other partner when you ask us to introduce you, or when the law requires it.</p>
+    <h2>Your choices</h2>
+    <p>You can ask us to tell you what we hold about you, or to correct or delete it, by emailing <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    <h2>Contact</h2>
+    <p>ma modular<br />{site.address[0]}, {site.address[1]}<br />{site.phone}<br /><a href={`mailto:${site.email}`}>{site.email}</a></p>
+  </div>
+</Base>
