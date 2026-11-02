@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Embed from '../../components/Embed.astro';
+import Configurator from '../../components/Configurator.astro';
 import { plans } from '../../data/plans';
 import { projects } from '../../data/projects';
 export function getStaticPaths() {
@@ -51,6 +52,7 @@ const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${p
     )}
     {gallery.length > 0 && <div class="gallery">{gallery.map((g) => <img src={g.src} alt={g.alt} loading="lazy" data-zoom />)}</div>}
   </div>
+  {plan && plan.slug === 'grand-ma-550' && <Configurator />}
   <section class="band">
     <div class="wrap split">
       <h2>{plan ? `Interested in the ${plan.name}?` : 'Have a site in mind?'}</h2>

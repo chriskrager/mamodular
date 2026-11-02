@@ -6,12 +6,28 @@ import { site } from '../../config';
   <div class="wrap section">
     <h1>Contact us</h1>
     <p class="lede" style="margin-top:20px">Please take some time to fill out our inquiry form. This will help us get a sense of your unique circumstances and needs. We will get back to you as soon as possible.</p>
+    <div class="sel-summary" id="selections" hidden>
+      <h2>Your selections</h2>
+      <ul id="sel-list"></ul>
+      <p class="small mute">Copy these into the project description below so we can see what you chose.</p>
+      <button type="button" class="btn btn-quiet" id="sel-copy">Copy selections</button>
+    </div>
     <div id="wufoo-zapubv100tjkk2" class="wufoo-embed">
       <p>The inquiry form is loading. If it does not appear, <a href="https://mamodular.wufoo.com/forms/project-inquiry/">open the form on its own page</a>.</p>
     </div>
     <p class="small mute">{site.financingNote}</p>
     <p style="margin-top:32px">Or write to <a href={`mailto:${site.email}`}>{site.email}</a>, call {site.phone}, or visit {site.address.join(', ')}.</p>
   </div>
+  <script is:inline>
+    (function () {
+      var q = new URLSearchParams(location.search), sel = q.get('sel'); if (!sel) return;
+      var box = document.getElementById('selections'), ul = document.getElementById('sel-list'), model = q.get('model') === 'grand-ma-550' ? 'Grand-Ma 550' : 'ma modular home';
+      sel.split('; ').forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ul.appendChild(li); });
+      box.hidden = false;
+      var text = 'My selections for the ' + model + ': ' + sel;
+      document.getElementById('sel-copy').addEventListener('click', function (e) { var b = e.currentTarget; (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () { b.textContent = 'Copied'; }, function () { b.textContent = 'Select and copy the list above'; }); });
+    })();
+  </script>
   <script is:inline>
     var zapubv100tjkk2;
     (function (d, t) {
