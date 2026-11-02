@@ -1,0 +1,19 @@
+# Dependencies and build output (Netlify rebuilds these)
+node_modules/
+dist/
+.astro/
+
+# Secrets: never commit these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs and OS/editor files
+npm-debug.log*
+yarn-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

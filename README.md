@@ -26,7 +26,7 @@ npm run build   # outputs to dist/
 - Only `/portfolio/`, `/portfolio/page/2/` and `/news/page/2/` redirect; every other old URL still exists.
 
 ## Confirmed
-Phone, 6-12 month timeline, about 90% factory completion, Fire Island at 2,300 sf, 4 bed / 2.5 bath, MLK Mixed Use = Magnolia, the Vox video link (YouTube) and the Hive podcast link.
+Phone, 9-12 month timeline, about 90% factory completion, Fire Island at 2,300 sf, 4 bed / 2.5 bath, MLK Mixed Use = Magnolia, the Vox video link (YouTube) and the Hive podcast link.
 
 ## Still to confirm before launch
 - Quintero is Echo Park, Los Angeles (from the old news post). Belmont, Onteora and Ventura have no text on the old site.

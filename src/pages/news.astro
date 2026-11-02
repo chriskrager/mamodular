@@ -9,7 +9,7 @@ import { posts, fmtDate } from '../data/news';
       {posts.map((p) => (
         <a class="news-item" href={p.path}>
           <img src={p.image} alt="" loading="lazy" />
-          <div><time datetime={p.date}>{fmtDate(p.date)}</time><h3>{p.title}</h3></div>
+          <div><time datetime={p.date}>{fmtDate(p.date, p.monthOnly)}</time><h3>{p.title}</h3></div>
         </a>
       ))}
     </div>
