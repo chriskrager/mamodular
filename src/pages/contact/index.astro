@@ -21,10 +21,10 @@ import { site } from '../../config';
   <script is:inline>
     (function () {
       var q = new URLSearchParams(location.search), sel = q.get('sel'); if (!sel) return;
-      var box = document.getElementById('selections'), ul = document.getElementById('sel-list'), model = q.get('model') === 'grand-ma-550' ? 'Grand-Ma 550' : 'ma modular home';
+      var box = document.getElementById('selections'), ul = document.getElementById('sel-list'), model = q.get('for') || 'ma modular home';
       sel.split('; ').forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ul.appendChild(li); });
       box.hidden = false;
-      var text = 'My selections for the ' + model + ': ' + sel;
+      var text = 'My finish selections for the ' + model + ': ' + sel;
       document.getElementById('sel-copy').addEventListener('click', function (e) { var b = e.currentTarget; (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () { b.textContent = 'Copied'; }, function () { b.textContent = 'Select and copy the list above'; }); });
     })();
   </script>

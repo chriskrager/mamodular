@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Embed from '../../components/Embed.astro';
-import Configurator from '../../components/Configurator.astro';
 import { plans } from '../../data/plans';
 import { projects } from '../../data/projects';
 export function getStaticPaths() {
@@ -37,7 +36,7 @@ const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${p
           {plan.description.map((t) => <p set:html={t} />)}
           {plan.note && <p class="small mute">{plan.note}</p>}
           <p class="mute">Total cost depends on your site. Tell us about your lot and we will give you a rough estimate.</p>
-          <p><a class="btn" href={`/contact/?model=${plan.slug}`}>Ask about the {plan.name}</a></p>
+          <p><a class="btn" href={`/contact/?model=${plan.slug}`}>Ask about the {plan.name}</a> <a class="btn btn-quiet" href={`/finish-board/?model=${plan.slug}`}>Plan your finishes</a></p>
         </div>
         {plan.floorplans ? (<><h2 style="margin-top:56px">Floor plans</h2><div class="plan-sheets">{plan.floorplans.map((f) => <div class="plan-sheet"><img src={f.src} alt={`${f.label}: floor plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /><p class="plan-cap">{f.label}</p></div>)}</div></>) : plan.floorplan && (<><h2 style="margin-top:56px">Floor plan</h2><div class="plan-sheets"><div class="plan-sheet"><img src={plan.floorplan} alt={`Floor plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /></div></div></>)}
       </>
@@ -52,7 +51,6 @@ const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${p
     )}
     {gallery.length > 0 && <div class="gallery">{gallery.map((g) => <img src={g.src} alt={g.alt} loading="lazy" data-zoom />)}</div>}
   </div>
-  {plan && plan.slug === 'grand-ma-550' && <Configurator />}
   <section class="band">
     <div class="wrap split">
       <h2>{plan ? `Interested in the ${plan.name}?` : 'Have a site in mind?'}</h2>

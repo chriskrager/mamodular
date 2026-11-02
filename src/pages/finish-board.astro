@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import { selections } from '../data/selections';
+import { plans } from '../data/plans';
+const grp = (id: string, sub = '') => selections.find((g) => g.id === id)!.subs.find((s) => s.title === sub)!.items;
+const cabColors: Record<string, string> = {
+  'Wilsonart laminate, Crystal Matte': '#ebe9e4',
+  'Wilsonart laminate, Charcoal Matte': '#3b3d40',
+  'Wood-look cabinets (Egger)': '#b58f66',
+};
+const slots = [
+  { id: 'floor', label: 'Flooring', kind: 'surface', items: grp('flooring') },
+  { id: 'counter', label: 'Countertop', kind: 'surface', items: grp('countertops') },
+  { id: 'cabinets', label: 'Cabinets', kind: 'color', items: grp('cabinets').map((i) => ({ ...i, color: cabColors[i.name] })) },
+  { id: 'tile', label: 'Wall tile', kind: 'surface', items: grp('tile', 'Wall and mosaic') },
+  { id: 'hardware', label: 'Cabinet hardware', kind: 'product', items: grp('hardware', 'Cabinet hardware') },
+  { id: 'faucet', label: 'Kitchen faucet', kind: 'product', items: grp('plumbing', 'Kitchen faucets') },
+  { id: 'pendant', label: 'Pendant light', kind: 'product', items: grp('lighting', 'Pendants') },
+];
+const names: Record<string, string> = Object.fromEntries(plans.map((p) => [p.slug, p.name]));
+---
+<Base title="Finish board" description="Choose a floor, countertop, cabinets, tile and fixtures and see them together on one board, then send your selections to the ma team.">
+  <section class="fb" data-slots={JSON.stringify(slots)} data-names={JSON.stringify(names)}>
+    <div class="wrap">
+      <h1>Finish board</h1>
+      <p class="lede" data-lede>Choose finishes and see how they look together. Everything here comes from our <a href="/selections/">Selections library</a>.</p>
+      <div class="fb-grid">
+        <div class="fb-boardcol">
+          <div class="fb-board" id="fb-board" aria-label="Your finish board">
+            {slots.map((s) => (
+              <button type="button" class={`fb-cell fb-${s.id}`} data-slot={s.id} aria-label={`${s.label}: change`}>
+                <span class="fb-fill" data-fill></span>
+                <span class="fb-cap"><small>{s.label}</small><b data-name></b></span>
+              </button>
+            ))}
+          </div>
+          <p class="small mute fb-note">Swatches come from product images and can look different on your screen. Ask us for physical samples before you decide.</p>
+        </div>
+        <div class="fb-picker">
+          <div class="fb-tabs" role="tablist" aria-label="Choose a finish category">
+            {slots.map((s, i) => <button type="button" role="tab" id={`tab-${s.id}`} data-tab={s.id} aria-selected={i === 0 ? 'true' : 'false'} aria-controls="fb-panel">{s.label}</button>)}
+          </div>
+          <div id="fb-panel" role="tabpanel" class="fb-panel" tabindex="-1"></div>
+          <ul class="fb-list" id="fb-list" aria-label="Your selections"></ul>
+          <div class="fb-actions">
+            <a class="btn" href="/contact/" data-send>Send my selections</a>
+            <button type="button" class="btn btn-quiet" data-print>Print board</button>
+            <button type="button" class="btn btn-quiet" data-copy>Copy link</button>
+            <button type="button" class="fb-reset" data-reset>Reset</button>
+          </div>
+          <p class="small mute">A starting point for the conversation, not an order. Your ma team will walk you through the options.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    const root = document.querySelector('.fb') as HTMLElement;
+    const slots = JSON.parse(root.dataset.slots!);
+    const names = JSON.parse(root.dataset.names!);
+    const model = new URLSearchParams(location.search).get('model');
+    const forName = model && names[model] ? names[model] : '';
+    if (forName) (root.querySelector('[data-lede]') as HTMLElement).insertAdjacentHTML('beforeend', ` Planning for the <strong>${forName}</strong>.`);
+    const state: Record<string, number> = {};
+    slots.forEach((s: any) => (state[s.id] = 0));
+    const hash = new URLSearchParams(location.hash.slice(1));
+    slots.forEach((s: any) => { const v = parseInt(hash.get(s.id) ?? '', 10); if (v >= 0 && v < s.items.length) state[s.id] = v; });
+    let tab = slots[0].id;
+    const panel = document.getElementById('fb-panel')!, list = document.getElementById('fb-list')!;
+    const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+    function drawBoard() {
+      slots.forEach((s: any) => {
+        const it = s.items[state[s.id]], cell = root.querySelector(`.fb-cell[data-slot="${s.id}"]`)!;
+        const fill = cell.querySelector('[data-fill]') as HTMLElement;
+        fill.style.cssText = ''; fill.innerHTML = '';
+        if (s.kind === 'color') fill.style.background = it.color;
+        else if (s.kind === 'surface') fill.style.backgroundImage = `url(${it.img})`;
+        else fill.innerHTML = `<img src="${it.img}" alt="" width="${it.w}" height="${it.h}">`;
+        cell.querySelector('[data-name]')!.textContent = it.name;
+      });
+      list.innerHTML = slots.map((s: any) => `<li><span>${s.label}</span> ${esc(s.items[state[s.id]].name)}</li>`).join('');
+      const q = slots.map((s: any) => `${s.id}=${state[s.id]}`).join('&');
+      history.replaceState(null, '', `${location.pathname}${location.search}#${q}`);
+      const sel = slots.map((s: any) => `${s.label}: ${s.items[state[s.id]].name}`).join('; ');
+      (root.querySelector('[data-send]') as HTMLAnchorElement).href = `/contact/?${model ? `model=${encodeURIComponent(model)}&` : ''}${forName ? `for=${encodeURIComponent(forName)}&` : ''}sel=${encodeURIComponent(sel)}#selections`;
+    }
+    function drawPanel() {
+      const s = slots.find((x: any) => x.id === tab);
+      panel.setAttribute('aria-labelledby', `tab-${tab}`);
+      panel.innerHTML = `<ul class="fb-opts fb-opts-${s.kind}">` + s.items.map((it: any, i: number) => `<li><button type="button" class="fb-opt" data-i="${i}" aria-pressed="${i === state[tab]}">${s.kind === 'color' ? `<span class="fb-sw" style="background:${it.color}"></span>` : `<img src="${it.img}" width="${it.w}" height="${it.h}" alt="" loading="lazy">`}<span>${esc(it.name)}</span></button></li>`).join('') + '</ul>';
+      root.querySelectorAll('[data-tab]').forEach((b) => b.setAttribute('aria-selected', String((b as HTMLElement).dataset.tab === tab)));
+    }
+    panel.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('.fb-opt') as HTMLElement | null; if (!b) return;
+      state[tab] = +b.dataset.i!; drawBoard();
+      panel.querySelectorAll('.fb-opt').forEach((x, k) => x.setAttribute('aria-pressed', String(k === state[tab])));
+    });
+    root.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => { tab = (b as HTMLElement).dataset.tab!; drawPanel(); }));
+    root.querySelectorAll('.fb-cell').forEach((c) => c.addEventListener('click', () => { tab = (c as HTMLElement).dataset.slot!; drawPanel(); panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }));
+    root.querySelector('[data-reset]')!.addEventListener('click', () => { slots.forEach((s: any) => (state[s.id] = 0)); drawBoard(); drawPanel(); });
+    root.querySelector('[data-print]')!.addEventListener('click', () => window.print());
+    root.querySelector('[data-copy]')!.addEventListener('click', async (e) => { const b = e.currentTarget as HTMLElement; try { await navigator.clipboard.writeText(location.href); b.textContent = 'Link copied'; } catch { b.textContent = 'Copy from the address bar'; } setTimeout(() => (b.textContent = 'Copy link'), 2500); });
+    drawBoard(); drawPanel();
+  </script>
+</Base>
