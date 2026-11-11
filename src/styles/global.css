@@ -177,7 +177,7 @@ form.lot .two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 /* find your ma banner on the home page */
 .ma-banner { position: relative; display: block; text-decoration: none; background: var(--blue); }
 .ma-banner img { width: 100%; height: clamp(120px, 16vw, 220px); object-fit: cover; }
-.ma-banner span { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-weight: 300; font-size: clamp(2rem, 6vw, 4.2rem); color: #fff; text-shadow: 0 1px 12px rgba(0,0,0,.25); letter-spacing: -0.01em; }
+.ma-banner span { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-weight: 300; font-size: clamp(2rem, 6vw, 4.2rem); color: var(--ink); text-shadow: 0 1px 12px rgba(255,255,255,.35); letter-spacing: -0.01em; }
 .ma-banner:hover span { text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 0.2em; }
 
 /* home: alternating rows, strip, press */
