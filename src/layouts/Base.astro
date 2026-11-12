@@ -92,11 +92,7 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
             <p>An architect-designed modular home system from <a href="https://www.krdb.com">KRDB</a>.</p>
             <p><a href={`mailto:${site.email}`}>{site.email}</a><br />{site.phone}</p>
             <p>{site.address[0]}<br />{site.address[1]}</p>
-          </div>
-          <div>
-            <ul>
-              <li><a href={site.facebook}>Facebook</a></li>
-            </ul>
+            <p><a href={site.facebook}>Facebook</a></p>
           </div>
         </div>
         <p class="fine">&copy; {new Date().getFullYear()} ma modular. All rights reserved. {site.financingNote} <a href="/privacy/">Privacy</a></p>
