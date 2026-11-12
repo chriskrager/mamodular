@@ -5,13 +5,10 @@ import { plans } from '../data/plans';
 import { projects } from '../data/projects';
 import jost300 from '@fontsource/jost/files/jost-latin-300-normal.woff2?url';
 import jost400 from '@fontsource/jost/files/jost-latin-400-normal.woff2?url';
-import serif400 from '@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2?url';
 import '@fontsource/jost/latin-300.css';
 import '@fontsource/jost/latin-400.css';
 import '@fontsource/jost/latin-500.css';
-import '@fontsource/source-serif-4/latin-400.css';
-import '@fontsource/source-serif-4/latin-400-italic.css';
-import '@fontsource/source-serif-4/latin-600.css';
+import '@fontsource/jost/latin-600.css';
 
 interface Props { title: string; description: string; image?: string; noindex?: boolean }
 const { title, description, image = '/images/site/home-1.webp', noindex = false } = Astro.props;
@@ -42,7 +39,6 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
     {hide && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preload" href={jost300} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={jost400} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={serif400} as="font" type="font/woff2" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', name: site.name, url: site.url,
       logo: new URL('/images/brand/ma-logo-tagline.webp', site.url).toString(), email: site.email, telephone: site.phone,
@@ -66,7 +62,7 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
       </script>
     </>)}
   </head>
-  <body class={path === '/' ? 'home' : undefined}>
+  <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap">

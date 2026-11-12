@@ -13,7 +13,7 @@
   --paper: #ffffff;
   --tint: #f4f8fa;
   --display: 'Jost', 'Futura', 'Avenir Next', system-ui, sans-serif;
-  --text: 'Source Serif 4', Georgia, serif;
+  --text: 'Jost', 'Futura', 'Avenir Next', system-ui, sans-serif;
   --gutter: clamp(20px, 4vw, 56px);
   --max: 1200px;
   --measure: 64ch;
@@ -182,13 +182,8 @@ form.lot .two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .ma-banner span { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-weight: 300; font-size: clamp(2rem, 6vw, 4.2rem); color: var(--ink); text-shadow: 0 1px 12px rgba(255,255,255,.35); letter-spacing: -0.01em; }
 .ma-banner:hover span { text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 0.2em; }
 .o { color: var(--orange-text); } /* darker than --orange so it passes 4.5:1 as text */
-/* The word "ma" in running text. Headings use Jost, which is loaded at 300/400/500 only, so 500 avoids a faux bold. */
-.ma-w { font-weight: 600; }
-h1 .ma-w, h2 .ma-w, h3 .ma-w { font-weight: 500; }
-
-/* Homepage only: sans serif body text. Jost is loaded at 300/400/500, so bold stays at 500 to avoid a faux bold. */
-body.home { font-family: var(--display); }
-body.home strong, body.home .ma-w { font-weight: 500; }
+/* Bold: Jost is loaded at 300/400/500/600, so bold maps to a real 600 face (no faux bold). */
+strong, b, .ma-w { font-weight: 600; }
 
 /* home: alternating rows, strip, press */
 .rows .row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,5vw,64px); align-items: center; padding: clamp(32px,5vw,56px) 0; border-bottom: 1px solid var(--rule); }
