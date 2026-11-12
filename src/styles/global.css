@@ -60,7 +60,7 @@ ul, ol { max-width: var(--measure); }
 .site-nav a { text-decoration: none; padding-block: 4px; border-bottom: 2px solid transparent; }
 .site-nav a:hover, .site-nav a[aria-current] { border-bottom-color: var(--orange); }
 .site-footer { background: var(--orange-soft); margin-top: 0; padding-block: 48px 36px; font-family: var(--display); font-size: 0.98rem; }
-.site-footer .cols { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 32px; }
+.site-footer .cols { display: grid; grid-template-columns: 1.48fr 1fr 1fr; gap: 32px; }
 @media (max-width: 800px) { .site-footer .cols { grid-template-columns: 1fr; } }
 .site-footer p { margin: 0 0 0.5em; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; }
