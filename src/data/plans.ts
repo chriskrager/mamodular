@@ -2,6 +2,7 @@
 // the larger houses are defined here. Images are listed in images.json.
 import { models } from './models';
 import images from './images.json';
+import { planAlts } from './plan-alts';
 
 export interface Plan {
   slug: string;
@@ -27,9 +28,10 @@ export interface Plan {
 const imgs = images as Record<string, { photos: string[]; plan: string | null }>;
 const fromImages = (slug: string, name: string) => {
   const p = imgs[slug].photos;
+  const alts = planAlts[slug] ?? [];
   return {
-    hero: { src: p[0], alt: `${name}, exterior` },
-    gallery: p.slice(1).map((src, i) => ({ src, alt: `${name}, photo ${i + 2}` })),
+    hero: { src: p[0], alt: alts[0] ?? `${name}, exterior` },
+    gallery: p.slice(1).map((src, i) => ({ src, alt: alts[i + 1] ?? `${name}, photo ${i + 2}` })),
     floorplan: imgs[slug].plan ?? undefined,
   };
 };

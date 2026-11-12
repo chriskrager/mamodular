@@ -1,15 +1,14 @@
 ---
 import '../styles/global.css';
-import { site, nav, footerNav } from '../config';
+import { site, nav } from '../config';
+import { plans } from '../data/plans';
+import { projects } from '../data/projects';
 import jost300 from '@fontsource/jost/files/jost-latin-300-normal.woff2?url';
 import jost400 from '@fontsource/jost/files/jost-latin-400-normal.woff2?url';
-import serif400 from '@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2?url';
 import '@fontsource/jost/latin-300.css';
 import '@fontsource/jost/latin-400.css';
 import '@fontsource/jost/latin-500.css';
-import '@fontsource/source-serif-4/latin-400.css';
-import '@fontsource/source-serif-4/latin-400-italic.css';
-import '@fontsource/source-serif-4/latin-600.css';
+import '@fontsource/jost/latin-600.css';
 
 interface Props { title: string; description: string; image?: string; noindex?: boolean }
 const { title, description, image = '/images/site/home-1.webp', noindex = false } = Astro.props;
@@ -17,6 +16,16 @@ const path = Astro.url.pathname;
 const canonical = new URL(path, site.url).toString();
 const fullTitle = path === '/' ? title : `${title} | ${site.name}`;
 const hide = noindex || !site.live;
+
+// Main-nav highlighting. A link is current on its own page ('page') and anywhere inside its section ('true').
+// Detail pages live at other URLs, so map them to the nav item they belong to.
+const portfolioSlug = path.match(/^\/portfolio\/([^/]+)\//)?.[1];
+const inSection: Record<string, boolean> = {
+  '/news/': /^\/\d{4}\/\d{2}\/\d{2}\//.test(path),
+  '/find-your-ma/': !!portfolioSlug && plans.some((p) => p.slug === portfolioSlug),
+  '/multi-family/': !!portfolioSlug && projects.some((p) => p.slug === portfolioSlug),
+};
+const current = (href: string) => (path === href ? 'page' : path.startsWith(href) || inSection[href] ? 'true' : undefined);
 ---
 <!doctype html>
 <html lang="en">
@@ -30,13 +39,12 @@ const hide = noindex || !site.live;
     {hide && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preload" href={jost300} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={jost400} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={serif400} as="font" type="font/woff2" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', name: site.name, url: site.url,
-      logo: new URL('/images/brand/ma-logo-tagline.webp', site.url).toString(), email: site.email, telephone: site.phone,
+      logo: new URL('/images/brand/ma-logo.webp', site.url).toString(), email: site.email, telephone: site.phone,
       address: { '@type': 'PostalAddress', streetAddress: site.address[0].replace(/,.*$/, ''), addressLocality: 'Austin', addressRegion: 'TX', postalCode: '78702', addressCountry: 'US' },
       parentOrganization: { '@type': 'Organization', name: 'KRDB', url: 'https://www.krdb.com' },
-      sameAs: [site.facebook, site.twitter],
+      sameAs: [site.facebook],
     })} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
@@ -53,20 +61,23 @@ const hide = noindex || !site.live;
         gtag('js', new Date()); gtag('config', id);
       </script>
     </>)}
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap">
-        <a class="logo" href="/"><img src="/images/brand/ma-logo-tagline.webp" alt="ma modular. ma is modern + affordable, modular architecture, home." width="195" height="62" /></a>
-        <nav class="site-nav" aria-label="Main">
+        <a class="logo" href="/"><img src="/images/brand/ma-logo.webp" alt="" width="56" height="56" /><span class="logo-text">ma modular</span></a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span class="nav-bars" aria-hidden="true"></span></button>
+        <nav class="site-nav" id="site-nav" aria-label="Main">
           {nav.map((n) => n.children ? (
             <div class="nav-group">
-              <a href={n.href} class="nav-parent" aria-haspopup="true" aria-current={n.children.some((c) => path.startsWith(c.href)) ? 'page' : undefined}>{n.label}<span aria-hidden="true"> ▾</span></a>
-              <div class="nav-sub">{n.children.map((c) => <a href={c.href} aria-current={path.startsWith(c.href) ? 'page' : undefined}>{c.label}</a>)}</div>
+              <a href={n.href} class="nav-parent" aria-haspopup="true" aria-current={n.children.some((c) => current(c.href)) ? 'true' : undefined}>{n.label}<span aria-hidden="true"> ▾</span></a>
+              <span class="nav-group-label" aria-hidden="true">{n.label}</span>
+              <div class="nav-sub" role="group" aria-label={n.label}>{n.children.map((c) => <a href={c.href} aria-current={current(c.href)}>{c.label}</a>)}</div>
             </div>
           ) : (
-            <a href={n.href} class={[n.accent ? 'accent' : '', n.cta ? 'nav-cta' : ''].join(' ').trim() || undefined} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
+            <a href={n.href} class={[n.accent ? 'accent' : '', n.cta ? 'nav-cta' : ''].join(' ').trim() || undefined} aria-current={current(n.href)}>{n.label}</a>
           ))}
         </nav>
       </div>
@@ -77,25 +88,32 @@ const hide = noindex || !site.live;
         <div class="cols">
           <div>
             <p><strong>ma modular</strong></p>
-            <p>An architect-designed modular home system from KRDB.</p>
+            <p>An architect-designed modular home system from <a href="https://www.krdb.com">KRDB</a>.</p>
             <p><a href={`mailto:${site.email}`}>{site.email}</a><br />{site.phone}</p>
             <p>{site.address[0]}<br />{site.address[1]}</p>
-          </div>
-          <div>
-            <ul>
-              {footerNav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-            </ul>
-          </div>
-          <div>
-            <ul>
-              <li><a href={site.facebook}>Facebook</a></li>
-              <li><a href={site.twitter}>Twitter</a></li>
-            </ul>
+            <p><a href={site.facebook}>Facebook</a></p>
           </div>
         </div>
         <p class="fine">&copy; {new Date().getFullYear()} ma modular. All rights reserved. {site.financingNote} <a href="/privacy/">Privacy</a></p>
       </div>
     </footer>
+  <script is:inline>
+    (function () {
+      var header = document.querySelector('.site-header');
+      var btn = header && header.querySelector('.nav-toggle');
+      if (!btn) return;
+      var mq = window.matchMedia('(min-width: 1023px)');
+      function set(open, focusBtn) {
+        header.classList.toggle('nav-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+        if (!open && focusBtn) btn.focus();
+      }
+      btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+      header.addEventListener('keydown', function (e) { if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') set(false, true); });
+      (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(function (e) { if (e.matches) set(false); });
+    })();
+  </script>
   <script is:inline>
     (function () {
       var imgs = Array.prototype.slice.call(document.querySelectorAll('img[data-zoom]'));

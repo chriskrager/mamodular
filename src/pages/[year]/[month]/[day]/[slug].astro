@@ -10,8 +10,11 @@ export function getStaticPaths() {
 }
 const { p } = Astro.props;
 const plain = p.title.replace(/[“”]/g, '');
+// Search results show about 155 characters, so cut at a word boundary instead of mid-word.
+const clip = (t: string, n = 155) => (t.length <= n ? t : t.slice(0, n - 1).replace(/\s+\S*$/, '') + '…');
+const description = p.description ?? clip(p.body.find((t) => !t.startsWith('[')) ?? plain);
 ---
-<Base title={plain} description={(p.body[0] ?? plain).slice(0, 155)} image={p.image}>
+<Base title={p.seoTitle ?? plain} description={description} image={p.image}>
   <div class="wrap section">
     <p class="small mute"><a href="/news/">News</a></p>
     <time class="small mute" datetime={p.date}>{fmtDate(p.date, p.monthOnly)}</time>

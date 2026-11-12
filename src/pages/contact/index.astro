@@ -16,7 +16,7 @@ import { site } from '../../config';
       <p>The inquiry form is loading. If it does not appear, <a href="https://mamodular.wufoo.com/forms/project-inquiry/">open the form on its own page</a>.</p>
     </div>
     <p class="small mute">{site.financingNote}</p>
-    <p style="margin-top:32px">Or write to <a href={`mailto:${site.email}`}>{site.email}</a>, call {site.phone}, or visit {site.address.join(', ')}.</p>
+    <p style="margin-top:32px">Or write to <a href={`mailto:${site.email}`}>{site.email}</a> or call {site.phone}. Our mailing address is {site.address.join(', ')}. We meet with clients by appointment, so please contact us before stopping by.</p>
   </div>
   <script is:inline>
     (function () {
@@ -26,6 +26,21 @@ import { site } from '../../config';
       box.hidden = false;
       var text = 'My finish selections for the ' + model + ': ' + sel;
       document.getElementById('sel-copy').addEventListener('click', function (e) { var b = e.currentTarget; (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () { b.textContent = 'Copied'; }, function () { b.textContent = 'Select and copy the list above'; }); });
+    })();
+  </script>
+  <script is:inline>
+    // Wufoo injects its iframe without a title, which screen readers need to name it (WCAG 4.1.2).
+    (function () {
+      var box = document.getElementById('wufoo-zapubv100tjkk2');
+      if (!box) return;
+      function name() {
+        var f = box.querySelectorAll('iframe');
+        for (var i = 0; i < f.length; i++) if (!f[i].title) f[i].title = 'Project inquiry form';
+        return f.length > 0;
+      }
+      if (name()) return;
+      var mo = new MutationObserver(function () { if (name()) mo.disconnect(); });
+      mo.observe(box, { childList: true, subtree: true });
     })();
   </script>
   <script is:inline>

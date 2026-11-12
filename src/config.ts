@@ -8,8 +8,9 @@ export const site = {
   phone: '(512) 374-0946', // confirmed
   address: ['1101 E 6th St, Suite A', 'Austin, TX 78702'], // the old site said 916 Springdale Rd
   facebook: 'https://www.facebook.com/ma-modular-288219029546/',
-  twitter: 'https://twitter.com/ma_modular',
-  ga4Id: 'G-K4XFXC7KR2', // Tracking loads only when live is true.
+  // Set true to show the buttons that link to /finish-board/.
+  showFinishBoard: false,
+  ga4Id: 'G-QGPKD24QQ9', // Tracking loads only when live is true.
   // CONFIRM wording with the lender.
   financingNote:
     'Financing is provided by a third-party lender. Terms, approval and eligibility are set by the lender.',
@@ -17,8 +18,11 @@ export const site = {
 
 // Same pages as the old site, same URLs.
 export const nav: { href: string; label: string; accent?: boolean; cta?: boolean; children?: { href: string; label: string }[] }[] = [
-  { href: '/find-your-ma/', label: 'Find your ma' },
-  { href: '/features/', label: 'Features' },
+  { href: '/find-your-ma/', label: 'Find your ma', children: [
+    { href: '/find-your-ma/', label: 'Our models' },
+    { href: '/features/', label: 'Features' },
+    { href: '/adus-aka-granny-flat-tiny-house-etc/', label: 'About ADUs' },
+  ] },
   { href: '/steps/', label: 'Learn', children: [
     { href: '/steps/', label: 'Getting started' },
     { href: '/myths/', label: 'Myths' },
@@ -26,11 +30,7 @@ export const nav: { href: string; label: string; accent?: boolean; cta?: boolean
   ] },
   { href: '/about/', label: 'About' },
   { href: '/news/', label: 'News' },
-  { href: '/multi-family/', label: 'Development Projects', accent: true },
+  { href: '/multi-family/', label: 'Development Projects' },
   { href: '/videos/', label: 'Podcasts and Videos' },
   { href: '/contact/', label: 'Contact', cta: true },
-];
-export const footerNav = [
-  { href: '/adus-aka-granny-flat-tiny-house-etc/', label: "ADU's" },
-  { href: 'http://www.krdb.com', label: 'KRDB' },
 ];
