@@ -8,7 +8,6 @@ export const site = {
   phone: '(512) 374-0946', // confirmed
   address: ['1101 E 6th St, Suite A', 'Austin, TX 78702'], // the old site said 916 Springdale Rd
   facebook: 'https://www.facebook.com/ma-modular-288219029546/',
-  twitter: 'https://twitter.com/ma_modular',
   // Set true to show the buttons that link to /finish-board/.
   showFinishBoard: false,
   ga4Id: 'G-QGPKD24QQ9', // Tracking loads only when live is true.
