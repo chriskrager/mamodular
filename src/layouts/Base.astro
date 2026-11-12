@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { site, nav, footerNav } from '../config';
+import { plans } from '../data/plans';
+import { projects } from '../data/projects';
 import jost300 from '@fontsource/jost/files/jost-latin-300-normal.woff2?url';
 import jost400 from '@fontsource/jost/files/jost-latin-400-normal.woff2?url';
 import serif400 from '@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2?url';
@@ -17,6 +19,16 @@ const path = Astro.url.pathname;
 const canonical = new URL(path, site.url).toString();
 const fullTitle = path === '/' ? title : `${title} | ${site.name}`;
 const hide = noindex || !site.live;
+
+// Main-nav highlighting. A link is current on its own page ('page') and anywhere inside its section ('true').
+// Detail pages live at other URLs, so map them to the nav item they belong to.
+const portfolioSlug = path.match(/^\/portfolio\/([^/]+)\//)?.[1];
+const inSection: Record<string, boolean> = {
+  '/news/': /^\/\d{4}\/\d{2}\/\d{2}\//.test(path),
+  '/find-your-ma/': !!portfolioSlug && plans.some((p) => p.slug === portfolioSlug),
+  '/multi-family/': !!portfolioSlug && projects.some((p) => p.slug === portfolioSlug),
+};
+const current = (href: string) => (path === href ? 'page' : path.startsWith(href) || inSection[href] ? 'true' : undefined);
 ---
 <!doctype html>
 <html lang="en">
@@ -62,11 +74,11 @@ const hide = noindex || !site.live;
         <nav class="site-nav" aria-label="Main">
           {nav.map((n) => n.children ? (
             <div class="nav-group">
-              <a href={n.href} class="nav-parent" aria-haspopup="true" aria-current={n.children.some((c) => path.startsWith(c.href)) ? 'page' : undefined}>{n.label}<span aria-hidden="true"> ▾</span></a>
-              <div class="nav-sub">{n.children.map((c) => <a href={c.href} aria-current={path.startsWith(c.href) ? 'page' : undefined}>{c.label}</a>)}</div>
+              <a href={n.href} class="nav-parent" aria-haspopup="true" aria-current={n.children.some((c) => current(c.href)) ? 'true' : undefined}>{n.label}<span aria-hidden="true"> ▾</span></a>
+              <div class="nav-sub">{n.children.map((c) => <a href={c.href} aria-current={current(c.href)}>{c.label}</a>)}</div>
             </div>
           ) : (
-            <a href={n.href} class={[n.accent ? 'accent' : '', n.cta ? 'nav-cta' : ''].join(' ').trim() || undefined} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
+            <a href={n.href} class={[n.accent ? 'accent' : '', n.cta ? 'nav-cta' : ''].join(' ').trim() || undefined} aria-current={current(n.href)}>{n.label}</a>
           ))}
         </nav>
       </div>
