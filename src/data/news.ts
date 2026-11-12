@@ -15,8 +15,8 @@ const img = (n: string) => `/images/news/${n}.webp`;
 export const posts: Post[] = [
   { path: '/2026/10/01/groundbreaking-two-new-spec-homes-in-east-austin/', date: '2026-10-01', monthOnly: true,
     title: 'Groundbreaking: two new spec homes in East Austin', image: img('groundbreaking'),
-    body: ['ma modular has broken ground on the construction of two new houses (and new floorplans) in East Austin. The modules will be set in early December ’26 and the project is expected to be complete in the Spring of 2027. Look for info here on an open house. Email chris@krdb.com for more information.'],
-    links: [{ label: 'Email chris@krdb.com', href: 'mailto:chris@krdb.com' }] },
+    body: ['ma modular has broken ground on the construction of two new houses (and new floorplans) in East Austin. The modules will be set in early December ’26 and the project is expected to be complete in the Spring of 2027. Look for info here on an open house. Contact us for more information.'],
+    links: [{ label: 'Contact us', href: '/contact/' }] },
   { path: '/2026/09/01/greenwood-residences/', date: '2026-09-01', monthOnly: true,
     title: 'Greenwood Residences', image: img('greenwood'),
     body: ['ma modular recently completed construction of a multi-generational family compound in East Austin. Utilizing the HOME ordinance, the 12k sf lot has three residences and an accessory building on site.'],
