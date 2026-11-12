@@ -30,7 +30,7 @@ export const nav: { href: string; label: string; accent?: boolean; cta?: boolean
   ] },
   { href: '/about/', label: 'About' },
   { href: '/news/', label: 'News' },
-  { href: '/multi-family/', label: 'Development Projects', accent: true },
+  { href: '/multi-family/', label: 'Development Projects' },
   { href: '/videos/', label: 'Podcasts and Videos' },
   { href: '/contact/', label: 'Contact', cta: true },
 ];
