@@ -53,7 +53,9 @@ ul, ol { max-width: var(--measure); }
 /* header + footer */
 .site-header { border-bottom: 1px solid var(--rule); background: #fff; }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 14px; flex-wrap: wrap; }
+.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
 .logo img { height: 56px; width: auto; }
+.logo-text { font-family: var(--display); font-weight: 300; font-size: 1.75rem; line-height: 1; letter-spacing: 0.01em; }
 .site-nav { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--display); font-size: 0.9rem; }
 .site-nav a { text-decoration: none; padding-block: 4px; border-bottom: 2px solid transparent; }
 .site-nav a:hover, .site-nav a[aria-current] { border-bottom-color: var(--orange); }
