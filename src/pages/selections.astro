@@ -1,12 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import { selections } from '../data/selections';
+import { site } from '../config';
 ---
 <Base title="Selections" description="The tile, countertops, flooring, appliances, fixtures and hardware we offer in ma homes.">
   <section class="sel-head">
     <h1>Selections</h1>
     <p>A look at the materials, fixtures and appliances we offer. Your ma team will walk you through the options and help you choose.</p>
-    <p><a class="btn" href="/finish-board/">Try the finish board</a></p>
+    {site.showFinishBoard && <p><a class="btn" href="/finish-board/">Try the finish board</a></p>}
     <ul class="sel-jump">
       {selections.map((g) => <li><a href={`#${g.id}`}>{g.title}</a></li>)}
     </ul>
