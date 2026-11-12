@@ -79,7 +79,7 @@ export const models: Model[] = [
       'Bedrooms and bath sit in one module; the living, dining and kitchen area, with a powder bath, in another. An unconditioned breezeway between them, screened on both sides, opens to site-built porches on each side.',
       'Featured in <a href="https://www.dwell.com/article/casita-850-ma-modular-e5c68960">Dwell</a>.',
     ],
-    hero: img('dogtrot', 'ruth-1-scaled.webp', 'Dogtrot-plan house with a rust-colored wall, corrugated siding and a wall of windows, set among live oaks.', 'built'),
+    hero: img('dogtrot', 'ruth-10-e1479927846227-scaled.webp', 'The Dogtrot house at dusk, warm light glowing through tall windows under a low shed roof, with a corrugated metal wall and a stone path through live oaks.', 'built'),
     floorplan: '/images/portfolio/dogtrot/floorplan.webp',
     footprint: [
       { x: 0, y: 0, w: 14.5, h: 29 },
@@ -88,6 +88,7 @@ export const models: Model[] = [
     ],
     note: 'Porches are site-built.',
     gallery: [
+      img('dogtrot', 'ruth-1-scaled.webp', 'Dogtrot-plan house with a rust-colored wall, corrugated siding and a wall of windows, set among live oaks.', 'built'),
       img('dogtrot', 'ruth-2-scaled.webp', 'The house at dusk with warm light through the glazed breezeway.', 'built'),
       img('dogtrot', 'ruth-3-scaled.webp', 'Corrugated metal and rust-toned siding with a red door, seen through landscaping.', 'built'),
       img('dogtrot', 'ruth-4-scaled.webp', 'The breezeway with a dining table, rug and a wall of windows under exposed beams.', 'built'),
@@ -96,7 +97,6 @@ export const models: Model[] = [
       img('dogtrot', 'ruth-7-scaled.webp', 'Living room with leather sofa, kilim rug and tall windows.', 'built'),
       img('dogtrot', 'ruth-8-scaled.webp', 'Kitchen with a bar, birch cabinets and pendant lights.', 'built'),
       img('dogtrot', 'ruth-9-scaled.webp', 'Bedroom with a green daybed and large windows.', 'built'),
-      img('dogtrot', 'ruth-10-e1479927846227-scaled.webp', 'The breezeway from the end, with exposed beams and a corrugated wall.', 'built'),
     ],
   },
   {
