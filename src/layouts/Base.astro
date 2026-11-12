@@ -73,7 +73,8 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
           {nav.map((n) => n.children ? (
             <div class="nav-group">
               <a href={n.href} class="nav-parent" aria-haspopup="true" aria-current={n.children.some((c) => current(c.href)) ? 'true' : undefined}>{n.label}<span aria-hidden="true"> ▾</span></a>
-              <div class="nav-sub">{n.children.map((c) => <a href={c.href} aria-current={current(c.href)}>{c.label}</a>)}</div>
+              <span class="nav-group-label" aria-hidden="true">{n.label}</span>
+              <div class="nav-sub" role="group" aria-label={n.label}>{n.children.map((c) => <a href={c.href} aria-current={current(c.href)}>{c.label}</a>)}</div>
             </div>
           ) : (
             <a href={n.href} class={[n.accent ? 'accent' : '', n.cta ? 'nav-cta' : ''].join(' ').trim() || undefined} aria-current={current(n.href)}>{n.label}</a>

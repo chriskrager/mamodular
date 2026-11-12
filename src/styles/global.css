@@ -388,11 +388,15 @@ form.lot .req { color: var(--orange-text); }
   .site-nav a { padding-block: 11px; }
   .site-nav a.nav-cta { margin-top: 10px; }
 }
+/* In the hamburger menu a dropdown becomes a labelled group: the label, then its links indented beneath it.
+   The desktop hover box (background, border, shadow) is reset here so it never appears on hover or focus. */
+.nav-group-label { display: none; }
 @media (max-width: 1022px) {
-  .nav-group { display: contents; }
+  .nav-group { display: block; width: 100%; }
   .nav-parent { display: none; }
-  .nav-sub { display: contents; position: static; }
-  .nav-sub a { padding: 11px 0; border-bottom: 2px solid transparent; }
+  .nav-group-label { display: block; margin-top: 14px; font-family: var(--display); font-size: 1.05rem; font-weight: 600; color: var(--ink); }
+  .nav-sub, .nav-group:hover .nav-sub, .nav-group:focus-within .nav-sub { display: flex; flex-direction: column; align-items: flex-start; position: static; min-width: 0; margin: 2px 0 6px 2px; padding: 0 0 0 14px; background: none; border: 0; border-left: 2px solid var(--rule); box-shadow: none; }
+  .nav-sub a { display: block; padding: 11px 0; border-bottom: 2px solid transparent; }
   .nav-sub a:hover, .nav-sub a[aria-current] { background: none; border-bottom-color: var(--orange); }
 }
 
