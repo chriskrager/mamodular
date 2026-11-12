@@ -186,6 +186,10 @@ form.lot .two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .ma-w { font-weight: 600; }
 h1 .ma-w, h2 .ma-w, h3 .ma-w { font-weight: 500; }
 
+/* Homepage only: sans serif body text. Jost is loaded at 300/400/500, so bold stays at 500 to avoid a faux bold. */
+body.home { font-family: var(--display); }
+body.home strong, body.home .ma-w { font-weight: 500; }
+
 /* home: alternating rows, strip, press */
 .rows .row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,5vw,64px); align-items: center; padding: clamp(32px,5vw,56px) 0; border-bottom: 1px solid var(--rule); }
 .rows .row:last-child { border-bottom: 0; }
