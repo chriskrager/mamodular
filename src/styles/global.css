@@ -361,12 +361,13 @@ form.lot .req { color: var(--orange-text); }
 /* nav: Learn menu and Contact button */
 .site-nav { align-items: center; }
 .nav-group { position: relative; }
+.nav-parent { display: block; } /* same box as the other nav links, so bottoms and baselines line up */
 .nav-sub { display: none; position: absolute; left: -12px; top: 100%; min-width: 170px; background: #fff; border: 1px solid var(--rule); box-shadow: 0 6px 18px rgba(0,0,0,.08); padding: 6px 0; z-index: 20; }
 .nav-sub a { display: block; padding: 8px 16px; border-bottom: 0; }
 .nav-sub a:hover, .nav-sub a[aria-current] { background: var(--tint); }
 .nav-group:hover .nav-sub, .nav-group:focus-within .nav-sub { display: block; }
 .nav-parent[aria-current] { border-bottom-color: var(--orange); }
-.site-nav a.nav-cta { background: var(--orange); border-bottom: 0; padding: 7px 18px; border-radius: 999px; font-weight: 500; }
+.site-nav a.nav-cta { background: var(--orange); border-bottom: 0; padding: 6px 18px 8px; border-radius: 999px; font-weight: 500; }
 .site-nav a.nav-cta:hover { background: #ee8f45; }
 @media (max-width: 800px) {
   .nav-group { display: contents; }
