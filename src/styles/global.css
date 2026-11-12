@@ -369,11 +369,30 @@ form.lot .req { color: var(--orange-text); }
 .nav-parent[aria-current] { border-bottom-color: var(--orange); }
 .site-nav a.nav-cta { background: var(--orange); border-bottom: 0; padding: 6px 18px 8px; border-radius: 999px; font-weight: 500; }
 .site-nav a.nav-cta:hover { background: #ee8f45; }
-@media (max-width: 800px) {
+/* Hamburger menu at 1022px and below, where the nav no longer fits beside the logo on one line. */
+.nav-toggle { display: none; }
+@media (max-width: 1022px) {
+  .site-header .wrap { flex-wrap: wrap; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; margin-right: -10px; padding: 0; background: none; border: 0; border-radius: 8px; cursor: pointer; color: var(--ink); }
+  html:not(.js) .nav-toggle { display: none; } /* without JavaScript the full nav simply stays visible */
+  .nav-toggle:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 2px; }
+  .nav-bars, .nav-bars::before, .nav-bars::after { display: block; width: 26px; height: 2px; background: currentColor; border-radius: 2px; position: relative; content: ''; }
+  .nav-bars::before { position: absolute; top: -8px; left: 0; }
+  .nav-bars::after { position: absolute; top: 8px; left: 0; }
+  .nav-open .nav-bars { background: transparent; }
+  .nav-open .nav-bars::before { top: 0; transform: rotate(45deg); }
+  .nav-open .nav-bars::after { top: 0; transform: rotate(-45deg); }
+  .js .site-nav { display: none; }
+  .js .nav-open .site-nav { display: flex; }
+  .site-nav { flex: 0 0 100%; flex-direction: column; align-items: flex-start; flex-wrap: nowrap; gap: 0; font-size: 1.05rem; padding: 8px 0 12px; border-top: 1px solid var(--rule); }
+  .site-nav a { padding-block: 11px; }
+  .site-nav a.nav-cta { margin-top: 10px; }
+}
+@media (max-width: 1022px) {
   .nav-group { display: contents; }
   .nav-parent { display: none; }
   .nav-sub { display: contents; position: static; }
-  .nav-sub a { padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav-sub a { padding: 11px 0; border-bottom: 2px solid transparent; }
   .nav-sub a:hover, .nav-sub a[aria-current] { background: none; border-bottom-color: var(--orange); }
 }
 

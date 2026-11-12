@@ -61,13 +61,15 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
         gtag('js', new Date()); gtag('config', id);
       </script>
     </>)}
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap">
         <a class="logo" href="/"><img src="/images/brand/ma-logo.webp" alt="" width="56" height="56" /><span class="logo-text">ma modular</span></a>
-        <nav class="site-nav" aria-label="Main">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span class="nav-bars" aria-hidden="true"></span></button>
+        <nav class="site-nav" id="site-nav" aria-label="Main">
           {nav.map((n) => n.children ? (
             <div class="nav-group">
               <a href={n.href} class="nav-parent" aria-haspopup="true" aria-current={n.children.some((c) => current(c.href)) ? 'true' : undefined}>{n.label}<span aria-hidden="true"> ▾</span></a>
@@ -94,6 +96,23 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
         <p class="fine">&copy; {new Date().getFullYear()} ma modular. All rights reserved. {site.financingNote} <a href="/privacy/">Privacy</a></p>
       </div>
     </footer>
+  <script is:inline>
+    (function () {
+      var header = document.querySelector('.site-header');
+      var btn = header && header.querySelector('.nav-toggle');
+      if (!btn) return;
+      var mq = window.matchMedia('(min-width: 1023px)');
+      function set(open, focusBtn) {
+        header.classList.toggle('nav-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+        if (!open && focusBtn) btn.focus();
+      }
+      btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+      header.addEventListener('keydown', function (e) { if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') set(false, true); });
+      (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(function (e) { if (e.matches) set(false); });
+    })();
+  </script>
   <script is:inline>
     (function () {
       var imgs = Array.prototype.slice.call(document.querySelectorAll('img[data-zoom]'));
