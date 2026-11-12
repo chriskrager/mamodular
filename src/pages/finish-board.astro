@@ -19,7 +19,7 @@ const slots = [
 ];
 const names: Record<string, string> = Object.fromEntries(plans.map((p) => [p.slug, p.name]));
 ---
-<Base title="Finish board" description="Choose a floor, countertop, cabinets, tile and fixtures and see them together on one board, then send your selections to the ma team.">
+<Base title="Finish board" description="Choose a floor, countertop, cabinets, tile and fixtures and see them together on one board, then send your selections to the ma team." noindex>
   <section class="fb" data-slots={JSON.stringify(slots)} data-names={JSON.stringify(names)}>
     <div class="wrap">
       <h1>Finish board</h1>
