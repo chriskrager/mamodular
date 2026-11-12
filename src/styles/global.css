@@ -181,9 +181,12 @@ form.lot .two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .ma-banner img { width: 100%; height: clamp(120px, 16vw, 220px); object-fit: cover; }
 .ma-banner span { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-weight: 300; font-size: clamp(2rem, 6vw, 4.2rem); color: var(--ink); text-shadow: 0 1px 12px rgba(255,255,255,.35); letter-spacing: -0.01em; }
 .ma-banner:hover span { text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 0.2em; }
+.o { color: var(--orange-text); } /* darker than --orange so it passes 4.5:1 as text */
+/* The word "ma" in running text. Headings use Jost, which is loaded at 300/400/500 only, so 500 avoids a faux bold. */
+.ma-w { font-weight: 600; }
+h1 .ma-w, h2 .ma-w, h3 .ma-w { font-weight: 500; }
 
 /* home: alternating rows, strip, press */
-.o { color: var(--orange-text); } /* darker than --orange so it passes 4.5:1 as text */
 .rows .row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,5vw,64px); align-items: center; padding: clamp(32px,5vw,56px) 0; border-bottom: 1px solid var(--rule); }
 .rows .row:last-child { border-bottom: 0; }
 .rows .row img { width: 100%; height: auto; }
