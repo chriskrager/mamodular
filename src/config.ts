@@ -35,6 +35,5 @@ export const nav: { href: string; label: string; accent?: boolean; cta?: boolean
   { href: '/contact/', label: 'Contact', cta: true },
 ];
 export const footerNav = [
-  { href: '/adus-aka-granny-flat-tiny-house-etc/', label: "ADUs" },
   { href: 'http://www.krdb.com', label: 'KRDB' },
 ];
