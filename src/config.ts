@@ -18,7 +18,10 @@ export const site = {
 
 // Same pages as the old site, same URLs.
 export const nav: { href: string; label: string; accent?: boolean; cta?: boolean; children?: { href: string; label: string }[] }[] = [
-  { href: '/find-your-ma/', label: 'Find your ma' },
+  { href: '/find-your-ma/', label: 'Find your ma', children: [
+    { href: '/find-your-ma/', label: 'Our models' },
+    { href: '/adus-aka-granny-flat-tiny-house-etc/', label: 'About ADUs' },
+  ] },
   { href: '/features/', label: 'Features' },
   { href: '/steps/', label: 'Learn', children: [
     { href: '/steps/', label: 'Getting started' },
