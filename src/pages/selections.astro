@@ -21,7 +21,7 @@ import { site } from '../config';
           <ul class="sel-grid">
             {s.items.map((i) => (
               <li class={i.img ? '' : 'sel-text'}>
-                {i.img && <img src={i.img} width={i.w} height={i.h} alt={i.name} loading="lazy" />}
+                {i.img && <img src={i.img} width={i.w} height={i.h} alt="" loading="lazy" />}
                 <span>{i.name}</span>
               </li>
             ))}
