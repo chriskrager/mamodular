@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { site, nav, footerNav } from '../config';
+import { site, nav } from '../config';
 import { plans } from '../data/plans';
 import { projects } from '../data/projects';
 import jost300 from '@fontsource/jost/files/jost-latin-300-normal.woff2?url';
@@ -89,14 +89,9 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
         <div class="cols">
           <div>
             <p><strong>ma modular</strong></p>
-            <p>An architect-designed modular home system from KRDB.</p>
+            <p>An architect-designed modular home system from <a href="https://www.krdb.com">KRDB</a>.</p>
             <p><a href={`mailto:${site.email}`}>{site.email}</a><br />{site.phone}</p>
             <p>{site.address[0]}<br />{site.address[1]}</p>
-          </div>
-          <div>
-            <ul>
-              {footerNav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-            </ul>
           </div>
           <div>
             <ul>

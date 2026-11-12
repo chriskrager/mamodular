@@ -34,6 +34,3 @@ export const nav: { href: string; label: string; accent?: boolean; cta?: boolean
   { href: '/videos/', label: 'Podcasts and Videos' },
   { href: '/contact/', label: 'Contact', cta: true },
 ];
-export const footerNav = [
-  { href: 'http://www.krdb.com', label: 'KRDB' },
-];
