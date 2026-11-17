@@ -46,7 +46,7 @@ export const models: Model[] = [
       'With high ceilings and light streaming through generous glazing, this house lives much larger than its 550sf footprint would suggest. Make this the guesthouse, studio, office or granny flat of your dreams.',
       'One module, one bedroom, one bath, and an open living room. It is the smallest plan in the ADU line.',
     ],
-    hero: img('grand-ma-550', 'img-8520-scaled.webp', 'Gray built unit with glass doors and landscaping in gravel and bamboo.', 'built'),
+    hero: img('grand-ma-550', 'hero-sunset.webp', 'Rendering of the Grand-Ma 550 at sunset, with a dark wood and white panel facade, tall glass doors, a dining table on the patio and a Joshua tree in a gravel garden.', 'rendering'),
     floorplan: '/images/portfolio/grand-ma-550/floorplan.webp',
     footprint: [{ x: 0, y: 0, w: 38, h: 15 }],
     gallery: [
