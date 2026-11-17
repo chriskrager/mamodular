@@ -122,16 +122,18 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
       lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Enlarged image');
       lb.innerHTML = '<button class="x" aria-label="Close">&times;</button><button class="z" aria-label="View at full size" aria-pressed="false" hidden>100%</button><button class="p" aria-label="Previous">&lsaquo;</button><img alt="" /><button class="n" aria-label="Next">&rsaquo;</button>';
       document.body.appendChild(lb);
-      var big = lb.querySelector('img'), zbtn = lb.querySelector('.z'), i = 0, last = null;
+      var big = lb.querySelector('img'), zbtn = lb.querySelector('.z'), i = 0, last = null, prefFit = false;
       function show(k) {
         i = (k + imgs.length) % imgs.length;
         var s = imgs[i]; big.src = s.currentSrc || s.src; big.alt = s.alt;
         big.className = s.getAttribute('data-zoom') === 'plan' ? 'plan' : '';
         setZoom(false);
         zbtn.hidden = true;
-        if (big.complete) syncZoomButton(); else big.onload = syncZoomButton;
+        // Photos open at their full pixel size. "Fit" switches to fit-to-window, and that choice is kept while browsing.
+        function ready() { syncZoomButton(); if (!zbtn.hidden && !prefFit) setZoom(true); }
+        if (big.complete) ready(); else big.onload = ready;
       }
-      // Fit-to-window is the default. "100%" shows the file at its own pixel size, scrolled or dragged to look around.
+      function toggleZoom(e) { var on = !lb.classList.contains('zoomed'); setZoom(on, e); prefFit = !on; }
       function syncZoomButton() {
         // Size the picture would have in fit-to-window view (same limits as the CSS: 94vw by 90vh, never enlarged).
         var nw = big.naturalWidth, nh = big.naturalHeight || 1;
@@ -149,7 +151,7 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
         zbtn.textContent = on ? 'Fit' : '100%';
         if (on) { lb.scrollLeft = Math.max(0, fx * big.naturalWidth - innerWidth / 2); lb.scrollTop = Math.max(0, fy * big.naturalHeight - innerHeight / 2); } else { lb.scrollLeft = 0; lb.scrollTop = 0; }
       }
-      function open(k) { last = document.activeElement; show(k); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus();
+      function open(k) { last = document.activeElement; lb.classList.add('open'); show(k); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus();
         lb.querySelector('.p').style.display = lb.querySelector('.n').style.display = imgs.length > 1 ? '' : 'none'; }
       function close() { setZoom(false); lb.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); }
       imgs.forEach(function (im, k) {
@@ -161,8 +163,8 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
       big.addEventListener('mousedown', function (e) { if (!lb.classList.contains('zoomed')) return; drag = { x: e.clientX, y: e.clientY, l: lb.scrollLeft, t: lb.scrollTop }; moved = false; e.preventDefault(); });
       window.addEventListener('mousemove', function (e) { if (!drag) return; var dx = e.clientX - drag.x, dy = e.clientY - drag.y; if (Math.abs(dx) + Math.abs(dy) > 4) moved = true; lb.scrollLeft = drag.l - dx; lb.scrollTop = drag.t - dy; });
       window.addEventListener('mouseup', function () { drag = null; });
-      big.addEventListener('click', function (e) { if (moved) { moved = false; return; } if (!zbtn.hidden || lb.classList.contains('zoomed')) setZoom(!lb.classList.contains('zoomed'), e); });
-      zbtn.addEventListener('click', function () { setZoom(!lb.classList.contains('zoomed')); });
+      big.addEventListener('click', function (e) { if (moved) { moved = false; return; } if (!zbtn.hidden || lb.classList.contains('zoomed')) toggleZoom(e); });
+      zbtn.addEventListener('click', function () { toggleZoom(); });
       lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
       lb.querySelector('.x').addEventListener('click', close);
       lb.querySelector('.p').addEventListener('click', function () { show(i - 1); });
@@ -170,6 +172,7 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
       document.addEventListener('keydown', function (e) {
         if (!lb.classList.contains('open')) return;
         if (e.key === 'Escape') close(); else if (e.key === 'ArrowLeft') show(i - 1); else if (e.key === 'ArrowRight') show(i + 1);
+        else if (lb.classList.contains('zoomed') && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) { e.preventDefault(); lb.scrollTop += e.key === 'ArrowDown' ? 160 : -160; }
       });
     })();
   </script>
