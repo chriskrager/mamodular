@@ -2,8 +2,8 @@
 export const site = {
   name: 'ma modular',
   url: 'https://www.mamodular.com',
-  // While false: every page gets noindex and robots.txt blocks crawlers. Flip to true on launch day.
-  live: false,
+  // While false: every page gets noindex and robots.txt blocks crawlers. true = launched: pages are indexable, robots.txt allows crawlers, GA4 loads.
+  live: true,
   email: 'info@mamodular.com',
   phone: '(512) 374-0946', // confirmed
   address: ['1101 E 6th St, Suite A', 'Austin, TX 78702'], // the old site said 916 Springdale Rd
