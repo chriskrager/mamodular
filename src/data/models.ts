@@ -113,7 +113,7 @@ export const models: Model[] = [
       '<strong>Plan A: three bedrooms, one bath.</strong> Three bedrooms share a bath, arranged around an open kitchen, dining and living room.',
       '<strong>Plan B: two bedrooms, two baths.</strong> Two bedrooms, each with access to a bath, in a larger master suite type configuration.',
     ],
-    hero: img('casita-1100', '1100-1.webp', 'Rendering of the Casita 1100 from the garden, with a wall of glass facing the patio.', 'rendering'),
+    hero: img('casita-1100', '1100-1.webp', 'Rendering of an aerial view of the Casita 1100, with two offset roofs, a glass corner and two people on a concrete patio.', 'rendering'),
     floorplan: '/images/portfolio/casita-1100/floorplan.webp',
     floorplans: [
       { src: '/images/portfolio/casita-1100/floorplan-3bd.webp', label: 'Plan A: three bedrooms, one bath' },
@@ -124,8 +124,8 @@ export const models: Model[] = [
       { x: 15, y: 0, w: 15, h: 36 },
     ],
     gallery: [
-      img('casita-1100', '1100-2.webp', 'Rendering of the Casita 1100 with a low-slope roof and a wall of sliding glass.', 'rendering'),
-      img('casita-1100', '1100-3-scaled.webp', 'Aerial rendering of the Casita 1100 and its two offset roofs.', 'rendering'),
+      img('casita-1100', '1100-2.webp', 'Rendering of the Casita 1100 from the garden, with a low-slope roof, a picture window and a wall of sliding glass opening to the patio.', 'rendering'),
+      img('casita-1100', '1100-3-scaled.webp', 'Rendering of the Casita 1100 from the patio corner, with a wood-lined roof overhang, tall glass walls and two people seated outside.', 'rendering'),
     ],
   },
 ];
