@@ -4,3 +4,12 @@
 /news/page/2/                /news/           301
 /locations/                  /contact/        301
 /2016/11/14/bluecrest-home-set/  /portfolio/blue-crest/  301
+
+# Old WordPress archive pages. The old sitemap listed them, so search engines may have them indexed.
+/category/mod/                   /news/           301
+/category/uncategorized/         /news/           301
+/tag/video/                      /videos/         301
+/portfolio_category/multi/       /multi-family/   301
+/portfolio_category/texas-mod/   /find-your-ma/    301
+/page_category/about-menu/       /about/          301
+/page_category/our-mods-menu/    /find-your-ma/   301
