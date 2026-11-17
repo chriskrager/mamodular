@@ -65,9 +65,9 @@ export const planAlts: Record<string, string[]> = {
     'Study nook with a built-in cube bookshelf, a mustard sofa and a green rug, with a bedroom visible down the hall.',
   ],
   'c-plan': [
-    'Rendering of the C Plan from the front: weathered wood siding, white stucco and a glass-walled wing in tall grass.',
-    'Rendering of the C Plan from the entry side: wood and white stucco volumes under a flat dark roof, with a concrete walkway.',
-    'Rendering of the C Plan from another angle: a wood-clad wing, a white wall with a dark-framed window and a long path.',
+    'Rendering of the C Plan from the front, with weathered wood and white stucco volumes, a tall glass entry and a person walking past.',
+    'Rendering of an aerial view of the C Plan: two wood-clad wings around a stone courtyard where three people sit, behind a low stucco wall.',
+    'Rendering of an aerial view from the street: the C Plan’s wood and stucco wings behind a low stucco wall, with skylights in the flat roof.',
   ],
   'z-plan': [
     'Rendering of the Z Plan: a low house of weathered wood and white stucco under dark flat roofs, with a gravel drive.',
