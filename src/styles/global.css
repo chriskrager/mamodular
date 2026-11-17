@@ -221,6 +221,15 @@ img[data-zoom] { cursor: zoom-in; }
 .lb img.plan { background: #fff; padding: 12px; }
 .lb button { position: absolute; background: none; border: 0; color: #fff; font-size: 2.4rem; line-height: 1; cursor: pointer; padding: 12px 18px; font-family: var(--display); }
 .lb .x { top: 6px; right: 8px; } .lb .p { left: 4px; top: 50%; transform: translateY(-50%); } .lb .n { right: 4px; top: 50%; transform: translateY(-50%); }
+/* "100%" button and the full-size view: the file at its own pixel size, scrolled or dragged to look around. */
+.lb .z { top: 14px; left: 14px; font-size: 1rem; font-weight: 500; letter-spacing: .02em; padding: 8px 14px; border: 1.5px solid rgba(255,255,255,.6); border-radius: 999px; }
+.lb.can-zoom:not(.zoomed) img { cursor: zoom-in; }
+.lb.zoomed { display: block; overflow: auto; }
+.lb.zoomed img { max-width: none; max-height: none; width: auto; height: auto; display: block; margin: 0; cursor: zoom-out; }
+.lb.zoomed button { position: fixed; }
+.lb.zoomed button { text-shadow: 0 0 3px rgba(0,0,0,.9), 0 0 10px rgba(0,0,0,.8); }
+.lb.zoomed .z { background: rgba(20,24,26,.75); text-shadow: none; }
+.lb.zoomed .p, .lb.zoomed .n { top: 50%; }
 .lb button:hover, .lb button:focus-visible { color: var(--orange); }
 
 /* myths */

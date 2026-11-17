@@ -120,22 +120,49 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
       if (!imgs.length) return;
       var lb = document.createElement('div');
       lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Enlarged image');
-      lb.innerHTML = '<button class="x" aria-label="Close">&times;</button><button class="p" aria-label="Previous">&lsaquo;</button><img alt="" /><button class="n" aria-label="Next">&rsaquo;</button>';
+      lb.innerHTML = '<button class="x" aria-label="Close">&times;</button><button class="z" aria-label="View at full size" aria-pressed="false" hidden>100%</button><button class="p" aria-label="Previous">&lsaquo;</button><img alt="" /><button class="n" aria-label="Next">&rsaquo;</button>';
       document.body.appendChild(lb);
-      var big = lb.querySelector('img'), i = 0, last = null;
+      var big = lb.querySelector('img'), zbtn = lb.querySelector('.z'), i = 0, last = null;
       function show(k) {
         i = (k + imgs.length) % imgs.length;
         var s = imgs[i]; big.src = s.currentSrc || s.src; big.alt = s.alt;
         big.className = s.getAttribute('data-zoom') === 'plan' ? 'plan' : '';
+        setZoom(false);
+        zbtn.hidden = true;
+        if (big.complete) syncZoomButton(); else big.onload = syncZoomButton;
+      }
+      // Fit-to-window is the default. "100%" shows the file at its own pixel size, scrolled or dragged to look around.
+      function syncZoomButton() {
+        // Size the picture would have in fit-to-window view (same limits as the CSS: 94vw by 90vh, never enlarged).
+        var nw = big.naturalWidth, nh = big.naturalHeight || 1;
+        var fitW = Math.min(nw, innerWidth * 0.94, innerHeight * 0.9 * nw / nh);
+        zbtn.hidden = !(nw > fitW + 8);
+        lb.classList.toggle('can-zoom', !zbtn.hidden);
+      }
+      function setZoom(on, e) {
+        var fitW = big.getBoundingClientRect().width, fitH = big.getBoundingClientRect().height;
+        var fx = e ? (e.clientX - big.getBoundingClientRect().left) / (fitW || 1) : 0.5;
+        var fy = e ? (e.clientY - big.getBoundingClientRect().top) / (fitH || 1) : 0.5;
+        lb.classList.toggle('zoomed', on);
+        zbtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        zbtn.setAttribute('aria-label', on ? 'Fit to window' : 'View at full size');
+        zbtn.textContent = on ? 'Fit' : '100%';
+        if (on) { lb.scrollLeft = Math.max(0, fx * big.naturalWidth - innerWidth / 2); lb.scrollTop = Math.max(0, fy * big.naturalHeight - innerHeight / 2); } else { lb.scrollLeft = 0; lb.scrollTop = 0; }
       }
       function open(k) { last = document.activeElement; show(k); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus();
         lb.querySelector('.p').style.display = lb.querySelector('.n').style.display = imgs.length > 1 ? '' : 'none'; }
-      function close() { lb.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); }
+      function close() { setZoom(false); lb.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); }
       imgs.forEach(function (im, k) {
         im.setAttribute('tabindex', '0'); im.setAttribute('role', 'button');
         im.addEventListener('click', function () { open(k); });
         im.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(k); } });
       });
+      var drag = null, moved = false;
+      big.addEventListener('mousedown', function (e) { if (!lb.classList.contains('zoomed')) return; drag = { x: e.clientX, y: e.clientY, l: lb.scrollLeft, t: lb.scrollTop }; moved = false; e.preventDefault(); });
+      window.addEventListener('mousemove', function (e) { if (!drag) return; var dx = e.clientX - drag.x, dy = e.clientY - drag.y; if (Math.abs(dx) + Math.abs(dy) > 4) moved = true; lb.scrollLeft = drag.l - dx; lb.scrollTop = drag.t - dy; });
+      window.addEventListener('mouseup', function () { drag = null; });
+      big.addEventListener('click', function (e) { if (moved) { moved = false; return; } if (!zbtn.hidden || lb.classList.contains('zoomed')) setZoom(!lb.classList.contains('zoomed'), e); });
+      zbtn.addEventListener('click', function () { setZoom(!lb.classList.contains('zoomed')); });
       lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
       lb.querySelector('.x').addEventListener('click', close);
       lb.querySelector('.p').addEventListener('click', function () { show(i - 1); });
