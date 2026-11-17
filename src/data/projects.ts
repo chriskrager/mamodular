@@ -26,6 +26,9 @@ export const projects: Project[] = [
     body: ["The three northern units have panoramic views over Echo Park Lake and the downtown skyline."],
     facts: [{ label: "Units", value: "5" }, { label: "Size", value: "2,000 sf each" }, { label: "Location", value: "Echo Park, Los Angeles" }],
     photos: ph('belmont', 'Belmont').map((p, i) => ({ ...p, alt: [
+      'Rear of the three Belmont homes: green three-story volumes with glass balconies above a gray ground floor and a retaining wall',
+      'Aerial view of the Belmont homes, marked with a red pin, on the hillside above a busy road and Echo Park Lake',
+      'View from a Belmont balcony through the glass railing to Echo Park Lake and the hills beyond',
       'Belmont, balcony at night with a view of the downtown Los Angeles skyline',
       'Belmont, open living area with a floating staircase and seating',
       'Belmont, bathroom with a walk-in shower and a window onto Echo Park Lake',
