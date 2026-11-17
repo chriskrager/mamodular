@@ -74,6 +74,12 @@ ul, ol { max-width: var(--measure); }
 .hero { display: flex; justify-content: center; background: var(--tint); }
 .hero-frame { position: relative; line-height: 0; max-width: 100%; }
 .hero img { width: auto; max-width: 100%; height: auto; max-height: 80vh; display: block; }
+/* Homepage hero: edge to edge. The photo fills the full window width and is cropped from top and bottom
+   if it would be taller than 85% of the window. Overlay text lines up with the page's content column. */
+.hero-bleed { display: block; background: none; }
+.hero-bleed .hero-frame { width: 100%; max-width: none; }
+.hero-bleed img { width: 100%; max-width: none; height: auto; max-height: 85vh; object-fit: cover; object-position: center 60%; }
+.hero-bleed .hero-overlay { padding-inline: max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter))); }
 .hero-overlay { position: absolute; left: 0; right: 0; bottom: 0; line-height: 1.4; padding: 72px clamp(20px, 4vw, 48px) clamp(20px, 3.5vw, 40px); background: linear-gradient(to top, rgba(10,16,20,.82), rgba(10,16,20,.55) 55%, rgba(10,16,20,0)); color: #fff; }
 .hero-title { font-size: clamp(1.7rem, 4vw, 3rem); font-weight: 300; line-height: 1.12; max-width: 18em; color: #fff; text-shadow: 0 1px 10px rgba(0,0,0,.35); }
 .hero-overlay p { margin: 10px 0 0; font-family: var(--display); font-size: clamp(1rem, 1.8vw, 1.25rem); color: #fff; }
