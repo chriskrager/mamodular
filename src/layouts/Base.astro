@@ -122,18 +122,17 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
       lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Enlarged image');
       lb.innerHTML = '<button class="x" aria-label="Close">&times;</button><button class="z" aria-label="View at full size" aria-pressed="false" hidden>100%</button><button class="p" aria-label="Previous">&lsaquo;</button><img alt="" /><button class="n" aria-label="Next">&rsaquo;</button>';
       document.body.appendChild(lb);
-      var big = lb.querySelector('img'), zbtn = lb.querySelector('.z'), i = 0, last = null, prefFit = false;
+      var big = lb.querySelector('img'), zbtn = lb.querySelector('.z'), i = 0, last = null;
       function show(k) {
         i = (k + imgs.length) % imgs.length;
         var s = imgs[i]; big.src = s.currentSrc || s.src; big.alt = s.alt;
         big.className = s.getAttribute('data-zoom') === 'plan' ? 'plan' : '';
         setZoom(false);
         zbtn.hidden = true;
-        // Photos open at their full pixel size. "Fit" switches to fit-to-window, and that choice is kept while browsing.
-        function ready() { syncZoomButton(); if (!zbtn.hidden && !prefFit) setZoom(true); }
-        if (big.complete) ready(); else big.onload = ready;
+        // Every image opens fit to the window. The "100%" button (or a click on the picture) shows it at full pixel size.
+        if (big.complete) syncZoomButton(); else big.onload = syncZoomButton;
       }
-      function toggleZoom(e) { var on = !lb.classList.contains('zoomed'); setZoom(on, e); prefFit = !on; }
+      function toggleZoom(e) { setZoom(!lb.classList.contains('zoomed'), e); }
       function syncZoomButton() {
         // Size the picture would have in fit-to-window view (same limits as the CSS: 94vw by 90vh, never enlarged).
         var nw = big.naturalWidth, nh = big.naturalHeight || 1;
