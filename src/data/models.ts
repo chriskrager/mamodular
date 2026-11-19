@@ -55,6 +55,7 @@ export const models: Model[] = [
       img('grand-ma-550', '525-4.webp', 'Interior living space with floor-to-ceiling sliders and clerestory windows.', 'built'),
       img('grand-ma-550', '525-8.webp', 'A built unit with a turquoise door on a raised deck, on a hillside lot.', 'built'),
       img('grand-ma-550', '525-1.webp', 'Small modern backyard house with a wood fascia, white siding, glass door and a wood deck, set among trees.', 'built'),
+      img('grand-ma-550', 'img-8519-scaled.webp', 'Side of the built Grand-Ma 550, with a dark wood panel wall, tall glass doors and young bamboo in a gravel yard.', 'built'),
       img('grand-ma-550', '550-ext-1.webp', 'Rendering of the 550 in a landscaped yard with palms, dark and gray siding.', 'rendering'),
       img('grand-ma-550', '550-ext-2.webp', 'Rendering of the 550 from the end, with glass doors and a stone path.', 'rendering'),
       img('grand-ma-550', '550-int-1.webp', 'Rendering of the open living and dining room.', 'rendering'),
