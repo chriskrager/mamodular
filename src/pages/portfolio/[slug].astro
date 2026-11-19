@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Embed from '../../components/Embed.astro';
 import { plans } from '../../data/plans';
 import { projects } from '../../data/projects';
+import { site } from '../../config';
 export function getStaticPaths() {
   return [
     ...plans.map((plan) => ({ params: { slug: plan.slug }, props: { plan } })),
@@ -36,7 +37,7 @@ const desc = plan ? `${plan.name}: ${nf(plan.sf)} sq. ft., ${plan.beds} bed, ${p
           {plan.description.map((t) => <p set:html={t} />)}
           {plan.note && <p class="small mute">{plan.note}</p>}
           <p class="mute">Total cost depends on your site. Tell us about your lot and we will give you a rough estimate.</p>
-          <p><a class="btn" href={`/contact/?model=${plan.slug}`}>Ask about the {plan.name}</a> <a class="btn btn-quiet" href={`/finish-board/?model=${plan.slug}`}>Plan your finishes</a></p>
+          <p><a class="btn" href={`/contact/?model=${plan.slug}`}>Ask about the {plan.name}</a> {site.showFinishBoard && <a class="btn btn-quiet" href={`/finish-board/?model=${plan.slug}`}>Plan your finishes</a>}</p>
         </div>
         {plan.floorplans ? (<><h2 style="margin-top:56px">Floor plans</h2><div class="plan-sheets">{plan.floorplans.map((f) => <div class="plan-sheet"><img src={f.src} alt={`${f.label}: floor plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /><p class="plan-cap">{f.label}</p></div>)}</div></>) : plan.floorplan && (<><h2 style="margin-top:56px">Floor plan</h2><div class="plan-sheets"><div class="plan-sheet"><img src={plan.floorplan} alt={`Floor plan of the ${plan.name}`} loading="lazy" data-zoom="plan" /></div></div></>)}
       </>

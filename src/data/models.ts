@@ -46,7 +46,7 @@ export const models: Model[] = [
       'With high ceilings and light streaming through generous glazing, this house lives much larger than its 550sf footprint would suggest. Make this the guesthouse, studio, office or granny flat of your dreams.',
       'One module, one bedroom, one bath, and an open living room. It is the smallest plan in the ADU line.',
     ],
-    hero: img('grand-ma-550', 'img-8520-scaled.webp', 'Gray built unit with glass doors and landscaping in gravel and bamboo.', 'built'),
+    hero: img('grand-ma-550', 'hero-sunset.webp', 'Rendering of the Grand-Ma 550 at sunset, with a dark wood and white panel facade, tall glass doors, a dining table on the patio and a Joshua tree in a gravel garden.', 'rendering'),
     floorplan: '/images/portfolio/grand-ma-550/floorplan.webp',
     footprint: [{ x: 0, y: 0, w: 38, h: 15 }],
     gallery: [
@@ -55,6 +55,7 @@ export const models: Model[] = [
       img('grand-ma-550', '525-4.webp', 'Interior living space with floor-to-ceiling sliders and clerestory windows.', 'built'),
       img('grand-ma-550', '525-8.webp', 'A built unit with a turquoise door on a raised deck, on a hillside lot.', 'built'),
       img('grand-ma-550', '525-1.webp', 'Small modern backyard house with a wood fascia, white siding, glass door and a wood deck, set among trees.', 'built'),
+      img('grand-ma-550', 'img-8519-scaled.webp', 'Side of the built Grand-Ma 550, with a dark wood panel wall, tall glass doors and young bamboo in a gravel yard.', 'built'),
       img('grand-ma-550', '550-ext-1.webp', 'Rendering of the 550 in a landscaped yard with palms, dark and gray siding.', 'rendering'),
       img('grand-ma-550', '550-ext-2.webp', 'Rendering of the 550 from the end, with glass doors and a stone path.', 'rendering'),
       img('grand-ma-550', '550-int-1.webp', 'Rendering of the open living and dining room.', 'rendering'),
@@ -79,7 +80,7 @@ export const models: Model[] = [
       'Bedrooms and bath sit in one module; the living, dining and kitchen area, with a powder bath, in another. An unconditioned breezeway between them, screened on both sides, opens to site-built porches on each side.',
       'Featured in <a href="https://www.dwell.com/article/casita-850-ma-modular-e5c68960">Dwell</a>.',
     ],
-    hero: img('dogtrot', 'ruth-1-scaled.webp', 'Dogtrot-plan house with a rust-colored wall, corrugated siding and a wall of windows, set among live oaks.', 'built'),
+    hero: img('dogtrot', 'ruth-10-e1479927846227-scaled.webp', 'The Dogtrot house at dusk, warm light glowing through tall windows under a low shed roof, with a corrugated metal wall and a stone path through live oaks.', 'built'),
     floorplan: '/images/portfolio/dogtrot/floorplan.webp',
     footprint: [
       { x: 0, y: 0, w: 14.5, h: 29 },
@@ -88,6 +89,7 @@ export const models: Model[] = [
     ],
     note: 'Porches are site-built.',
     gallery: [
+      img('dogtrot', 'ruth-1-scaled.webp', 'Dogtrot-plan house with a rust-colored wall, corrugated siding and a wall of windows, set among live oaks.', 'built'),
       img('dogtrot', 'ruth-2-scaled.webp', 'The house at dusk with warm light through the glazed breezeway.', 'built'),
       img('dogtrot', 'ruth-3-scaled.webp', 'Corrugated metal and rust-toned siding with a red door, seen through landscaping.', 'built'),
       img('dogtrot', 'ruth-4-scaled.webp', 'The breezeway with a dining table, rug and a wall of windows under exposed beams.', 'built'),
@@ -96,7 +98,6 @@ export const models: Model[] = [
       img('dogtrot', 'ruth-7-scaled.webp', 'Living room with leather sofa, kilim rug and tall windows.', 'built'),
       img('dogtrot', 'ruth-8-scaled.webp', 'Kitchen with a bar, birch cabinets and pendant lights.', 'built'),
       img('dogtrot', 'ruth-9-scaled.webp', 'Bedroom with a green daybed and large windows.', 'built'),
-      img('dogtrot', 'ruth-10-e1479927846227-scaled.webp', 'The breezeway from the end, with exposed beams and a corrugated wall.', 'built'),
     ],
   },
   {
@@ -113,7 +114,7 @@ export const models: Model[] = [
       '<strong>Plan A: three bedrooms, one bath.</strong> Three bedrooms share a bath, arranged around an open kitchen, dining and living room.',
       '<strong>Plan B: two bedrooms, two baths.</strong> Two bedrooms, each with access to a bath, in a larger master suite type configuration.',
     ],
-    hero: img('casita-1100', '1100-1.webp', 'Rendering of the Casita 1100 from the garden, with a wall of glass facing the patio.', 'rendering'),
+    hero: img('casita-1100', '1100-1.webp', 'Rendering of an aerial view of the Casita 1100, with two offset roofs, a glass corner and two people on a concrete patio.', 'rendering'),
     floorplan: '/images/portfolio/casita-1100/floorplan.webp',
     floorplans: [
       { src: '/images/portfolio/casita-1100/floorplan-3bd.webp', label: 'Plan A: three bedrooms, one bath' },
@@ -124,8 +125,8 @@ export const models: Model[] = [
       { x: 15, y: 0, w: 15, h: 36 },
     ],
     gallery: [
-      img('casita-1100', '1100-2.webp', 'Rendering of the Casita 1100 with a low-slope roof and a wall of sliding glass.', 'rendering'),
-      img('casita-1100', '1100-3-scaled.webp', 'Aerial rendering of the Casita 1100 and its two offset roofs.', 'rendering'),
+      img('casita-1100', '1100-2.webp', 'Rendering of the Casita 1100 from the garden, with a low-slope roof, a picture window and a wall of sliding glass opening to the patio.', 'rendering'),
+      img('casita-1100', '1100-3-scaled.webp', 'Rendering of the Casita 1100 from the patio corner, with a wood-lined roof overhang, tall glass walls and two people seated outside.', 'rendering'),
     ],
   },
 ];

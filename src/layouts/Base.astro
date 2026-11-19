@@ -1,15 +1,14 @@
 ---
 import '../styles/global.css';
-import { site, nav, footerNav } from '../config';
+import { site, nav } from '../config';
+import { plans } from '../data/plans';
+import { projects } from '../data/projects';
 import jost300 from '@fontsource/jost/files/jost-latin-300-normal.woff2?url';
 import jost400 from '@fontsource/jost/files/jost-latin-400-normal.woff2?url';
-import serif400 from '@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2?url';
 import '@fontsource/jost/latin-300.css';
 import '@fontsource/jost/latin-400.css';
 import '@fontsource/jost/latin-500.css';
-import '@fontsource/source-serif-4/latin-400.css';
-import '@fontsource/source-serif-4/latin-400-italic.css';
-import '@fontsource/source-serif-4/latin-600.css';
+import '@fontsource/jost/latin-600.css';
 
 interface Props { title: string; description: string; image?: string; noindex?: boolean }
 const { title, description, image = '/images/site/home-1.webp', noindex = false } = Astro.props;
@@ -17,6 +16,16 @@ const path = Astro.url.pathname;
 const canonical = new URL(path, site.url).toString();
 const fullTitle = path === '/' ? title : `${title} | ${site.name}`;
 const hide = noindex || !site.live;
+
+// Main-nav highlighting. A link is current on its own page ('page') and anywhere inside its section ('true').
+// Detail pages live at other URLs, so map them to the nav item they belong to.
+const portfolioSlug = path.match(/^\/portfolio\/([^/]+)\//)?.[1];
+const inSection: Record<string, boolean> = {
+  '/news/': /^\/\d{4}\/\d{2}\/\d{2}\//.test(path),
+  '/find-your-ma/': !!portfolioSlug && plans.some((p) => p.slug === portfolioSlug),
+  '/multi-family/': !!portfolioSlug && projects.some((p) => p.slug === portfolioSlug),
+};
+const current = (href: string) => (path === href ? 'page' : path.startsWith(href) || inSection[href] ? 'true' : undefined);
 ---
 <!doctype html>
 <html lang="en">
@@ -30,13 +39,12 @@ const hide = noindex || !site.live;
     {hide && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preload" href={jost300} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={jost400} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={serif400} as="font" type="font/woff2" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', name: site.name, url: site.url,
-      logo: new URL('/images/brand/ma-logo-tagline.webp', site.url).toString(), email: site.email, telephone: site.phone,
+      logo: new URL('/images/brand/ma-logo.webp', site.url).toString(), email: site.email, telephone: site.phone,
       address: { '@type': 'PostalAddress', streetAddress: site.address[0].replace(/,.*$/, ''), addressLocality: 'Austin', addressRegion: 'TX', postalCode: '78702', addressCountry: 'US' },
       parentOrganization: { '@type': 'Organization', name: 'KRDB', url: 'https://www.krdb.com' },
-      sameAs: [site.facebook, site.twitter],
+      sameAs: [site.facebook],
     })} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
@@ -53,20 +61,23 @@ const hide = noindex || !site.live;
         gtag('js', new Date()); gtag('config', id);
       </script>
     </>)}
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap">
-        <a class="logo" href="/"><img src="/images/brand/ma-logo-tagline.webp" alt="ma modular. ma is modern + affordable, modular architecture, home." width="195" height="62" /></a>
-        <nav class="site-nav" aria-label="Main">
+        <a class="logo" href="/"><img src="/images/brand/ma-logo.webp" alt="" width="56" height="56" /><span class="logo-text">ma modular</span></a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span class="nav-bars" aria-hidden="true"></span></button>
+        <nav class="site-nav" id="site-nav" aria-label="Main">
           {nav.map((n) => n.children ? (
             <div class="nav-group">
-              <a href={n.href} class="nav-parent" aria-haspopup="true" aria-current={n.children.some((c) => path.startsWith(c.href)) ? 'page' : undefined}>{n.label}<span aria-hidden="true"> ▾</span></a>
-              <div class="nav-sub">{n.children.map((c) => <a href={c.href} aria-current={path.startsWith(c.href) ? 'page' : undefined}>{c.label}</a>)}</div>
+              <a href={n.href} class="nav-parent" aria-haspopup="true" aria-current={n.children.some((c) => current(c.href)) ? 'true' : undefined}>{n.label}<span aria-hidden="true"> ▾</span></a>
+              <span class="nav-group-label" aria-hidden="true">{n.label}</span>
+              <div class="nav-sub" role="group" aria-label={n.label}>{n.children.map((c) => <a href={c.href} aria-current={current(c.href)}>{c.label}</a>)}</div>
             </div>
           ) : (
-            <a href={n.href} class={[n.accent ? 'accent' : '', n.cta ? 'nav-cta' : ''].join(' ').trim() || undefined} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
+            <a href={n.href} class={[n.accent ? 'accent' : '', n.cta ? 'nav-cta' : ''].join(' ').trim() || undefined} aria-current={current(n.href)}>{n.label}</a>
           ))}
         </nav>
       </div>
@@ -77,20 +88,10 @@ const hide = noindex || !site.live;
         <div class="cols">
           <div>
             <p><strong>ma modular</strong></p>
-            <p>An architect-designed modular home system from KRDB.</p>
+            <p>An architect-designed modular home system from <a href="https://www.krdb.com">KRDB</a>.</p>
             <p><a href={`mailto:${site.email}`}>{site.email}</a><br />{site.phone}</p>
             <p>{site.address[0]}<br />{site.address[1]}</p>
-          </div>
-          <div>
-            <ul>
-              {footerNav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-            </ul>
-          </div>
-          <div>
-            <ul>
-              <li><a href={site.facebook}>Facebook</a></li>
-              <li><a href={site.twitter}>Twitter</a></li>
-            </ul>
+            <p><a href={site.facebook}>Facebook</a></p>
           </div>
         </div>
         <p class="fine">&copy; {new Date().getFullYear()} ma modular. All rights reserved. {site.financingNote} <a href="/privacy/">Privacy</a></p>
@@ -98,26 +99,71 @@ const hide = noindex || !site.live;
     </footer>
   <script is:inline>
     (function () {
+      var header = document.querySelector('.site-header');
+      var btn = header && header.querySelector('.nav-toggle');
+      if (!btn) return;
+      var mq = window.matchMedia('(min-width: 1023px)');
+      function set(open, focusBtn) {
+        header.classList.toggle('nav-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+        if (!open && focusBtn) btn.focus();
+      }
+      btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+      header.addEventListener('keydown', function (e) { if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') set(false, true); });
+      (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(function (e) { if (e.matches) set(false); });
+    })();
+  </script>
+  <script is:inline>
+    (function () {
       var imgs = Array.prototype.slice.call(document.querySelectorAll('img[data-zoom]'));
       if (!imgs.length) return;
       var lb = document.createElement('div');
       lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Enlarged image');
-      lb.innerHTML = '<button class="x" aria-label="Close">&times;</button><button class="p" aria-label="Previous">&lsaquo;</button><img alt="" /><button class="n" aria-label="Next">&rsaquo;</button>';
+      lb.innerHTML = '<button class="x" aria-label="Close">&times;</button><button class="z" aria-label="View at full size" aria-pressed="false" hidden>100%</button><button class="p" aria-label="Previous">&lsaquo;</button><img alt="" /><button class="n" aria-label="Next">&rsaquo;</button>';
       document.body.appendChild(lb);
-      var big = lb.querySelector('img'), i = 0, last = null;
+      var big = lb.querySelector('img'), zbtn = lb.querySelector('.z'), i = 0, last = null;
       function show(k) {
         i = (k + imgs.length) % imgs.length;
         var s = imgs[i]; big.src = s.currentSrc || s.src; big.alt = s.alt;
         big.className = s.getAttribute('data-zoom') === 'plan' ? 'plan' : '';
+        setZoom(false);
+        zbtn.hidden = true;
+        // Every image opens fit to the window. The "100%" button (or a click on the picture) shows it at full pixel size.
+        if (big.complete) syncZoomButton(); else big.onload = syncZoomButton;
       }
-      function open(k) { last = document.activeElement; show(k); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus();
+      function toggleZoom(e) { setZoom(!lb.classList.contains('zoomed'), e); }
+      function syncZoomButton() {
+        // Size the picture would have in fit-to-window view (same limits as the CSS: 94vw by 90vh, never enlarged).
+        var nw = big.naturalWidth, nh = big.naturalHeight || 1;
+        var fitW = Math.min(nw, innerWidth * 0.94, innerHeight * 0.9 * nw / nh);
+        zbtn.hidden = !(nw > fitW + 8);
+        lb.classList.toggle('can-zoom', !zbtn.hidden);
+      }
+      function setZoom(on, e) {
+        var fitW = big.getBoundingClientRect().width, fitH = big.getBoundingClientRect().height;
+        var fx = e ? (e.clientX - big.getBoundingClientRect().left) / (fitW || 1) : 0.5;
+        var fy = e ? (e.clientY - big.getBoundingClientRect().top) / (fitH || 1) : 0.5;
+        lb.classList.toggle('zoomed', on);
+        zbtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        zbtn.setAttribute('aria-label', on ? 'Fit to window' : 'View at full size');
+        zbtn.textContent = on ? 'Fit' : '100%';
+        if (on) { lb.scrollLeft = Math.max(0, fx * big.naturalWidth - innerWidth / 2); lb.scrollTop = Math.max(0, fy * big.naturalHeight - innerHeight / 2); } else { lb.scrollLeft = 0; lb.scrollTop = 0; }
+      }
+      function open(k) { last = document.activeElement; lb.classList.add('open'); show(k); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus();
         lb.querySelector('.p').style.display = lb.querySelector('.n').style.display = imgs.length > 1 ? '' : 'none'; }
-      function close() { lb.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); }
+      function close() { setZoom(false); lb.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); }
       imgs.forEach(function (im, k) {
         im.setAttribute('tabindex', '0'); im.setAttribute('role', 'button');
         im.addEventListener('click', function () { open(k); });
         im.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(k); } });
       });
+      var drag = null, moved = false;
+      big.addEventListener('mousedown', function (e) { if (!lb.classList.contains('zoomed')) return; drag = { x: e.clientX, y: e.clientY, l: lb.scrollLeft, t: lb.scrollTop }; moved = false; e.preventDefault(); });
+      window.addEventListener('mousemove', function (e) { if (!drag) return; var dx = e.clientX - drag.x, dy = e.clientY - drag.y; if (Math.abs(dx) + Math.abs(dy) > 4) moved = true; lb.scrollLeft = drag.l - dx; lb.scrollTop = drag.t - dy; });
+      window.addEventListener('mouseup', function () { drag = null; });
+      big.addEventListener('click', function (e) { if (moved) { moved = false; return; } if (!zbtn.hidden || lb.classList.contains('zoomed')) toggleZoom(e); });
+      zbtn.addEventListener('click', function () { toggleZoom(); });
       lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
       lb.querySelector('.x').addEventListener('click', close);
       lb.querySelector('.p').addEventListener('click', function () { show(i - 1); });
@@ -125,6 +171,7 @@ const hide = noindex || !site.live;
       document.addEventListener('keydown', function (e) {
         if (!lb.classList.contains('open')) return;
         if (e.key === 'Escape') close(); else if (e.key === 'ArrowLeft') show(i - 1); else if (e.key === 'ArrowRight') show(i + 1);
+        else if (lb.classList.contains('zoomed') && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) { e.preventDefault(); lb.scrollTop += e.key === 'ArrowDown' ? 160 : -160; }
       });
     })();
   </script>
